@@ -4,6 +4,21 @@
 zip: github.com/fifthtry/fpm-controller-ui/archive/refs/heads/main.zip
 base: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/main
 
--- fpm.dependency: fifthtry.github.io/doc-site as ds
 
--- fpm.auto-import: ds
+-- fpm.dependency: fifthtry.github.io/fpm-controller-ui
+
+
+-- fpm.auto-import: fpm
+-- fpm.auto-import: fifthtry.github.io/fpm-controller-ui/assets
+
+
+
+
+
+
+-- fpm.sitemap:
+
+# Home: /index.html
+
+# Sign-in: /sign-in/
+# Create Package: /create-package/

@@ -1,0 +1,252 @@
+-- import: fifthtry.github.io/fpm-controller-ui as base
+
+-- boolean show-delete-dialog: false
+
+-- optional string package-to-delete:  `package-name`
+
+
+-- base.page: 
+
+
+
+-- packages-list:
+package-list: $package-list
+
+-- remove-package:
+package-name: $package-to-delete
+
+-- overlay:
+if: $show-delete-dialog
+
+-- delete-dialog:
+package-name: $package-to-delete
+
+
+
+
+
+
+
+-- ftd.column remove-package:
+string package-name:
+width: fill
+margin-top: $fpm.space.space-6
+
+--- ftd.row:
+align: left
+padding-left: $fpm.space.space-6	
+
+--- sign-button: Delete Package
+$on-click$: $show-delete-dialog = true
+$on-click$: $package-to-delete = $package-name
+$on-click-outside$: $show-delete-dialog = false
+
+
+
+
+
+
+
+
+
+
+-- ftd.column sign-button:
+caption title:
+optional string button-link:
+boolean plus-sign: false
+width: fill
+margin-bottom: $fpm.space.space-4
+link: $button-link
+
+--- ftd.row:
+align: right
+padding-horizontal: $fpm.space.space-6
+padding-vertical: $fpm.space.space-2
+background-color: $fpm.color.main.cta-tertiary.base
+background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
+color: $fpm.color.main.text-strong
+color if $MOUSE-IN: $fpm.color.main.background.step-1
+
+--- ftd.text:
+if: $plus-sign
+text: &#65291; 
+role: $fpm.type.copy-tight
+padding-right: $fpm.space.space-2
+
+--- ftd.text: $title 
+role: $fpm.type.copy-tight
+
+
+
+
+-- ftd.column packages-list:
+packages list package-list:
+width: fill
+
+--- package-loop: $obj.title
+$loop$: $package-list as $obj
+package-url: $obj.package-url
+description: $obj.description
+
+
+
+
+
+
+
+
+-- ftd.column package-loop:
+caption title:
+string description: 
+string package-url:
+width: fill
+padding-vertical: $fpm.space.space-2
+
+
+--- ftd.row:
+width: fill
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+spacing: 24
+background-color: $fpm.color.main.background.step-1
+border-radius: 10
+color: $fpm.color.main.text
+color if $MOUSE-IN: $fpm.color.main.text-strong
+id: row-inner
+
+--- ftd.column:
+width: fill
+spacing: 12
+
+--- ftd.text: $description
+role: $fpm.type.copy-tight
+
+--- ftd.text: $title
+role: $fpm.type.copy-tight
+
+--- container: row-inner
+
+--- ftd.row:
+align: center
+
+--- sign-button: Visit
+button-link: $package-url
+
+
+
+
+
+
+
+
+
+
+-- ftd.column overlay:
+background-color: $overlay-bg
+width: fill
+height: fill
+anchor: window
+top: 0
+left: 0
+z-index: 9999
+
+
+
+
+
+
+
+
+
+
+-- ftd.column delete-dialog:
+string package-name:
+width: percent 30
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-4
+anchor: window
+position: center
+z-index: 999999
+min-height: 200
+border-radius: 8
+
+
+--- ftd.column:
+width: fill
+id: parent-container
+align: center
+
+--- ftd.row:
+align: center
+
+--- ftd.row:
+width: fill
+spacing: 6
+
+--- ftd.text: Are you sure? you want to delete
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+
+--- ftd.row:
+align: left
+
+--- ftd.text: $package-name
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+
+--- ftd.text: ?
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+
+--- container: parent-container
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-10
+
+--- ftd.row:
+align: center
+
+--- sign-button: Delete
+button-link: /package/
+
+--- ftd.text: Cancel
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+color if $MOUSE-IN: $fpm.color.main.text-strong
+padding-horizontal: $fpm.space.space-5
+padding-vertical: $fpm.space.space-2
+margin-left: $fpm.space.space-10
+
+
+
+
+
+
+
+
+
+-- record packages:
+caption title:
+string description: 
+string package-url:
+
+-- packages list package-list:
+
+-- package-list: abrark.com
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
+package-url: abrark.com
+
+
+
+
+
+
+
+
+
+
+-- ftd.color overlay-bg:
+light: rgba(0, 0, 0, 0.6)
+dark: rgba(0, 0, 0, 0.6)

@@ -1,0 +1,87 @@
+-- import: fifthtry.github.io/fpm-controller-ui as base
+
+-- base.page: 
+
+
+
+-- sign-up: Sign up
+email-label: *Email:
+password-label: *Passeword:
+
+
+
+
+
+
+
+-- ftd.column sign-up:
+caption title:
+string email-label:
+string password-label:
+string cta-primary: Sign Up
+string cta-secondary: Sign in
+string error-email: some email error msg
+string error-password: some passeword error msg
+string email-placeholder: username
+string password-placeholder: password
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-8
+background-color: $fpm.color.main.background.step-1
+border-width: 1
+border-color: $fpm.color.main.border
+margin-top: $fpm.space.space-7
+width: percent 70
+position: center
+
+--- ftd.column:
+width: fill
+id: main-form
+
+--- ftd.column:
+align: center
+
+--- ftd.text: $title
+role: $fpm.type.heading-medium
+color: $fpm.color.main.text
+align: center
+
+--- container: main-form
+
+--- base.form-field:
+label: $email-label
+placeholder: $email-placeholder
+error-msg: $error-email
+
+--- container: main-form
+
+--- base.form-field:
+label: $password-label
+placeholder: $password-placeholder
+error-msg: $error-password
+
+--- container: main-form
+
+--- ftd.column: 
+width: fill
+margin-top: $fpm.space.space-6
+
+--- ftd.row:
+spacing: 34
+align: right
+
+--- ftd.text: $cta-secondary
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+color if $MOUSE-IN: $fpm.color.main.text-strong
+padding-horizontal: $fpm.space.space-5
+padding-vertical: $fpm.space.space-2
+link: link: /sign-up/
+
+--- ftd.text: $cta-primary
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+color if $MOUSE-IN: $fpm.color.main.background.step-1
+padding-horizontal: $fpm.space.space-5
+padding-vertical: $fpm.space.space-2
+background-color: $fpm.color.main.cta-tertiary.base
+background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover

@@ -1,0 +1,114 @@
+-- import: fifthtry.github.io/fpm-controller-ui as base
+
+-- base.page: 
+
+-- sign-button: New
+plus-sign: true
+button-link: /create-package/
+
+-- packages-list:
+package-list: $package-list
+
+
+
+
+
+
+-- ftd.column sign-button:
+caption title:
+optional string button-link:
+boolean plus-sign: false
+width: fill
+margin-bottom: $fpm.space.space-4
+link: $button-link
+
+--- ftd.row:
+align: right
+padding-horizontal: $fpm.space.space-6
+padding-vertical: $fpm.space.space-2
+background-color: $fpm.color.main.cta-tertiary.base
+background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
+color: $fpm.color.main.text-strong
+color if $MOUSE-IN: $fpm.color.main.background.step-1
+
+--- ftd.text:
+if: $plus-sign
+text: &#65291; 
+role: $fpm.type.copy-tight
+padding-right: $fpm.space.space-2
+
+--- ftd.text: $title 
+role: $fpm.type.copy-tight
+
+
+
+
+-- ftd.column packages-list:
+packages list package-list:
+width: fill
+
+--- package-loop: $obj.title
+$loop$: $package-list as $obj
+package-url: $obj.package-url
+description: $obj.description
+
+
+
+
+
+
+
+
+
+
+-- ftd.column package-loop:
+caption title:
+string description: 
+string package-url:
+width: fill
+padding-vertical: $fpm.space.space-2
+
+--- ftd.column:
+width: fill
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+spacing: 12
+background-color: $fpm.color.main.background.step-1
+border-radius: 10
+link: $package-url
+color: $fpm.color.main.text
+color if $MOUSE-IN: $fpm.color.main.text-strong
+
+--- ftd.text: $description
+role: $fpm.type.copy-tight
+
+--- ftd.text: $title
+role: $fpm.type.copy-tight
+
+
+
+
+
+
+
+
+
+
+-- record packages:
+caption title:
+string description: 
+string package-url:
+
+-- packages list package-list:
+
+-- package-list: abrark.com
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
+package-url: /package/
+
+-- package-list: loremipsum.fifthtry.io
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
+package-url: /package/
+
+-- package-list: dolor-sit-amet.fifthtry.io
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
+package-url:  /package/

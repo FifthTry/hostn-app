@@ -1,0 +1,329 @@
+-- import: fifthtry.github.io/fpm-controller-ui as base
+
+-- optional string package-name:
+
+-- base.page: Create new package
+
+-- form-create-package:
+
+
+
+
+
+
+
+
+
+
+-- ftd.column form-create-package:
+padding-vertical: $fpm.space.space-5
+padding-horizontal: $fpm.space.space-6
+background-color: $fpm.color.main.background.step-1
+margin-top: $fpm.space.space-7
+width: fill
+position: center
+
+--- form-input-rounded: Package name:
+
+--- container: ftd.main
+
+--- form-input: Description (optional)
+
+--- container: ftd.main
+
+--- form-input-dropdown: Package template
+
+--- container: ftd.main
+
+--- ftd.row:
+align: right
+
+--- ftd.text: Create
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+color: $fpm.color.main.text-strong
+color if $MOUSE-IN: $fpm.color.main.background.step-1
+padding-horizontal: $fpm.space.space-5
+padding-vertical: $fpm.space.space-2
+background-color: $fpm.color.main.cta-tertiary.base
+background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
+link: /dashboard/
+
+
+
+
+
+
+
+
+
+-- ftd.column form-input-rounded:
+caption title:
+width: fill
+id: create-form
+margin-bottom: $fpm.space.space-6
+
+--- ftd.text: $title
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.row:
+width: fill
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+width: fill
+placeholder: Enter name of the package here
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+
+--- ftd.text: fifthtry.io
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+margin-bottom: $fpm.space.space-2
+align: center
+border-width: 1
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-5
+border-left: 0
+border-right-radius: 8
+
+--- container: ftd.main
+
+--- ftd.column:
+margin-top: $fpm.space.space-1
+width: fill
+
+--- ftd.text: Please enter name of the package
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+padding-left: $fpm.space.space-3
+
+
+
+
+
+
+
+
+
+
+-- ftd.column form-input:
+caption title:
+width: fill
+margin-bottom: $fpm.space.space-6
+
+--- ftd.column:
+id: create-form
+width: fill
+
+--- ftd.text: $title
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.row:
+width: fill
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+width: fill
+placeholder: Enter description
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.column form-input-dropdown:
+caption title:
+boolean show-dropdown: false
+width: fill
+margin-bottom: $fpm.space.space-6
+
+--- ftd.column:
+id: create-form
+width: fill
+
+--- ftd.text: $title
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.row:
+width: fill
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-3
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+$on-click$: $show-dropdown = true
+
+
+--- ftd.text: Click here to select from existing package
+if: $package-name is null
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+width: fill
+
+--- ftd.text:
+if: $package-name is not null
+text:  $package-name
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+width: fill
+
+--- ftd.row:
+align: right
+
+--- ftd.image: 
+src: $assets.files.downarrow.svg
+width: 18
+height: 18
+
+--- container: create-form
+
+--- ftd.column:
+margin-top: $fpm.space.space-1
+width: fill
+
+--- ftd.text: Please select the name of the package
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+padding-left: $fpm.space.space-3
+
+--- container: create-form
+
+--- ftd.column:
+if: $show-dropdown 
+width: fill
+$on-mouse-leave$: $show-dropdown = false
+
+--- package-dropdown:
+show-dd: $show-dropdown
+package-list: $package-list
+
+
+
+
+
+
+
+
+
+-- ftd.column package-dropdown:
+packages list package-list:
+boolean show-dd: false
+width: fill
+background-color: $fpm.color.main.background.base
+border-width: 1
+border-color: $fpm.color.main.border
+border-top: 0
+id: dropdown-container
+anchor: parent
+top: -20
+left: 0
+
+--- package-loop: $obj.title
+$loop$: $package-list as $obj
+package-url: $obj.package-url
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+padding-vertical: $fpm.space.space-4
+padding-right: $fpm.space.space-4
+spacing: 18
+
+--- ftd.text: Search:
+role: $fpm.type.fine-print
+color: $fpm.color.main.text-strong
+padding-left: $fpm.space.space-3
+align: center
+
+--- ftd.input:
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+width: fill
+placeholder: Enter name of the package here
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+$on-input$: $package-name = $VALUE
+/$on-global-key[esc]$: $show-dd = false
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.row package-loop:
+caption title:
+string package-url:
+width: fill
+background-color if $MOUSE-IN: $fpm.color.main.background.step-2
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+color: $fpm.color.main.text
+color if $MOUSE-IN: $fpm.color.main.text-strong
+$on-click$: $package-name = $package-url
+
+--- ftd.text: $title
+role: $fpm.type.copy-tight
+width: percent 30
+
+--- ftd.text: $package-url
+role: $fpm.type.copy-tight
+width: fill
+
+
+
+
+
+
+
+
+
+
+
+-- record packages:
+caption title:
+string package-url:
+
+-- packages list package-list:
+
+-- package-list: doc-site
+package-url: doc-site.fifthtry.io
+
+-- package-list: resume
+package-url: resume.fifthtry.io
+
+-- package-list: slide
+package-url: slides.fifthtry.io

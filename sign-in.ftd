@@ -1,0 +1,9 @@
+-- import: fifthtry.github.io/fpm-controller-ui as base
+
+-- base.page: 
+
+
+
+-- base.login: Login
+email-label: *Email:
+password-label: *Passeword:
