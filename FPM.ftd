@@ -5,12 +5,15 @@ zip: github.com/fifthtry/fpm-controller-ui/archive/refs/heads/main.zip
 base: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/main
 
 
--- fpm.dependency: fifthtry.github.io/fpm-controller-ui
+-- fpm.dependency: fifthtry.github.io/button as button
+-- fpm.dependency: fifthtry.github.io/roboto
+
 
 
 -- fpm.auto-import: fpm
 -- fpm.auto-import: fifthtry.github.io/fpm-controller-ui/assets
-
+-- fpm.auto-import: button
+-- fpm.auto-import: fifthtry.github.io/fpm-controller-ui/FPM/config
 
 
 
