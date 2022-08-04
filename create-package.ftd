@@ -1,10 +1,20 @@
 -- import: fifthtry.github.io/fpm-controller-ui as base
-
--- optional string package-name:
+-- import: fifthtry.github.io/button as button
 
 -- base.page: Create new package
 
--- form-create-package:
+-- optional string package-name:
+-- optional string package-description:
+-- optional string package-template:
+
+
+-- boolean show-dropdown: false
+
+
+-- create-package-form:
+name: $package-name
+description: $package-description
+template: $package-template
 
 
 
@@ -15,19 +25,25 @@
 
 
 
--- ftd.column form-create-package:
+-- ftd.column create-package-form:
+string name:
+string description:
+string template:
 padding-vertical: $fpm.space.space-5
 padding-horizontal: $fpm.space.space-6
 background-color: $fpm.color.main.background.step-1
 margin-top: $fpm.space.space-7
 width: fill
 position: center
+margin-bottom: 100
 
 --- form-input-rounded: Package name:
+input-value: $package-name
 
 --- container: ftd.main
 
 --- form-input: Description (optional)
+input-value: $package-description
 
 --- container: ftd.main
 
@@ -38,16 +54,10 @@ position: center
 --- ftd.row:
 align: right
 
---- ftd.text: Create
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
-color: $fpm.color.main.text-strong
-color if $MOUSE-IN: $fpm.color.main.background.step-1
-padding-horizontal: $fpm.space.space-5
-padding-vertical: $fpm.space.space-2
-background-color: $fpm.color.main.cta-tertiary.base
-background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
+
+--- button.button: Create
+role: primary
+medium: true
 link: /dashboard/
 
 
@@ -60,9 +70,12 @@ link: /dashboard/
 
 -- ftd.column form-input-rounded:
 caption title:
+optional string error-msg: Beep Beep! I am an error!
+string input-value: 
 width: fill
 id: create-form
 margin-bottom: $fpm.space.space-6
+spacing: 8
 
 --- ftd.text: $title
 role: $fpm.type.copy-tight
@@ -70,7 +83,7 @@ color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.row:
-width: fill
+width: percent 50
 
 --- ftd.input:
 role: $fpm.type.copy-tight
@@ -82,10 +95,11 @@ padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
+$on-input$: $input-value = $VALUE
 
 --- ftd.text: fifthtry.io
 role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
+color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 align: center
 border-width: 1
@@ -98,15 +112,13 @@ border-right-radius: 8
 --- container: ftd.main
 
 --- ftd.column:
-margin-top: $fpm.space.space-1
 width: fill
-
---- ftd.text: Please enter name of the package
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
 padding-left: $fpm.space.space-3
 
-
+--- ftd.text: $error-msg
+if: $error-msg is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text
 
 
 
@@ -117,12 +129,15 @@ padding-left: $fpm.space.space-3
 
 -- ftd.column form-input:
 caption title:
+optional string error-msg: Beep Beep! I am an error!
+string input-value: 
 width: fill
 margin-bottom: $fpm.space.space-6
 
 --- ftd.column:
 id: create-form
 width: fill
+spacing: 8
 
 --- ftd.text: $title
 role: $fpm.type.copy-tight
@@ -142,6 +157,19 @@ padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
+white-space: pre
+multiline: true
+$on-input$: $input-value = $VALUE
+
+--- container: create-form
+
+--- ftd.column:
+width: fill
+padding-left: $fpm.space.space-3
+
+--- ftd.text: $error-msg
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text
 
 
 
@@ -156,13 +184,14 @@ border-color: $fpm.color.main.border
 
 -- ftd.column form-input-dropdown:
 caption title:
-boolean show-dropdown: false
 width: fill
+optional string error-msg: Beep Beep! I am an error!
 margin-bottom: $fpm.space.space-6
 
 --- ftd.column:
 id: create-form
 width: fill
+spacing: 8
 
 --- ftd.text: $title
 role: $fpm.type.copy-tight
@@ -177,7 +206,6 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 $on-click$: $show-dropdown = true
-
 
 --- ftd.text: Click here to select from existing package
 if: $package-name is null
@@ -203,23 +231,21 @@ height: 18
 --- container: create-form
 
 --- ftd.column:
-margin-top: $fpm.space.space-1
 width: fill
-
---- ftd.text: Please select the name of the package
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
 padding-left: $fpm.space.space-3
+
+--- ftd.text: $error-msg
+if: $error-msg is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text
 
 --- container: create-form
 
 --- ftd.column:
 if: $show-dropdown 
 width: fill
-$on-mouse-leave$: $show-dropdown = false
 
 --- package-dropdown:
-show-dd: $show-dropdown
 package-list: $package-list
 
 
@@ -232,7 +258,6 @@ package-list: $package-list
 
 -- ftd.column package-dropdown:
 packages list package-list:
-boolean show-dd: false
 width: fill
 background-color: $fpm.color.main.background.base
 border-width: 1
@@ -240,7 +265,7 @@ border-color: $fpm.color.main.border
 border-top: 0
 id: dropdown-container
 anchor: parent
-top: -20
+top: -32
 left: 0
 
 --- package-loop: $obj.title
@@ -251,15 +276,20 @@ package-url: $obj.package-url
 
 --- ftd.row:
 width: fill
+
+--- ftd.row:
+width: fill
 padding-vertical: $fpm.space.space-4
 padding-right: $fpm.space.space-4
 spacing: 18
+id: input-row
 
---- ftd.text: Search:
+--- ftd.text: Template url:
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
 padding-left: $fpm.space.space-3
 align: center
+white-space: nowrap
 
 --- ftd.input:
 role: $fpm.type.copy-tight
@@ -272,7 +302,16 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 $on-input$: $package-name = $VALUE
-/$on-global-key[esc]$: $show-dd = false
+
+--- container: input-row
+
+--- ftd.row:
+width: percent 10
+
+--- button.button: Go
+role: primary
+medium: true
+$on-click$: $show-dropdown = false
 
 
 
@@ -294,6 +333,7 @@ padding-horizontal: $fpm.space.space-3
 color: $fpm.color.main.text
 color if $MOUSE-IN: $fpm.color.main.text-strong
 $on-click$: $package-name = $package-url
+$on-click$: $show-dropdown = false
 
 --- ftd.text: $title
 role: $fpm.type.copy-tight

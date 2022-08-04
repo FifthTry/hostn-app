@@ -1,4 +1,6 @@
 -- import: fifthtry.github.io/fpm-controller-ui as base
+-- import: fifthtry.github.io/button as button
+
 
 -- boolean show-delete-dialog: false
 
@@ -36,7 +38,7 @@ margin-top: $fpm.space.space-6
 align: left
 padding-left: $fpm.space.space-6	
 
---- sign-button: Delete Package
+--- delete-button: Delete Package
 $on-click$: $show-delete-dialog = true
 $on-click$: $package-to-delete = $package-name
 $on-click-outside$: $show-delete-dialog = false
@@ -50,7 +52,7 @@ $on-click-outside$: $show-delete-dialog = false
 
 
 
--- ftd.column sign-button:
+-- ftd.column delete-button:
 caption title:
 optional string button-link:
 boolean plus-sign: false
@@ -62,10 +64,10 @@ link: $button-link
 align: right
 padding-horizontal: $fpm.space.space-6
 padding-vertical: $fpm.space.space-2
-background-color: $fpm.color.main.cta-tertiary.base
+background-color: $fpm.color.main.error.base
 background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
-color: $fpm.color.main.text-strong
-color if $MOUSE-IN: $fpm.color.main.background.step-1
+color: $fpm.color.main.error.text
+border-radius: 4
 
 --- ftd.text:
 if: $plus-sign
@@ -118,10 +120,10 @@ id: row-inner
 width: fill
 spacing: 12
 
---- ftd.text: $description
-role: $fpm.type.copy-tight
-
 --- ftd.text: $title
+role: $fpm.type.heading-small
+
+--- ftd.text: $description
 role: $fpm.type.copy-tight
 
 --- container: row-inner
@@ -129,8 +131,10 @@ role: $fpm.type.copy-tight
 --- ftd.row:
 align: center
 
---- sign-button: Visit
-button-link: $package-url
+--- button.button: Visit
+role: primary
+medium: true
+link: $package-url
 
 
 
@@ -208,8 +212,9 @@ margin-top: $fpm.space.space-10
 --- ftd.row:
 align: center
 
---- sign-button: Delete
-button-link: /package/
+--- delete-button: Delete
+$on-click$: $show-delete-dialog = false
+$on-click$: $package-to-delete = $package-name
 
 --- ftd.text: Cancel
 role: $fpm.type.copy-tight

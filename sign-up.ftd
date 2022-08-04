@@ -1,12 +1,13 @@
 -- import: fifthtry.github.io/fpm-controller-ui as base
+-- import: fifthtry.github.io/button as button
 
 -- base.page: 
 
 
 
 -- sign-up: Sign up
-email-label: *Email:
-password-label: *Passeword:
+email-label: Email*
+password-label: Passeword*
 
 
 
@@ -63,25 +64,67 @@ error-msg: $error-password
 
 --- ftd.column: 
 width: fill
+margin-top: $fpm.space.space-4
+margin-bottom: $fpm.space.space-4
+
+--- ftd.row:
+width: fill
+
+--- ftd.input:
+/type: checkbox
+width: 16
+height: 16
+
+--- ftd.text: I accept
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-3
+
+--- ftd.text: Terms &amp; conditions
+role: $fpm.type.fine-print
+border-bottom: 1
+border-color: $fpm.color.main.text
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+color: $fpm.color.main.text
+color  if $MOUSE-IN:  $fpm.color.main.text-strong
+link: https://www.fifthtry.com/terms/
+open-in-new-tab: true
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-1
+
+--- ftd.text: and
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-1
+
+--- ftd.text: Privacy policy
+role: $fpm.type.fine-print
+border-bottom: 1
+border-color: $fpm.color.main.text
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+color: $fpm.color.main.text
+color  if $MOUSE-IN:  $fpm.color.main.text-strong
+link: https://www.fifthtry.com/privacy/
+open-in-new-tab: true
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-1
+
+--- container: main-form
+
+--- ftd.column: 
+width: fill
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
-spacing: 34
 align: right
 
---- ftd.text: $cta-secondary
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-color if $MOUSE-IN: $fpm.color.main.text-strong
-padding-horizontal: $fpm.space.space-5
-padding-vertical: $fpm.space.space-2
-link: link: /sign-up/
-
---- ftd.text: $cta-primary
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
-color if $MOUSE-IN: $fpm.color.main.background.step-1
-padding-horizontal: $fpm.space.space-5
-padding-vertical: $fpm.space.space-2
-background-color: $fpm.color.main.cta-tertiary.base
-background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
+--- button.button: $cta-primary
+role: primary
+medium: true
+link: /

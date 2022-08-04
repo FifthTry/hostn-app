@@ -2,8 +2,7 @@
 
 -- base.page: 
 
--- sign-button: New
-plus-sign: true
+-- create-package-button: &#65291; New
 button-link: /create-package/
 
 -- packages-list:
@@ -14,40 +13,31 @@ package-list: $package-list
 
 
 
--- ftd.column sign-button:
+-- ftd.column create-package-button:
 caption title:
 optional string button-link:
-boolean plus-sign: false
 width: fill
-margin-bottom: $fpm.space.space-4
 link: $button-link
+min-width: 200
 
 --- ftd.row:
 align: right
-padding-horizontal: $fpm.space.space-6
-padding-vertical: $fpm.space.space-2
-background-color: $fpm.color.main.cta-tertiary.base
-background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
-color: $fpm.color.main.text-strong
-color if $MOUSE-IN: $fpm.color.main.background.step-1
+padding-bottom: $fpm.space.space-4
 
---- ftd.text:
-if: $plus-sign
-text: &#65291; 
-role: $fpm.type.copy-tight
-padding-right: $fpm.space.space-2
+--- button.button: $title
+role: primary
+medium: true
+link: $button-link
 
---- ftd.text: $title 
-role: $fpm.type.copy-tight
 
 
 
 
 -- ftd.column packages-list:
-packages list package-list:
+package list package-list:
 width: fill
 
---- package-loop: $obj.title
+--- show-package: $obj.title
 $loop$: $package-list as $obj
 package-url: $obj.package-url
 description: $obj.description
@@ -61,7 +51,7 @@ description: $obj.description
 
 
 
--- ftd.column package-loop:
+-- ftd.column show-package:
 caption title:
 string description: 
 string package-url:
@@ -75,15 +65,19 @@ padding-horizontal: $fpm.space.space-6
 spacing: 12
 background-color: $fpm.color.main.background.step-1
 border-radius: 10
-link: $package-url
+
+--- ftd.text: $title
+role: $fpm.type.heading-small
 color: $fpm.color.main.text
 color if $MOUSE-IN: $fpm.color.main.text-strong
+border-bottom: 1
+border-color: $fpm.color.main.background.step-1
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+link: $package-url
 
 --- ftd.text: $description
 role: $fpm.type.copy-tight
-
---- ftd.text: $title
-role: $fpm.type.copy-tight
+color: $fpm.color.main.text
 
 
 
@@ -94,12 +88,13 @@ role: $fpm.type.copy-tight
 
 
 
--- record packages:
+
+-- record package:
 caption title:
 string description: 
 string package-url:
 
--- packages list package-list:
+-- package list package-list:
 
 -- package-list: abrark.com
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm

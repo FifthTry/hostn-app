@@ -1,4 +1,5 @@
 -- import: fifthtry.github.io/fpm-controller-ui/assets
+-- import: fifthtry.github.io/button as button
 
 -- optional string site-name:
 
@@ -11,8 +12,8 @@ dark: $assets.files.logo-fifthtry.svg.dark
 
 
 -- login: Login
-email-label: *Email:
-password-label: *Passeword:
+email-label: Email*
+password-label: Password*
 
 
 
@@ -69,6 +70,7 @@ link: /
 --- ftd.row:
 align: right
 padding-top if $site-name is not null: $fpm.space.space-4
+padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
 --- ftd.text: Dashboard
@@ -103,7 +105,7 @@ if: $user-avatar is not null
 src: $user-avatar
 width: 24
 height: 24
-$on-click$: $show-profile-menu = true
+$on-mouse-enter$: $show-profile-menu = true
 border-radius: 100
 
 --- ftd.column:
@@ -137,18 +139,26 @@ border-radius: 100
 
 --- container: login-menu
 
+--- ftd.column:
+width: fill
+border-bottom: 1
+border-color: $fpm.color.main.border
+padding-bottom: $fpm.space.space-3
+
 --- ftd.text: $username
 if: $username is not null
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
-align: center
-margin-top: $fpm.space.space-2
+margin-top: $fpm.space.space-4
+
+--- container: login-menu
+
 
 --- ftd.column:
 width: fill
-margin-top: $fpm.space.space-4
+margin-top: $fpm.space.space-3
 
---- ftd.text: Account Settings
+/--- ftd.text: Account Settings
 link: /
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
@@ -157,7 +167,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.text: Manage Identities
+/--- ftd.text: Manage Identities
 link: /
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
@@ -184,7 +194,7 @@ background-color: $fpm.color.main.background.base
 --- ftd.column:
 id: main-container
 align: center
-min-height: calc 100vh - 150px
+min-height: calc 100vh - 173px
 max-width: 800
 width: fill
 
@@ -203,12 +213,11 @@ role: $fpm.type.copy-large
 color: $fpm.color.main.text
 text: $body
 
-
 --- container: ftd.main
 
 --- ftd.column:
 width: fill
-background-color: $fpm.color.main.background.step-2
+background-color: $fpm.color.main.background.step-1
 padding-vertical: $fpm.space.space-8
 
 --- ftd.column:
@@ -244,7 +253,6 @@ padding-horizontal: $fpm.space.space-8
 background-color: $fpm.color.main.background.step-1
 border-width: 1
 border-color: $fpm.color.main.border
-margin-top: $fpm.space.space-7
 width: percent 70
 position: center
 
@@ -259,6 +267,7 @@ align: center
 role: $fpm.type.heading-medium
 color: $fpm.color.main.text
 align: center
+margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
@@ -278,28 +287,96 @@ error-msg: $error-password
 
 --- ftd.column: 
 width: fill
+margin-top: $fpm.space.space-4
+margin-bottom: $fpm.space.space-4
+
+--- ftd.row:
+width: fill
+
+--- ftd.input:
+/type: checkbox
+width: 16
+height: 16
+
+--- ftd.text: I accept
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-3
+
+--- ftd.text: Terms &amp; conditions
+role: $fpm.type.fine-print
+border-bottom: 1
+border-color: $fpm.color.main.text
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+color: $fpm.color.main.text
+color  if $MOUSE-IN:  $fpm.color.main.text-strong
+link: https://www.fifthtry.com/terms/
+open-in-new-tab: true
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-1
+
+--- ftd.text: and
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-1
+
+--- ftd.text: Privacy policy
+role: $fpm.type.fine-print
+border-bottom: 1
+border-color: $fpm.color.main.text
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+color: $fpm.color.main.text
+color  if $MOUSE-IN:  $fpm.color.main.text-strong
+link: https://www.fifthtry.com/privacy/
+open-in-new-tab: true
+white-space: nowrap
+align: center
+margin-left: $fpm.space.space-1
+
+--- container: main-form
+
+--- ftd.column: 
+width: fill
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
 spacing: 34
+id: button-row
 align: right
 
---- ftd.text: $cta-secondary
-role: $fpm.type.copy-tight
+--- ftd.row:
+align: center
+
+--- ftd.text: Forgot Password?
+role: $fpm.type.fine-print
+border-bottom: 1
+border-color: $fpm.color.main.background.step-1
+border-color if $MOUSE-IN: $fpm.color.main.text
 color: $fpm.color.main.text
-color if $MOUSE-IN: $fpm.color.main.text-strong
-padding-horizontal: $fpm.space.space-5
-padding-vertical: $fpm.space.space-2
+link: /forgot-password/
+white-space: nowrap
+
+--- container: button-row
+
+--- ftd.row:
+align: right
+min-width: 210
+spacing: 34
+
+--- button.button: $cta-secondary
+role: tertiary
+medium: true
 link: /sign-up/
 
---- ftd.text: $cta-primary
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
-color if $MOUSE-IN: $fpm.color.main.background.step-1
-padding-horizontal: $fpm.space.space-5
-padding-vertical: $fpm.space.space-2
-background-color: $fpm.color.main.cta-tertiary.base
-background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
+--- button.button: $cta-primary
+role: primary
+medium: true
+link: /
 
 
 
@@ -316,7 +393,7 @@ string placeholder:
 optional string error-msg:
 width: fill
 align: center
-margin-top: $fpm.space.space-7
+margin-top: $fpm.space.space-4
 
 --- ftd.text: $label
 role: $fpm.type.copy-tight
@@ -333,10 +410,12 @@ padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
+explain: true
 
 --- ftd.column:
 if: $error-msg is not null
-margin-top: $fpm.space.space-1
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-3
 width: fill
 
 --- ftd.text: $error-msg
