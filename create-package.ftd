@@ -58,7 +58,7 @@ align: right
 --- button.button: Create
 role: primary
 medium: true
-link: /dashboard/
+link: dashboard/
 
 
 

@@ -127,4 +127,4 @@ align: right
 --- button.button: $cta-primary
 role: primary
 medium: true
-link: /
+link: dashboard/

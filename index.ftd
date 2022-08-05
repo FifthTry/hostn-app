@@ -9,12 +9,9 @@ dark: $assets.files.logo-fifthtry.svg.dark
 
 -- page: 
 
-
-
 -- login: Login
 email-label: Email*
 password-label: Password*
-
 
 
 
@@ -63,7 +60,7 @@ src:  $site-logo
 width: 120
 height: auto
 id: logo
-link: /
+link: index.html
 
 --- container: header-container
 
@@ -74,7 +71,7 @@ padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
 --- ftd.text: Dashboard
-link: /dashboard/
+link: dashboard/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
 white-space: nowrap
@@ -84,7 +81,7 @@ border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
 --- ftd.text: Sign in
-link: /sign-in/
+link: sign-in/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
 white-space: nowrap
@@ -158,26 +155,9 @@ margin-top: $fpm.space.space-4
 width: fill
 margin-top: $fpm.space.space-3
 
-/--- ftd.text: Account Settings
-link: /
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-top: $fpm.space.space-2
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
-
-/--- ftd.text: Manage Identities
-link: /
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-top: $fpm.space.space-2
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
 --- ftd.text: Logout
-link: /
+link: index.html
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 margin-top: $fpm.space.space-2
@@ -358,7 +338,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.step-1
 border-color if $MOUSE-IN: $fpm.color.main.text
 color: $fpm.color.main.text
-link: /forgot-password/
+link: forgot-password/
 white-space: nowrap
 
 --- container: button-row
@@ -371,12 +351,12 @@ spacing: 34
 --- button.button: $cta-secondary
 role: tertiary
 medium: true
-link: /sign-up/
+link: sign-up/
 
 --- button.button: $cta-primary
 role: primary
 medium: true
-link: /
+link: index.html
 
 
 

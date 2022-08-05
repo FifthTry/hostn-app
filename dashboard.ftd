@@ -3,7 +3,7 @@
 -- base.page: 
 
 -- create-package-button: &#65291; New
-button-link: /create-package/
+button-link: create-package/
 
 -- packages-list:
 package-list: $package-list
@@ -98,12 +98,12 @@ string package-url:
 
 -- package-list: abrark.com
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
-package-url: /package/
+package-url: package/
 
 -- package-list: loremipsum.fifthtry.io
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
-package-url: /package/
+package-url: package/
 
 -- package-list: dolor-sit-amet.fifthtry.io
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
-package-url:  /package/
+package-url:  package/
