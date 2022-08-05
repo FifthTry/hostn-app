@@ -113,7 +113,6 @@ spacing: 24
 background-color: $fpm.color.main.background.step-1
 border-radius: 10
 color: $fpm.color.main.text
-color if $MOUSE-IN: $fpm.color.main.text-strong
 id: row-inner
 
 --- ftd.column:
@@ -122,6 +121,10 @@ spacing: 12
 
 --- ftd.text: $title
 role: $fpm.type.heading-small
+color if $MOUSE-IN: $fpm.color.main.text-strong
+border-bottom: 1
+border-color: $fpm.color.main.background.step-1
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
 
 --- ftd.text: $description
 role: $fpm.type.copy-tight
@@ -134,7 +137,7 @@ align: center
 --- button.button: Visit
 role: primary
 medium: true
-link: $package-url
+link: package/
 
 
 
