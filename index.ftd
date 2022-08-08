@@ -275,7 +275,7 @@ margin-bottom: $fpm.space.space-4
 width: fill
 
 --- ftd.input:
-/type: checkbox
+type: checkbox
 width: 16
 height: 16
 
