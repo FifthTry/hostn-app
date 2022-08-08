@@ -262,6 +262,7 @@ error-msg: $error-email
 label: $password-label
 placeholder: $password-placeholder
 error-msg: $error-password
+field-type: password
 
 --- container: main-form
 
@@ -371,6 +372,7 @@ link: index.html
 string label:
 string placeholder:
 optional string error-msg:
+optional string field-type: text
 width: fill
 align: center
 margin-top: $fpm.space.space-4
@@ -391,6 +393,7 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 explain: true
+type: $field-type
 
 --- ftd.column:
 if: $error-msg is not null
