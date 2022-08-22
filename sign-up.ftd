@@ -1,42 +1,42 @@
--- import: fifthtry.github.io/fpm-controller-ui as base
--- import: fifthtry.github.io/button as button
+-- import: fifthtry.github.io/fpm-controller-ui/base
 
--- base.page: 
+-- optional string username:
+$always-include$: true
+
+-- optional string password:
+$always-include$: true
+
+-- optional string password_confirm:
+$always-include$: true
+
+-- optional string error-password:
+$always-include$: true
+
+-- optional string error-email:
+$always-include$: true
+
+-- optional string error-password-confirm:
+$always-include$: true
+
+
+-- optional string error-form:
+$always-include$: true
 
 
 
--- sign-up: Sign up
-email-label: Email*
-password-label: Passeword*
-
-
-
-
-
-
-
--- ftd.column sign-up:
+-- base.page page:
+string csrf_token:
 caption title:
-string email-label:
-string password-label:
-string cta-primary: Sign Up
-string cta-secondary: Sign in
-string error-email: some email error msg
-string error-password: some passeword error msg
-string email-placeholder: username
-string password-placeholder: password
+
+--- ftd.column:
+width: fill
+id: main-form
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-8
 background-color: $fpm.color.main.background.step-1
 border-width: 1
 border-color: $fpm.color.main.border
-margin-top: $fpm.space.space-7
-width: percent 70
 position: center
-
---- ftd.column:
-width: fill
-id: main-form
 
 --- ftd.column:
 align: center
@@ -45,21 +45,28 @@ align: center
 role: $fpm.type.heading-medium
 color: $fpm.color.main.text
 align: center
+margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
---- base.form-field:
-label: $email-label
-placeholder: $email-placeholder
-error-msg: $error-email
+--- ftd.input:
+placeholder: Enter Email
+$on-change$: $username=$VALUE
 
 --- container: main-form
 
---- base.form-field:
-label: $password-label
-placeholder: $password-placeholder
-error-msg: $error-password
-field-type: password
+--- ftd.input:
+placeholder: Enter passsword
+type: password
+$on-change$: $password=$VALUE
+
+--- container: main-form
+
+--- ftd.input:
+placeholder: Confirm passsword
+type: password
+$on-change$: $password_confirm=$VALUE
+
 
 --- container: main-form
 
@@ -123,9 +130,99 @@ width: fill
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
+spacing: 34
+id: button-row
 align: right
 
---- button.button: $cta-primary
+--- ftd.row:
+align: center
+
+--- ftd.text: Forgot Password?
+role: $fpm.type.fine-print
+border-bottom: 1
+border-color: $fpm.color.main.background.step-1
+border-color if $MOUSE-IN: $fpm.color.main.text
+color: $fpm.color.main.text
+link: forgot-password/
+white-space: nowrap
+
+--- container: button-row
+
+--- ftd.row:
+align: right
+min-width: 210
+spacing: 34
+
+--- button.button: Sign In
+role: tertiary
+medium: true
+link: /accounts/login/
+
+--- button.button: Create Account
 role: primary
 medium: true
-link: dashboard/
+$on-click$: message-host $signup-form-api
+
+--- ftd.text: $error-email
+
+--- ftd.text: $error-password
+
+--- ftd.text: $error-form
+
+-- object signup-form-api:
+function: http
+method: post
+url: /accounts/signup/
+email: $username
+password1: $password
+password2: $password_confirm
+
+
+;csrfmiddlewaretoken: $csrf_token
+
+
+
+
+
+
+
+
+
+
+-- ftd.column form-field:
+string label:
+string placeholder:
+optional string error-msg:
+optional string field-type: text
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+
+--- ftd.text: $label
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.input:
+width: fill
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+placeholder: $placeholder
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+explain: true
+type: $field-type
+
+--- ftd.column:
+if: $error-msg is not null
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-3
+width: fill
+
+--- ftd.text: $error-msg
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text
