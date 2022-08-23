@@ -17,9 +17,23 @@ $always-include$: true
 
 
 
--- base.page page:
+
+-- page: Create new package
+csrf_token: sometoken
+
+
+
+
+
+
+
+
+-- ftd.column page:
+width: fill
 string csrf_token:
 caption title:
+
+--- base.page:
 
 --- ftd.column:
 width: fill
@@ -42,15 +56,51 @@ margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Enter package name
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
 --- ftd.input:
 placeholder: Enter the package name
 $on-change$: $package-name=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
 
 --- container: main-form
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Select plan
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
 
 --- ftd.input:
 placeholder: Select the plan
 $on-change$: $plan=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
 
 --- container: main-form
 
@@ -69,16 +119,6 @@ margin-top: $fpm.space.space-6
 spacing: 34
 id: button-row
 align: right
-
---- ftd.row:
-align: center
-
---- container: button-row
-
---- ftd.row:
-align: right
-min-width: 210
-spacing: 34
 
 --- button.button: Create Package
 role: primary

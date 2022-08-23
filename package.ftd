@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui as base
+-- import: fifthtry.github.io/fpm-controller-ui/base
 -- import: fifthtry.github.io/button as button
 
 
@@ -7,20 +7,34 @@
 -- optional string package-to-delete:  `package-name`
 
 
--- base.page: 
+
+
+-- page: Packages
+csrf_token: some
 
 
 
--- packages-list:
+
+
+
+
+-- ftd.column page:
+width: fill
+string csrf_token:
+caption title:
+
+--- base.page:
+
+--- packages-list:
 package-list: $package-list
 
--- remove-package:
+--- remove-package:
 package-name: $package-to-delete
 
--- overlay:
+--- overlay:
 if: $show-delete-dialog
 
--- delete-dialog:
+--- delete-dialog:
 package-name: $package-to-delete
 
 

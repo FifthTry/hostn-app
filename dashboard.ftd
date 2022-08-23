@@ -5,12 +5,26 @@ caption title:
 string description: 
 string package-url:
 
--- base.page page:
+
+
+-- page: Page Dashboard
+package-list: $package-list
+csrf_token: sometoken
+
+
+
+
+
+-- ftd.column page:
+width: fill
+string csrf_token:
+caption title:
 package list package-list:
 
+--- base.page: $title
 
 --- create-package-button: &#65291; New
-button-link: /create-new/
+button-link: create-package/
 
 --- packages-list:
 package-list: $package-list
@@ -43,6 +57,7 @@ link: $button-link
 -- ftd.column packages-list:
 package list package-list:
 width: fill
+margin-bottom: $fpm.space.space-10
 
 --- show-package: $obj.title
 $loop$: $package-list as $obj

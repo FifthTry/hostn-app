@@ -15,8 +15,19 @@ $always-include$: true
 -- optional string error-form:
 $always-include$: true
 
+
+
+
+
 -- page: Sign In
 csrf_token: some
+
+
+
+
+
+
+
 
 
 
@@ -51,6 +62,18 @@ margin-bottom: $fpm.space.space-4
 --- container: main-form
 
 --- ftd.column:
+if: $error-form is not null
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-0
+width: fill
+
+--- ftd.text: $error-form
+role: $fpm.type.copy-tight
+color: $fpm.color.main.error.text
+
+--- container: main-form
+
+--- ftd.column:
 width: fill
 align: center
 margin-top: $fpm.space.space-4
@@ -71,6 +94,16 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 width: fill
+
+--- ftd.column:
+if: $error-email is not null
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-3
+width: fill
+
+--- ftd.text: $error-email
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text
 
 --- container: main-form
 
@@ -96,6 +129,16 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 width: fill
+
+--- ftd.column:
+if: $error-password is not null
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-3
+width: fill
+
+--- ftd.text: $error-password
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text
 
 --- container: main-form
 
@@ -181,25 +224,32 @@ white-space: nowrap
 width: fill
 
 --- ftd.row:
-width: fill
 align: right
 spacing: 34
 
 --- button.button: Sign Up
 role: tertiary
 medium: true
-link: /accounts/signup/
+link: sign-up/
 
 --- button.button: Sign In
 role: primary
 medium: true
 $on-click$: message-host $login-form-api
 
---- ftd.text: $error-email
 
---- ftd.text: $error-password
 
---- ftd.text: $error-form
+
+
+
+
+
+
+
+
+
+
+
 
 -- object login-form-api:
 function: http
@@ -211,49 +261,3 @@ password: $password
 
 ;csrfmiddlewaretoken: $csrf_token
 
-
-
-
-
-
-
-
-
-
--- ftd.column form-field:
-string label:
-string placeholder:
-optional string error-msg:
-optional string field-type: text
-width: fill
-align: center
-margin-top: $fpm.space.space-4
-
-
---- ftd.text: $label
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
-
---- ftd.input:
-width: fill
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-placeholder: $placeholder
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-explain: true
-type: $field-type
-
---- ftd.column:
-if: $error-msg is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-3
-width: fill
-
---- ftd.text: $error-msg
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
