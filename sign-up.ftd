@@ -22,11 +22,16 @@ $always-include$: true
 -- optional string error-form:
 $always-include$: true
 
+-- page: Sign Up
+csrf_token: some
 
 
--- base.page page:
+-- ftd.column page:
+width: fill
 string csrf_token:
 caption title:
+
+--- base.page:
 
 --- ftd.column:
 width: fill
@@ -37,6 +42,7 @@ background-color: $fpm.color.main.background.step-1
 border-width: 1
 border-color: $fpm.color.main.border
 position: center
+margin-bottom: $fpm.space.space-10
 
 --- ftd.column:
 align: center
@@ -48,24 +54,77 @@ align: center
 margin-bottom: $fpm.space.space-4
 
 --- container: main-form
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Enter email address
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
 placeholder: Enter Email
 $on-change$: $username=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
 
 --- container: main-form
+
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Enter new password
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
 placeholder: Enter passsword
 type: password
 $on-change$: $password=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
 
 --- container: main-form
+
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Confirm new password
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
 placeholder: Confirm passsword
 type: password
 $on-change$: $password_confirm=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
 
 
 --- container: main-form

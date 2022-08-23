@@ -7,6 +7,10 @@
 light: $assets.files.logo-fifthtry.svg.light
 dark: $assets.files.logo-fifthtry.svg.dark
 
+
+
+
+
 -- ftd.column page:
 optional caption title:
 optional body body:
@@ -16,8 +20,6 @@ boolean show-profile-menu: false
 append-at: main-container
 open: true
 width: fill
-
-
 
 --- ftd.column:
 width: fill
@@ -135,11 +137,9 @@ margin-top: $fpm.space.space-4
 
 --- container: login-menu
 
-
 --- ftd.column:
 width: fill
 margin-top: $fpm.space.space-3
-
 
 --- ftd.text: Logout
 link: index.html
