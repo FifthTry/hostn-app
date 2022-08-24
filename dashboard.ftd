@@ -9,7 +9,6 @@ string package-url:
 
 -- page: Page Dashboard
 package-list: $package-list
-csrf_token: sometoken
 
 
 
@@ -17,7 +16,6 @@ csrf_token: sometoken
 
 -- ftd.column page:
 width: fill
-string csrf_token:
 caption title:
 package list package-list:
 
