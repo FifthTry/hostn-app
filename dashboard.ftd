@@ -1,11 +1,32 @@
 -- import: fifthtry.github.io/fpm-controller-ui as base
 
--- base.page: 
+-- record package:
+caption title:
+string description: 
+string package-url:
 
--- create-package-button: &#65291; New
+
+
+-- page: Page Dashboard
+package-list: $package-list
+csrf_token: sometoken
+
+
+
+
+
+-- ftd.column page:
+width: fill
+string csrf_token:
+caption title:
+package list package-list:
+
+--- base.page: $title
+
+--- create-package-button: &#65291; New
 button-link: create-package/
 
--- packages-list:
+--- packages-list:
 package-list: $package-list
 
 
@@ -36,6 +57,7 @@ link: $button-link
 -- ftd.column packages-list:
 package list package-list:
 width: fill
+margin-bottom: $fpm.space.space-10
 
 --- show-package: $obj.title
 $loop$: $package-list as $obj
@@ -85,14 +107,6 @@ color: $fpm.color.main.text
 
 
 
-
-
-
-
--- record package:
-caption title:
-string description: 
-string package-url:
 
 -- package list package-list:
 

@@ -1,64 +1,138 @@
--- import: fifthtry.github.io/fpm-controller-ui as base
--- import: fifthtry.github.io/button as button
-
--- base.page: Create new package
+-- import: fifthtry.github.io/fpm-controller-ui/base
 
 -- optional string package-name:
--- optional string package-description:
--- optional string package-template:
+$always-include$: true
 
+-- optional string plan:
+$always-include$: true
 
--- boolean show-dropdown: false
+-- optional string error-package-name:
+$always-include$: true
 
+-- optional string error-plan:
+$always-include$: true
 
--- create-package-form:
-name: $package-name
-description: $package-description
-template: $package-template
-
-
-
-
-
+-- optional string error-form:
+$always-include$: true
 
 
 
 
+-- page: Create new package
+csrf_token: sometoken
 
--- ftd.column create-package-form:
-string name:
-string description:
-string template:
-padding-vertical: $fpm.space.space-5
-padding-horizontal: $fpm.space.space-6
-background-color: $fpm.color.main.background.step-1
-margin-top: $fpm.space.space-7
+
+
+
+
+
+
+
+-- ftd.column page:
 width: fill
+string csrf_token:
+caption title:
+
+--- base.page:
+
+--- ftd.column:
+width: fill
+id: main-form
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-8
+background-color: $fpm.color.main.background.step-1
+border-width: 1
+border-color: $fpm.color.main.border
 position: center
-margin-bottom: 100
 
---- form-input-rounded: Package name:
-input-value: $package-name
+--- ftd.column:
+align: center
 
---- container: ftd.main
+--- ftd.text: $title
+role: $fpm.type.heading-medium
+color: $fpm.color.main.text
+align: center
+margin-bottom: $fpm.space.space-4
 
---- form-input: Description (optional)
-input-value: $package-description
+--- container: main-form
 
---- container: ftd.main
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
 
---- form-input-dropdown: Package template
+--- ftd.text: Enter package name
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
 
---- container: ftd.main
+--- ftd.input:
+placeholder: Enter the package name
+$on-change$: $package-name=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+
+--- container: main-form
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Select plan
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+
+--- ftd.input:
+placeholder: Select the plan
+$on-change$: $plan=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+
+--- container: main-form
+
+--- ftd.column: 
+width: fill
+margin-top: $fpm.space.space-4
+margin-bottom: $fpm.space.space-4
+
+--- container: main-form
+
+--- ftd.column: 
+width: fill
+margin-top: $fpm.space.space-6
 
 --- ftd.row:
+spacing: 34
+id: button-row
 align: right
 
-
---- button.button: Create
+--- button.button: Create Package
 role: primary
 medium: true
-link: dashboard/
+$on-click$: message-host $login-form-api
+
+-- object login-form-api:
+function: http
+method: post
+url: /create-new/
+name: $package-name
+plan: $plan
+
+;;csrfmiddlewaretoken: $csrf_token
 
 
 
@@ -68,302 +142,41 @@ link: dashboard/
 
 
 
--- ftd.column form-input-rounded:
-caption title:
-optional string error-msg: Beep Beep! I am an error!
-string input-value: 
+
+-- ftd.column form-field:
+string label:
+string placeholder:
+optional string error-msg:
+optional string field-type: text
 width: fill
-id: create-form
-margin-bottom: $fpm.space.space-6
-spacing: 8
-
---- ftd.text: $title
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
-
---- ftd.row:
-width: percent 50
-
---- ftd.input:
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-width: fill
-placeholder: Enter name of the package here
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-$on-input$: $input-value = $VALUE
-
---- ftd.text: fifthtry.io
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
 align: center
-border-width: 1
-border-color: $fpm.color.main.border
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-5
-border-left: 0
-border-right-radius: 8
-
---- container: ftd.main
-
---- ftd.column:
-width: fill
-padding-left: $fpm.space.space-3
-
---- ftd.text: $error-msg
-if: $error-msg is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
+margin-top: $fpm.space.space-4
 
 
-
-
-
-
-
-
--- ftd.column form-input:
-caption title:
-optional string error-msg: Beep Beep! I am an error!
-string input-value: 
-width: fill
-margin-bottom: $fpm.space.space-6
-
---- ftd.column:
-id: create-form
-width: fill
-spacing: 8
-
---- ftd.text: $title
+--- ftd.text: $label
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
---- ftd.row:
-width: fill
-
 --- ftd.input:
+width: fill
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
-width: fill
-placeholder: Enter description
+placeholder: $placeholder
 background-color: $fpm.color.main.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
-white-space: pre
-multiline: true
-$on-input$: $input-value = $VALUE
-
---- container: create-form
+explain: true
+type: $field-type
 
 --- ftd.column:
-width: fill
-padding-left: $fpm.space.space-3
-
---- ftd.text: $error-msg
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
-
-
-
-
-
-
-
-
-
-
-
-
--- ftd.column form-input-dropdown:
-caption title:
-width: fill
-optional string error-msg: Beep Beep! I am an error!
-margin-bottom: $fpm.space.space-6
-
---- ftd.column:
-id: create-form
-width: fill
-spacing: 8
-
---- ftd.text: $title
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
-
---- ftd.row:
-width: fill
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-3
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-$on-click$: $show-dropdown = true
-
---- ftd.text: Click here to select from existing package
-if: $package-name is null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-width: fill
-
---- ftd.text:
-if: $package-name is not null
-text:  $package-name
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-width: fill
-
---- ftd.row:
-align: right
-
---- ftd.image: 
-src: $assets.files.downarrow.svg
-width: 18
-height: 18
-
---- container: create-form
-
---- ftd.column:
-width: fill
-padding-left: $fpm.space.space-3
-
---- ftd.text: $error-msg
 if: $error-msg is not null
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-3
+width: fill
+
+--- ftd.text: $error-msg
 role: $fpm.type.fine-print
 color: $fpm.color.main.error.text
-
---- container: create-form
-
---- ftd.column:
-if: $show-dropdown 
-width: fill
-
---- package-dropdown:
-package-list: $package-list
-
-
-
-
-
-
-
-
-
--- ftd.column package-dropdown:
-packages list package-list:
-width: fill
-background-color: $fpm.color.main.background.base
-border-width: 1
-border-color: $fpm.color.main.border
-border-top: 0
-id: dropdown-container
-anchor: parent
-top: -32
-left: 0
-
---- package-loop: $obj.title
-$loop$: $package-list as $obj
-package-url: $obj.package-url
-
---- container: ftd.main
-
---- ftd.row:
-width: fill
-
---- ftd.row:
-width: fill
-padding-vertical: $fpm.space.space-4
-padding-right: $fpm.space.space-4
-spacing: 18
-id: input-row
-
---- ftd.text: Template url:
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
-padding-left: $fpm.space.space-3
-align: center
-white-space: nowrap
-
---- ftd.input:
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-width: fill
-placeholder: Enter name of the package here
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-$on-input$: $package-name = $VALUE
-
---- container: input-row
-
---- ftd.row:
-width: percent 10
-
---- button.button: Go
-role: primary
-medium: true
-$on-click$: $show-dropdown = false
-
-
-
-
-
-
-
-
-
-
-
--- ftd.row package-loop:
-caption title:
-string package-url:
-width: fill
-background-color if $MOUSE-IN: $fpm.color.main.background.step-2
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-color: $fpm.color.main.text
-color if $MOUSE-IN: $fpm.color.main.text-strong
-$on-click$: $package-name = $package-url
-$on-click$: $show-dropdown = false
-
---- ftd.text: $title
-role: $fpm.type.copy-tight
-width: percent 30
-
---- ftd.text: $package-url
-role: $fpm.type.copy-tight
-width: fill
-
-
-
-
-
-
-
-
-
-
-
--- record packages:
-caption title:
-string package-url:
-
--- packages list package-list:
-
--- package-list: doc-site
-package-url: doc-site.fifthtry.io
-
--- package-list: resume
-package-url: resume.fifthtry.io
-
--- package-list: slide
-package-url: slides.fifthtry.io
