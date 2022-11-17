@@ -1,19 +1,19 @@
 -- import: fifthtry.github.io/fpm-controller-ui/base
 
+-- import: fifthtry.github.io/fpm-controller-ui as self
+
 -- optional string package-name:
 $always-include$: true
 
--- optional string plan:
+-- optional string download-base-url:
 $always-include$: true
 
--- optional string error-package-name:
+-- optional string package-name-error:
 $always-include$: true
 
--- optional string error-plan:
+-- optional string download-base-url-error:
 $always-include$: true
 
--- optional string error-form:
-$always-include$: true
 
 
 
@@ -57,6 +57,19 @@ margin-bottom: $fpm.space.space-4
 --- container: main-form
 
 --- ftd.column:
+if: $self.developer-mode
+
+--- ftd.text: DEBUG 1: https://raw.githubusercontent.com/fifthtry/kameri-app/main
+if: $self.developer-mode
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+
+--- ftd.text: DEBUG 2: https://raw.githubusercontent.com/AbrarNitk/abrark/main/
+if: $self.developer-mode
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+
+--- ftd.column:
 width: fill
 align: center
 margin-top: $fpm.space.space-4
@@ -67,8 +80,8 @@ color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
-placeholder: Enter the package name
-$on-change$: $package-name=$VALUE
+placeholder: Package name
+$on-input$: $package-name=$VALUE
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 background-color: $fpm.color.main.background.step-1
@@ -79,20 +92,21 @@ border-color: $fpm.color.main.border
 width: fill
 
 --- container: main-form
+
 --- ftd.column:
 width: fill
 align: center
 margin-top: $fpm.space.space-4
 
---- ftd.text: Select plan
+--- ftd.text: Enter Base url
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
 
 --- ftd.input:
-placeholder: Select the plan
-$on-change$: $plan=$VALUE
+placeholder: Base url
+$on-input$: $download-base-url=$VALUE
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 background-color: $fpm.color.main.background.step-1
@@ -116,25 +130,36 @@ width: fill
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
-spacing: 34
+spacing: 20
 id: button-row
 align: right
 
---- button.button: Create Package
+--- button.button: Fast Deploy
 role: primary
 medium: true
-$on-click$: message-host $login-form-api
+$on-click$: message-host $add-instance-api
 
--- object login-form-api:
+--- button.button: Pay and Deploy
+role: primary
+medium: true
+$on-click$: message-host $redirect-plans-page-api
+
+-- object add-instance-api:
 function: http
 method: post
-url: /create-new/
-name: $package-name
-plan: $plan
+url: /-/fifthtry.github.io/fpm-controller-ui/api/create-instance/
+package_name: $package-name
+download_base_url: $download-base-url
+$package-name-error: $package-name-error
+$download-base-url-error: $download-base-url-error
 
-;;csrfmiddlewaretoken: $csrf_token
-
-
+-- object redirect-plans-page-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/redirect-to-plans/
+package_name: $package-name
+download_base_url: $download-base-url
+plan: Standard
 
 
 

@@ -1,406 +1,203 @@
--- import: fifthtry.github.io/fpm-controller-ui/assets
--- import: fifthtry.github.io/button as button
+-- import: fifthtry.github.io/fpm-controller-ui/login as base
 
--- optional string site-name:
+-- boolean developer-mode: true
 
--- ftd.image-src site-logo: 
-light: $assets.files.logo-fifthtry.svg.light
-dark: $assets.files.logo-fifthtry.svg.dark
+-- optional string external-link:
+$always-include$: true
 
--- page: 
+-- ftd.color light-red:
+light: #ffc297
+dark: #ffc297
 
--- login: Login
-email-label: Email*
-password-label: Password*
-
-
+-- ftd.color dark-red:
+light: #bb5c2d
+dark: #bb5c2d
 
 
+-- record package:
+string machine_id:
+string instance_id:
+string package_name:
+string instance_status:
+string ip:
+string hosted_url:
 
 
 
+-- page: All Instances
+package-list: $package-list
 
 
 
 
 
 -- ftd.column page:
-optional caption title:
-optional body body:
-optional string username: abc@fifthtry.com
-optional ftd.image-src user-avatar: $assets.files.avatar.jpg
-boolean show-profile-menu: false
-append-at: main-container
-open: true
 width: fill
-
---- ftd.column:
-width: fill
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
-background-color: $fpm.color.main.background.step-1
-
---- ftd.row:
-width: fill
-id: header-container
-
---- ftd.row:
-width: fill
-align: left
-id: logo-container
-
---- ftd.text: $site-name
-if: $site-name is not null
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text-strong
-
---- ftd.image: 
-if: $site-name is null
-src:  $site-logo
-width: 120
-height: auto
-id: logo
-link: index.html
-
---- container: header-container
-
---- ftd.row:
-align: right
-padding-top if $site-name is not null: $fpm.space.space-4
-padding-top if $site-name is null: $fpm.space.space-2
-spacing: 24
-
---- ftd.text: Dashboard
-link: dashboard/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
-white-space: nowrap
-align: center
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
-
---- ftd.text: Sign in
-link: sign-in/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
-white-space: nowrap
-align: center
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
-
---- ftd.row: 
-background-color: $fpm.color.main.background.step-2
-width: 24
-height: 24
-border-radius: 100
-align: center
-
---- ftd.image:
-if: $user-avatar is not null
-src: $user-avatar
-width: 24
-height: 24
-$on-mouse-enter$: $show-profile-menu = true
-border-radius: 100
-
---- ftd.column:
-if: $show-profile-menu
-width: 160	
-background-color: $fpm.color.main.background.base
-border-width: 1
-border-color: $fpm.color.main.border
-padding-horizontal: $fpm.space.space-3
-padding-vertical: $fpm.space.space-3
-anchor: parent
-right: 0
-top: 25
-id: login-menu
-$on-mouse-enter$: $show-profile-menu = true
-$on-mouse-leave$: $show-profile-menu = false
-
---- ftd.column:
-width: 42
-height: 42
-background-color: $fpm.color.main.background.step-2
-align: center
-border-radius: 100
-
---- ftd.image:
-if: $user-avatar is not null
-src: $user-avatar
-width: 42
-height: 42
-border-radius: 100
-
---- container: login-menu
-
---- ftd.column:
-width: fill
-border-bottom: 1
-border-color: $fpm.color.main.border
-padding-bottom: $fpm.space.space-3
-
---- ftd.text: $username
-if: $username is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-top: $fpm.space.space-4
-
---- container: login-menu
-
-
---- ftd.column:
-width: fill
-margin-top: $fpm.space.space-3
-
-
---- ftd.text: Logout
-link: index.html
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-top: $fpm.space.space-2
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
-
---- container: ftd.main
-
---- ftd.column:
-width: fill
-background-color: $fpm.color.main.background.base
-
---- ftd.column:
-id: main-container
-align: center
-min-height: calc 100vh - 173px
-max-width: 800
-width: fill
-
---- ftd.column:
-width: fill
-margin-top: $fpm.space.space-9
-
---- ftd.text: $title
-if: $title is not null
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-
---- ftd.text:
-if: $body is not null
-role: $fpm.type.copy-large
-color: $fpm.color.main.text
-text: $body
-
---- container: ftd.main
-
---- ftd.column:
-width: fill
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-8
-
---- ftd.column:
-width: fill
-max-width: 1200
-align: center
-
---- ftd.text: &copy; 2022 FifthTry Private Limited
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-
-
-
-
-
-
-
-
-
-
--- ftd.column login:
 caption title:
-string email-label:
-string password-label:
-string cta-primary: Sign In
-string cta-secondary: Sign Up
-string error-email: some email error msg
-string error-password: some passeword error msg
-string email-placeholder: username
-string password-placeholder: password
-padding-vertical: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-8
-background-color: $fpm.color.main.background.step-1
-border-width: 1
-border-color: $fpm.color.main.border
-width: percent 70
-position: center
+package list package-list:
 
---- ftd.column:
+--- base.page: $title
+
+--- create-button: &#65291; New
+button-link: /create-package/
+
+--- packages-list:
+package-list: $package-list
+
+
+
+
+
+
+-- ftd.column create-button:
+caption title:
+optional string button-link:
 width: fill
-id: main-form
-
---- ftd.column:
-align: center
-
---- ftd.text: $title
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text
-align: center
-margin-bottom: $fpm.space.space-4
-
---- container: main-form
-
---- form-field:
-label: $email-label
-placeholder: $email-placeholder
-error-msg: $error-email
-
---- container: main-form
-
---- form-field:
-label: $password-label
-placeholder: $password-placeholder
-error-msg: $error-password
-field-type: password
-
---- container: main-form
-
---- ftd.column: 
-width: fill
-margin-top: $fpm.space.space-4
-margin-bottom: $fpm.space.space-4
-
---- ftd.row:
-width: fill
-
---- ftd.input:
-type: checkbox
-width: 16
-height: 16
-
---- ftd.text: I accept
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-3
-
---- ftd.text: Terms &amp; conditions
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
-link: https://www.fifthtry.com/terms/
-open-in-new-tab: true
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- ftd.text: and
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- ftd.text: Privacy policy
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
-link: https://www.fifthtry.com/privacy/
-open-in-new-tab: true
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- container: main-form
-
---- ftd.column: 
-width: fill
-margin-top: $fpm.space.space-6
-
---- ftd.row:
-spacing: 34
-id: button-row
-align: right
-
---- ftd.row:
-align: center
-
---- ftd.text: Forgot Password?
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.background.step-1
-border-color if $MOUSE-IN: $fpm.color.main.text
-color: $fpm.color.main.text
-link: forgot-password/
-white-space: nowrap
-
---- container: button-row
+link: $button-link
+min-width: 200
 
 --- ftd.row:
 align: right
-min-width: 210
-spacing: 34
+padding-bottom: $fpm.space.space-4
 
---- button.button: $cta-secondary
-role: tertiary
-medium: true
-link: sign-up/
-
---- button.button: $cta-primary
+--- button.button: $title
 role: primary
 medium: true
-link: index.html
+link: $button-link
 
 
 
 
 
-
-
-
-
-
--- ftd.column form-field:
-string label:
-string placeholder:
-optional string error-msg:
-optional string field-type: text
+-- ftd.column packages-list:
+package list package-list:
 width: fill
-align: center
-margin-top: $fpm.space.space-4
+margin-bottom: $fpm.space.space-10
+
+--- show-package: $obj.package_name
+$loop$: $package-list as $obj
+hosted-url: $obj.hosted_url
+ip: $obj.ip
+instance-status: $obj.instance_status
+
+
+
+
+
+
+
+
+
+
+-- ftd.column show-package:
+caption package-name:
+string hosted-url:
+string ip:
+string instance-status:
+width: fill
+padding-vertical: $fpm.space.space-2
+
+--- ftd.column:
+width: fill
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-6
+spacing: 12
+background-color: $fpm.color.main.background.step-1
+border-radius: 10
+border-width: 4
+border-color if $instance-status == INITIALIZED: $fpm.color.main.cta-secondary.base
+border-color if $instance-status == PENDING: $dark-red
+border-color if $instance-status == READY: $fpm.color.main.success.text
+border-color if $instance-status == STOPPED: $fpm.color.main.warning.text
+border-color if $instance-status == TERMINATED: $fpm.color.main.error.border
+
+--- ftd.text: $package-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+color if $MOUSE-IN: $fpm.color.main.text-strong
+border-bottom: 1
+border-color: $fpm.color.main.background.step-1
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+/$on-click$: $external-link = $hosted-url
+/$on-click$: message-host $external-redirect-api
+
+/--- ftd.text: $ip
+if: $instance-status == READY
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+
+--- label-data-bar: Public IP:
+if: $instance-status == READY
+data: $ip
+data-color: $fpm.color.main.text
+
+/--- ftd.text: $instance-status
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+color if $instance-status == INITIALIZED: $fpm.color.main.cta-secondary.base
+color if $instance-status == PENDING: $dark-red
+color if $instance-status == READY: $fpm.color.main.success.text
+color if $instance-status == STOPPED: $fpm.color.main.warning.text
+color if $instance-status == TERMINATED: $fpm.color.main.error.border
+
+--- label-data-bar: Status:
+if: $instance-status == INITIALIZED
+data: $instance-status
+data-color: $fpm.color.main.cta-secondary.base
+
+--- label-data-bar: Status:
+if: $instance-status == PENDING
+data: $instance-status
+data-color: $dark-red
+
+--- label-data-bar: Status:
+if: $instance-status == READY
+data: $instance-status
+data-color: $fpm.color.main.success.text
+
+--- label-data-bar: Status:
+if: $instance-status == STOPPED
+data: $instance-status
+data-color: $fpm.color.main.warning.text
+
+--- label-data-bar: Status:
+if: $instance-status == TERMINATED
+data: $instance-status
+data-color: $fpm.color.main.error.border
+
+-- ftd.row label-data-bar:
+caption label:
+string data:
+optional string end-data:
+ftd.color data-color:
+spacing: 4
 
 --- ftd.text: $label
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
 
---- ftd.input:
-width: fill
+--- ftd.text: $data
+role: $fpm.type.copy-tight
+color: $data-color
+
+--- ftd.text: $end-data
+if: $end-data is not null
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
-placeholder: $placeholder
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-explain: true
-type: $field-type
 
---- ftd.column:
-if: $error-msg is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-3
-width: fill
 
---- ftd.text: $error-msg
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
+
+
+
+
+
+-- package list package-list:
+$processor$: http
+method: get
+url: /-/fifthtry.github.io/fpm-controller-ui/api/list-packages/
+
+/-- object external-redirect-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/external-redirect/
+link: $external-link
