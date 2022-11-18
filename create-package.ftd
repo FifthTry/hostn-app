@@ -44,6 +44,7 @@ background-color: $fpm.color.main.background.step-1
 border-width: 1
 border-color: $fpm.color.main.border
 position: center
+border-radius: 10
 
 --- ftd.column:
 align: center
@@ -129,7 +130,7 @@ role: primary
 medium: true
 $on-click$: message-host $add-instance-api
 
---- button.button: Pay and Deploy
+--- button.button: Pay-and-Deploy
 role: primary
 medium: true
 $on-click$: message-host $redirect-plans-page-api

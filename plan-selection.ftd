@@ -87,13 +87,14 @@ background-color: $fpm.color.main.background.step-1
 border-width: 1
 border-color: $fpm.color.main.border
 position: center
+border-radius: 10
 
 --- ftd.column:
 align: center
 
 --- ftd.text: $title
 role: $fpm.type.heading-medium
-color: $fpm.color.main.text
+color: $fpm.color.main.text-strong
 align: center
 margin-bottom: $fpm.space.space-4
 
@@ -142,13 +143,13 @@ height: 80
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
-spacing: 35
+spacing: 24
 id: button-row
-align: right
+align: center
 
 --- button.button: Prepaid payment
 if: $self.developer-mode
-role: primary
+role: secondary
 large: true
 $on-click$: message-host $make-payment-api
 align: center
@@ -160,7 +161,7 @@ $on-click$: message-host $make-subscription-api
 align: center
 
 --- button.button: Get invoice
-role: primary
+role: tertiary
 large: true
 $on-click$: message-host $redirect-to-invoice-page-api
 align: center
@@ -243,59 +244,97 @@ role: $fpm.type.fine-print
 color: $fpm.color.main.error.text
 
 
-;; OLD UI STUFF ----------------------------------------------------
 
+
+
+
+
+
+
+
+;; OLD UI STUFF ----------------------------------------------------
 -- ftd.row label-bar-dint:
 caption label:
 integer data:
 optional string end-data:
 min-width: 200
+width: fill
 
 --- ftd.text: $label
-align: left
-role: $fpm.type.copy-large
+text-align: right
+role: $fpm.type.copy-tight
 color: $fpm.color.main.text
-style: extra-bold
+width: percent 50
+padding-right: $fpm.space.space-4
+
+--- ftd.text: `:`
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+width: percent 10
+
+--- ftd.row:
+id: plan-inner
 
 --- ftd.integer: $data
-align: right
-role: $fpm.type.copy-large
-color: $fpm.color.main.text
-style: medium
-move-right: 20
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+style: bold
 
 --- ftd.text: $end-data
 if: $end-data is not null
-role: $fpm.type.copy-large
+role: $fpm.type.copy-tight
 color: $fpm.color.main.text
-style: medium
-move-right: 25
+margin-left: $fpm.space.space-2
+
+
+
+
+
+
+
+
 
 
 -- ftd.row label-bar-dstr:
 caption label:
 string data:
 optional string end-data:
+width: fill
+min-width: 200
 
 --- ftd.text: $label
-align: left
-role: $fpm.type.copy-large
+text-align: right
+role: $fpm.type.copy-tight
 color: $fpm.color.main.text
-style: extra-bold
+width: percent 50
+padding-right: $fpm.space.space-4
+
+--- ftd.text: `:`
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+width: percent 10
+
+--- ftd.row:
+id: plan-inner
 
 --- ftd.text: $data
-align: right
-role: $fpm.type.copy-large
-color: $fpm.color.main.text
-style: medium
-move-right: 20
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
 
 --- ftd.text: $end-data
 if: $end-data is not null
-role: $fpm.type.copy-large
+role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 style: medium
-move-right: 25
+
+
+
+
+
+
+
+
+
 
 -- ftd.column plan-details-display:
 integer charges-per-min:
@@ -305,9 +344,14 @@ string description:
 string machine-type:
 integer machine-vcpus:
 integer machine-ram:
-padding-vertical: 40
-spacing: 10
+spacing: 20
 align: center
+border-width: 1
+border-color: $fpm.color.main.border
+width: 400
+border-radius: 10
+padding-horizontal: $fpm.space.space-4
+padding-vertical: $fpm.space.space-4
 
 --- label-bar-dint: Charges per minute
 data: $charges-per-min
@@ -334,6 +378,15 @@ data: $machine-vcpus
 data: $machine-ram
 end-data: MB
 
+
+
+
+
+
+
+
+
+
 -- ftd.column select-plan:
 optional caption label:
 plan-name-info list plans:
@@ -351,7 +404,6 @@ width if $is-mobile: fill
 boolean small: false
 boolean medium: false
 id: parent-container
-
 
 --- ftd.row:
 width: fill
@@ -371,8 +423,9 @@ width if not $is-mobile: fill
 width if $is-mobile: 200
 margin-left: $fpm.space.space-4
 height: fill
-color: $fpm.color.main.background.overlay
-border-radius: 8
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.background.overlay
+border-radius: 6
 border-width: 1
 width if $medium: 400
 height if $medium: 40
@@ -381,14 +434,14 @@ height if $small: 30
 placeholder: $selected-valued
 $on-input$: $selected-valued=$VALUE
 border-color: $fpm.color.main.border
-padding-vertical if $medium: $fpm.space.space-2
+padding-vertical if $medium: $fpm.space.space-3
 padding-horizontal if $medium: $fpm.space.space-4
 padding-vertical if $small: $fpm.space.space-1
-padding-horizontal if $small: $fpm.space.space-2
+padding-horizontal if $small: $fpm.space.space-3
 
 --- ftd.text: ﹀
 if: $plans is not empty
-color: $fpm.color.main.text
+color: $fpm.color.main.text-strong
 position: center
 move-right: -5
 anchor: parent
@@ -420,13 +473,14 @@ if: $open
 width: percent 75
 anchor: parent
 z-index: 4
-top: -2
-background-color: $fpm.color.main.background.step-1
+top: 2
+background-color: $fpm.color.main.background.overlay
 left: 69
-border-radius: 8
+border-bottom-radius: 6
 border-color: $fpm.color.main.border
 border-width: 2
 padding-vertical: 12
+spacing: 4
 
 --- show-children:
 if: $plans is not empty
@@ -441,8 +495,8 @@ $selected-valued: $selected-valued
 width: fill
 background-color if $MOUSE-IN:$fpm.color.main.cta-secondary.base
 caption title:
-padding-horizontal:12
-padding-vertical:4
+padding-horizontal: 4
+padding-vertical: 4
 string $selected-valued:
 
 --- ftd.text: $title
