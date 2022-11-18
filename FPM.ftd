@@ -22,7 +22,7 @@ endpoint: http://127.0.0.1:8001
 
 -- fpm.sitemap:
 
-# Home: /index.html
+# Home: /
 
 # Sign-in: /sign-in/
 # Create Package: /create-package/

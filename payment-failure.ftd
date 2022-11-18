@@ -1,0 +1,80 @@
+-- import: fifthtry.github.io/fpm-controller-ui/base
+
+-- import: fifthtry.github.io/fpm-controller-ui as self
+
+-- optional string package-name:
+$always-include$: true
+
+-- optional string download-base-url:
+$always-include$: true
+
+-- optional string package-name-error:
+$always-include$: true
+
+-- optional string download-base-url-error:
+$always-include$: true
+
+
+
+
+
+-- page: Payment failed, try again
+csrf_token: sometoken
+
+
+
+
+
+
+
+
+-- ftd.column page:
+width: fill
+string csrf_token:
+caption title:
+
+--- base.page:
+
+--- ftd.column:
+width: fill
+id: main-form
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-8
+background-color: $fpm.color.main.background.step-1
+border-width: 1
+border-color: $fpm.color.main.border
+position: center
+
+--- ftd.column:
+align: center
+
+--- ftd.text: $title
+role: $fpm.type.heading-large
+color: $fpm.color.main.text
+align: center
+margin-bottom: $fpm.space.space-4
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-4
+margin-bottom: $fpm.space.space-4
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-6
+
+--- ftd.row:
+spacing: 20
+id: button-row
+align: right
+
+--- button.button: Return to Dashboard
+role: primary
+medium: true
+link: /
+
+

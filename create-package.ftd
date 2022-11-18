@@ -56,18 +56,8 @@ margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
---- ftd.column:
+--- debug-box:
 if: $self.developer-mode
-
---- ftd.text: DEBUG 1: https://raw.githubusercontent.com/fifthtry/kameri-app/main
-if: $self.developer-mode
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-
---- ftd.text: DEBUG 2: https://raw.githubusercontent.com/AbrarNitk/abrark/main/
-if: $self.developer-mode
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
 
 --- ftd.column:
 width: fill
@@ -165,7 +155,17 @@ plan: Standard
 
 
 
+-- ftd.column debug-box:
 
+--- ftd.text: DEBUG 1: https://raw.githubusercontent.com/fifthtry/kameri-app/main
+if: $self.developer-mode
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+
+--- ftd.text: DEBUG 2: https://raw.githubusercontent.com/AbrarNitk/abrark/main/
+if: $self.developer-mode
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
 
 
 -- ftd.column form-field:

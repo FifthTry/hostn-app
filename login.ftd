@@ -71,7 +71,7 @@ padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
 --- ftd.text: Dashboard
-link: dashboard/
+link: /
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
 white-space: nowrap

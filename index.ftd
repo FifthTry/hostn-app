@@ -5,6 +5,15 @@
 -- optional string external-link:
 $always-include$: true
 
+-- optional string machine-id:
+$always-include$: true
+
+-- optional string instance-id:
+$always-include$: true
+
+-- optional string package-name:
+$always-include$: true
+
 -- ftd.color light-red:
 light: #ffc297
 dark: #ffc297
@@ -76,9 +85,11 @@ margin-bottom: $fpm.space.space-10
 
 --- show-package: $obj.package_name
 $loop$: $package-list as $obj
-hosted-url: $obj.hosted_url
+hosted_url: $obj.hosted_url
 ip: $obj.ip
-instance-status: $obj.instance_status
+instance_status: $obj.instance_status
+instance_id: $obj.instance_id
+machine_id: $obj.machine_id
 
 
 
@@ -90,10 +101,12 @@ instance-status: $obj.instance_status
 
 
 -- ftd.column show-package:
-caption package-name:
-string hosted-url:
+caption package_name:
+string machine_id:
+string hosted_url:
 string ip:
-string instance-status:
+string instance_status:
+string instance_id:
 width: fill
 padding-vertical: $fpm.space.space-2
 
@@ -105,65 +118,60 @@ spacing: 12
 background-color: $fpm.color.main.background.step-1
 border-radius: 10
 border-width: 4
-border-color if $instance-status == INITIALIZED: $fpm.color.main.cta-secondary.base
-border-color if $instance-status == PENDING: $dark-red
-border-color if $instance-status == READY: $fpm.color.main.success.text
-border-color if $instance-status == STOPPED: $fpm.color.main.warning.text
-border-color if $instance-status == TERMINATED: $fpm.color.main.error.border
+border-color if $instance_status == INITIALIZED: $fpm.color.main.cta-secondary.base
+border-color if $instance_status == PENDING: $dark-red
+border-color if $instance_status == READY: $fpm.color.main.success.text
+border-color if $instance_status == STOPPED: $fpm.color.main.warning.text
+border-color if $instance_status == TERMINATED: $fpm.color.main.error.border
 
---- ftd.text: $package-name
+--- ftd.text: $package_name
 role: $fpm.type.heading-small
 color: $fpm.color.main.text
 color if $MOUSE-IN: $fpm.color.main.text-strong
 border-bottom: 1
 border-color: $fpm.color.main.background.step-1
 border-color if $MOUSE-IN: $fpm.color.main.text-strong
-/$on-click$: $external-link = $hosted-url
-/$on-click$: message-host $external-redirect-api
-
-/--- ftd.text: $ip
-if: $instance-status == READY
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+$on-click$: $external-link = $hosted_url
+$on-click$: message-host $external-redirect-api
 
 --- label-data-bar: Public IP:
-if: $instance-status == READY
+if: $instance_status == READY
 data: $ip
 data-color: $fpm.color.main.text
 
-/--- ftd.text: $instance-status
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-color if $instance-status == INITIALIZED: $fpm.color.main.cta-secondary.base
-color if $instance-status == PENDING: $dark-red
-color if $instance-status == READY: $fpm.color.main.success.text
-color if $instance-status == STOPPED: $fpm.color.main.warning.text
-color if $instance-status == TERMINATED: $fpm.color.main.error.border
-
 --- label-data-bar: Status:
-if: $instance-status == INITIALIZED
-data: $instance-status
+if: $instance_status == INITIALIZED
+data: $instance_status
 data-color: $fpm.color.main.cta-secondary.base
 
 --- label-data-bar: Status:
-if: $instance-status == PENDING
-data: $instance-status
+if: $instance_status == PENDING
+data: $instance_status
 data-color: $dark-red
 
 --- label-data-bar: Status:
-if: $instance-status == READY
-data: $instance-status
+if: $instance_status == READY
+data: $instance_status
 data-color: $fpm.color.main.success.text
 
 --- label-data-bar: Status:
-if: $instance-status == STOPPED
-data: $instance-status
+if: $instance_status == STOPPED
+data: $instance_status
 data-color: $fpm.color.main.warning.text
 
 --- label-data-bar: Status:
-if: $instance-status == TERMINATED
-data: $instance-status
+if: $instance_status == TERMINATED
+data: $instance_status
 data-color: $fpm.color.main.error.border
+
+--- button.button: Delete
+if: $instance_status == READY
+role: primary
+large: true
+$on-click$: $instance-id = $instance_id
+$on-click$: $package-name = $package_name
+$on-click$: $machine-id = $machine_id
+$on-click$: message-host $delete-machine-api
 
 -- ftd.row label-data-bar:
 caption label:
@@ -196,8 +204,16 @@ $processor$: http
 method: get
 url: /-/fifthtry.github.io/fpm-controller-ui/api/list-packages/
 
-/-- object external-redirect-api:
+-- object external-redirect-api:
 function: http
 method: post
 url: /-/fifthtry.github.io/fpm-controller-ui/api/external-redirect/
 link: $external-link
+
+-- object delete-machine-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/delete-instance/
+machine_id: $machine-id
+instance_id: $instance-id
+package_name: $package-name
