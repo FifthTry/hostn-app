@@ -22,8 +22,23 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/
 
 -- fpm.sitemap:
 
-# Home: /index.html
+# Sites: /sites/
 
+## Info: /site-info/
+## Access: /site-access/
+## Metrics: /site-metrics/
+## Activity: /site-activity/
 
+- Site Updates: /site-update/
+- Site Analytics: /site-analytics/
+- Site Logs: /site-logs/
+
+## Settings: /site-settings/
+
+# Access: /access/
+
+# Billing: /billing/
+
+# Settings: /setting/
 
 

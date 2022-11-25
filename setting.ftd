@@ -12,10 +12,10 @@ team-name: Personal
 
 
 -- ftd.column setting-loop:
-caption title: Fifthrty
+caption title: Fifthtry
 string edit-url: /
 string package-name: demo-app
-string team-name: team-name
+string team-name: Team Name
 width: fill
 background-color: $fpm.color.main.background.step-1
 border-radius: 12
@@ -61,7 +61,7 @@ border-radius: 8
 --- container: ftd.main
 
 
---- ftd.text: DElete
+--- ftd.text: DELETE TEAM
 padding-vertical: 8
 padding-horizontal: 12
 role: $fpm.type.fine-print

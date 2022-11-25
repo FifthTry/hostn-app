@@ -198,7 +198,7 @@ fpm.toc-item list toc-obj:
 sticky: true
 top: 0
 left: 24
-height: calc 100vh - 0px
+height: fill
 overflow-y: auto
 width: 350
 align: top-left
