@@ -1,0 +1,181 @@
+
+
+
+-- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+-- record biling:
+string status:
+string date: 
+string amount:
+
+-- biling list bilings:
+
+-- bilings: 
+status: paid
+date: 23 sep 9090
+amount:322
+
+-- bilings: AMITU.COM
+status: paid
+date: 23 sep 9090
+amount:322
+
+-- bilings: AMITU.COM
+status: paid
+date: 23 sep 9090
+amount:322
+
+
+
+
+
+-- page-1.page-one: amitu
+team-name: Personal
+
+-- billing-component:
+bilinglist: $bilings
+
+
+-- ftd.column billing-component:
+biling list bilinglist:
+width: fill
+spacing: 64
+
+
+
+--- billing: 
+
+
+--- ftd.row:
+width: fill
+id: kkkk
+
+--- ftd.column:
+width: percent 40
+
+--- ftd.text: INVOICES
+role: $fpm.type.heading-large
+
+--- container: kkkk
+
+--- ftd.column:
+width: percent 60
+
+
+--- ftd.text: INVOICES
+role: $fpm.type.copy-large
+margin-bottom: 26
+
+--- bilings-loop: 
+status: $obj.status
+date: $obj. date
+amount: $obj.amount
+$loop$: $bilinglist as $obj
+
+
+
+
+
+
+-- ftd.row bilings-loop:
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-bottom: 1
+border-color: $fpm.color.main.border
+string status:
+string date: 
+string amount:
+padding-vertical: 24
+padding-horizontal: 24
+
+
+
+
+
+--- ftd.text: $date
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+
+
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: \$
+role: $fpm.type.copy-tight
+
+--- ftd.text: $amount
+role: $fpm.type.copy-tight
+
+
+--- container: ftd.main
+
+
+--- ftd.text: $status
+role: $fpm.type.copy-tight
+
+
+
+
+
+
+-- ftd.row billing:
+caption title: Billing
+string amount: 31.25
+string url: /
+spacing: 64
+border-bottom: 1
+border-color: $fpm.color.main.border
+padding-bottom: 24
+
+
+--- ftd.column:
+width: percent 40
+--- ftd.text: $title
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+--- ftd.text:
+color: $fpm.color.main.text
+role: $fpm.type.copy-relaxed
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+
+--- container: ftd.main
+
+--- ftd.row:
+width: percent 60
+align: center
+id: iii
+
+--- ftd.text: Current-usage
+color: $fpm.color.main.text
+role: $fpm.type.copy-relaxed
+width: fill
+
+
+--- ftd.row:
+width: fill
+
+--- ftd.text: \$
+color: $fpm.color.main.text
+role: $fpm.type.copy-relaxed
+
+--- ftd.text: $amount
+color: $fpm.color.main.text
+role: $fpm.type.copy-relaxed
+
+--- container: iii
+
+
+--- ftd.text: view-detail
+link: $url
+color: $fpm.color.main.text
+role: $fpm.type.copy-relaxed
+width: fill

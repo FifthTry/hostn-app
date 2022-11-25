@@ -1,0 +1,132 @@
+-- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+-- record site:
+caption package-name:
+string status:
+string date: 
+string package-url:
+
+-- site list sites:
+
+-- sites: AMITU.COM
+package-url: /
+date: 23 sep 9090
+status: online
+
+-- sites: AMITU.COM
+package-url: /
+date: 23 sep 9090
+status: online
+
+-- sites: AMITU.COM
+package-url: /
+date: 23 sep 9090
+status: online
+
+
+
+
+
+-- page-1.page-one: amitu
+team-name: Personal
+
+-- sites-component:
+sitelist: $sites
+
+
+-- ftd.column sites-component:
+site list sitelist:
+width: fill
+
+--- ftd.column:
+width: fill
+
+--- sites-loop: $obj.package-name
+status: $obj.status
+date: $obj. date
+package-url: $obj.package-url
+$loop$: $sites as $obj
+
+
+--- create-package-button: &#65291; New
+button-link: create-package/
+
+-- ftd.column sites-loop:
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+caption package-name:
+string status:
+string date: 
+string package-url:
+padding-vertical: 24
+padding-horizontal: 24
+margin-bottom: 28
+spacing: 32
+
+--- ftd.row:
+width: fill
+id: first-column
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: $package-name
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+
+--- ftd.text: View
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.cta-primary.base
+link: $package-url
+border-radius: 8
+
+--- container: first-column
+
+
+--- ftd.row:
+color: $fpm.color.main.text
+spacing: 12
+
+--- ftd.text: Status:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $status
+role: $fpm.type.copy-tight
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: Update-on:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $date
+role: $fpm.type.copy-tight
+
+
+
+
+-- ftd.column create-package-button:
+caption title:
+optional string button-link:
+width: fill
+link: $button-link
+min-width: 200
+
+--- ftd.row:
+align: right
+padding-bottom: $fpm.space.space-4
+
+--- button.button: $title
+role: primary
+medium: true
+link: $button-link

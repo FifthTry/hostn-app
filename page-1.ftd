@@ -1,0 +1,268 @@
+
+
+-- boolean show: false
+
+-- fpm.toc-item list toc-one:
+$processor$: toc
+
+# jj: /
+# hh: /
+# hh: /
+
+
+-- ftd.column create-package-button:
+caption title:
+optional string button-link:
+width: fill
+link: $button-link
+min-width: 200
+
+--- ftd.row:
+align: right
+padding-bottom: $fpm.space.space-4
+
+--- button.button: $title
+role: primary
+medium: true
+link: $button-link
+
+-- fpm.sitemap-data sitemap:
+$processor$: sitemap
+
+
+-- page-one: amitu
+team-name: Personal
+
+-- ftd.column page-one:
+boolean $show: false
+fpm.toc-item list toc: $sitemap.toc
+fpm.toc-item list sections: $sitemap.sections
+fpm.toc-item list sub-sections: $sitemap.subsections
+width: fill
+boolean widthfill: false
+open: true
+id: main-container
+append-at: main-container
+background-color: $fpm.color.main.background.base
+color: $fpm.color.main.text
+caption user-name:
+string team-name:
+padding-horizontal: 48
+padding-vertical: 48
+
+--- ftd.row:
+align: right
+margin-bottom: 48
+
+--- ftd.text: Hi,
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+
+--- ftd.text: $user-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+margin-bottom: 48
+spacing: 12
+
+--- ftd.text: Team:
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+--- ftd.text: $team-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+--- container: ftd.main
+
+--- ftd.column: 
+width: fill
+id: hhhh
+
+--- ftd.row:
+
+--- section-loop: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+$loop$: $sections as $obj
+
+
+--- container: ftd.main
+
+
+
+--- ftd.column: 
+width: fill
+id: llll
+
+--- ftd.column:
+if: $show
+width: fill
+
+
+--- ftd.row:
+width: fill
+id: jjjj
+spacing: 64
+padding-vertical: 64
+
+
+
+--- render-toc:
+if: $toc-one is not empty
+toc-obj: $toc-one
+
+
+--- container: jjjj
+
+--- ftd.column:
+width: fill
+padding-vertical: 24
+padding-horizontal: 24
+id: kkk
+border-width: 1
+border-color: $fpm.color.main.border
+margin-top: 25
+
+
+--- ftd.row:
+width: fill
+
+--- sub-section-component:
+sub-sections: $sub-sections
+toc: $toc
+
+
+--- container: kkk
+
+--- ftd.column:
+width: fill
+id: main-container
+max-width if not $widthfill: 1200
+max-width if $widthfill: fill
+width if $widthfill: fill
+align if not $widthfill: center
+padding-vertical: 24
+
+
+--- container: llll
+
+--- ftd.column:
+if: not $show
+width: fill
+
+--- ftd.column:
+width: fill
+id: main-container
+max-width if not $widthfill: 1200
+max-width if $widthfill: fill
+width if $widthfill: fill
+align if not $widthfill: center
+padding-vertical: 24
+
+
+-- ftd.row section-loop:
+caption title:
+string url:
+boolean is-active:
+
+--- ftd.text: $title
+color: $fpm.color.main.text-strong
+style: medium
+link: $url
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.base
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.column render-toc:
+fpm.toc-item list toc-obj:
+sticky: true
+top: 0
+left: 24
+height: calc 100vh - 0px
+overflow-y: auto
+width: 350
+align: top-left
+background-color:  $fpm.color.main.background.overlay
+border-radius: 8
+padding-left: 24
+padding-top: 16
+padding-right: 16
+padding-bottom: 32
+margin-top: 25
+margin-bottom: 25
+
+--- toc-instance:
+$loop$: $toc-obj as $obj
+toc: $obj
+
+
+
+
+-- ftd.column toc-instance:
+fpm.toc-item toc:
+id: toc-instance
+width: fill
+
+
+--- ftd.text:
+if: $toc.url is not null
+link: $toc.url
+text: $toc.title
+role: $fpm.type.fine-print
+min-width: fit-content
+color: $fpm.color.main.text
+color if $toc.is-active: $fpm.color.main.cta-primary.base
+padding-vertical: 4
+padding-horizontal: 14
+
+
+-- ftd.column sub-section-component:
+fpm.toc-item list sub-sections:
+fpm.toc-item list toc:
+width: fill
+border-radius: 8
+padding-left: 24
+padding-top: 16
+spacing: 32
+
+
+
+--- ftd.row:
+if: $sub-sections is not empty
+
+--- section-loop: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+$loop$: $sub-sections as $obj
+
+
+--- container: ftd.main
+
+
+--- ftd.row:
+if: $toc is not empty
+
+--- section-loop: $obj.title
+url: $obj.url
+is-active: $obj.is-active
+$loop$: $toc as $obj

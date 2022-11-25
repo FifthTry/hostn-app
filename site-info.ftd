@@ -1,0 +1,68 @@
+
+
+
+-- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+
+-- page-1.page-one: amitu
+team-name: Personal
+$show: true
+
+
+--- sites-loop:
+
+
+-- ftd.row sites-loop:
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+string status: onlie
+string date:  jjjj
+padding-vertical: 24
+padding-horizontal: 24
+margin-bottom: 28
+spacing: 32
+
+
+
+--- ftd.text: View
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.cta-primary.base
+border-radius: 8
+
+--- container: ftd.main
+
+
+--- ftd.column:
+width: fill
+id: jjj
+--- ftd.row:
+align: right
+color: $fpm.color.main.text
+spacing: 12
+
+--- ftd.text: Status:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $status
+role: $fpm.type.copy-tight
+
+--- container: jjj
+
+
+--- ftd.row:
+align: right
+spacing: 12
+
+
+--- ftd.text: Update-on:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $date
+role: $fpm.type.copy-tight
+

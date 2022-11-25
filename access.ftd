@@ -1,0 +1,131 @@
+
+
+
+-- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+-- record acces:
+caption package-name:
+boolean sites:
+boolean team: 
+boolean billing:
+
+-- acces list access:
+
+-- access: AMITU.COM
+sites: true
+team: false
+billing: true
+
+-- access: AMITU.COM
+sites: true
+team: false
+billing: true
+
+-- access: AMITU.COM
+sites: true
+team: false
+billing: true
+
+
+
+
+-- page-1.page-one: amitu
+team-name: Personal
+$show: true
+
+-- access-component:
+acceslist: $access
+
+
+-- ftd.column access-component:
+acces list acceslist:
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+border-color: $fpm.color.main.border
+border-width: 2
+margin-bottom: 28
+width: fill
+
+
+--- ftd.row:
+width: fill
+padding-vertical: 24
+padding-horizontal: 24
+border-bottom: 1
+border-color: $fpm.color.main.border
+
+--- ftd.text: Manage
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text: Manage
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text:  Manage
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text: Manage
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- container: ftd.main
+
+--- ftd.column:
+width: fill
+
+--- access-loop: $obj.package-name
+billing: $obj.billing
+team: $obj. team
+sites: $obj.sites
+$loop$: $acceslist as $obj
+
+
+
+-- ftd.column access-loop:
+width: fill
+caption package-name:
+boolean sites:
+boolean team: 
+boolean billing:
+padding-vertical: 24
+padding-horizontal: 24
+
+--- ftd.row:
+width: fill
+id: first-column
+
+--- ftd.row:
+width: fill
+
+
+--- ftd.text: $package-name
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.input:
+type: checkbox
+width: fill
+
+
+
+--- ftd.input:
+type: checkbox
+width: fill
+
+
+--- ftd.input:
+type: checkbox
+width: fill

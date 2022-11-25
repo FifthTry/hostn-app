@@ -14,6 +14,26 @@ package-list: $package-list
 
 
 
+
+
+-- ftd.column create-package-button:
+caption title:
+optional string button-link:
+width: fill
+link: $button-link
+min-width: 200
+
+--- ftd.row:
+align: right
+padding-bottom: $fpm.space.space-4
+
+--- button.button: $title
+role: primary
+medium: true
+link: $button-link
+
+
+
 -- ftd.column page:
 width: fill
 caption title:

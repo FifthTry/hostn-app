@@ -1,0 +1,167 @@
+-- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+
+-- page-1.page-one: amitu
+team-name: Personal
+
+-- setting-loop:
+
+
+
+
+
+-- ftd.column setting-loop:
+caption title: Fifthrty
+string edit-url: /
+string package-name: demo-app
+string team-name: team-name
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+padding-vertical: 24
+boolean open: false
+padding-horizontal: 24
+margin-bottom: 28
+spacing: 32
+
+--- ftd.row:
+width: fill
+id: first-column
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: $team-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+width: fill
+
+--- ftd.text: $title
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+width: fill
+
+
+--- ftd.text: EDIT
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color  if $MOUSE-IN: $fpm.color.main.text-strong
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+link: $edit-url
+border-radius: 8
+
+--- container: ftd.main
+
+
+--- ftd.text: DElete
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color  if $MOUSE-IN: $fpm.color.main.text-strong
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+$on-click$: toggle $open
+
+--- delete-card: $package-name
+if: $open
+$open: $open
+
+
+-- ftd.column delete-card:
+caption package-name:
+boolean $open:
+width: fill
+padding-vertical: 24
+padding-horizontal: 24
+color: $fpm.color.main.text-strong
+border-color: $fpm.color.main.border
+border-width: 1
+spacing: 24
+border-radius: 8
+
+
+--- ftd.text: ARE YOU SURE
+role: $fpm.type.copy-relaxed
+
+
+
+--- ftd.row:
+width: fill
+spacing: 8
+
+
+--- ftd.text: ARE YOU SURE?
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+
+
+--- ftd.text: $package-name
+role: $fpm.type.copy-relaxed
+
+
+--- ftd.text: ARE YOU SURE
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+
+--- ftd.input:
+placeholder: Enter package
+;value: $VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+width: fill
+background-color: $fpm.color.main.border
+margin-right: 32
+
+
+--- ftd.text: confirm
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color  if $MOUSE-IN: $fpm.color.main.text-strong
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+;$on-click$:
+margin-right: 24
+
+
+
+--- ftd.text: cancel
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color  if $MOUSE-IN: $fpm.color.main.text-strong
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+$on-click$: $open= false

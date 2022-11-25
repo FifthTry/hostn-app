@@ -1,0 +1,83 @@
+-- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+-- record siteupdate:
+string package-name:
+string file-name: 
+string date:
+
+-- siteupdate list siteupdates:
+
+-- siteupdates: 
+package-name: abrark.com
+file-name: index.ftd
+date:23 sep 9090
+
+-- siteupdates: 
+package-name: abrark.com
+file-name: index.ftd
+date:23 sep 9090
+
+-- siteupdates: 
+package-name: abrark.com
+file-name: index.ftd
+date:23 sep 9090
+
+
+
+-- page-1.page-one: amitu
+team-name: Personal
+$show: true
+
+-- siteupdate-ss:
+siteupdatelist: $siteupdates
+
+
+-- ftd.column siteupdate-ss:
+siteupdate list siteupdatelist:
+width: fill
+spacing: 64
+
+
+
+--- siteupdates-loop: 
+package-name: $obj.package-name
+file-name: $obj. file-name
+date: $obj.date
+$loop$: $siteupdatelist as $obj
+
+
+
+
+
+
+-- ftd.row siteupdates-loop:
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-bottom: 1
+border-color: $fpm.color.main.border
+string package-name:
+string file-name: 
+string date:
+padding-vertical: 24
+padding-horizontal: 24
+
+
+
+
+--- ftd.text: $package-name
+role: $fpm.type.copy-tight
+
+
+
+--- ftd.text: $file-name
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+
+
+
+--- ftd.text: $date
+role: $fpm.type.copy-tight
+
+
