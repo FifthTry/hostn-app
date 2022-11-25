@@ -11,6 +11,6 @@
 team-name: Personal
 $show: true
 
--- ftd.text: Upcoming 
+-- ftd.text: Coming Soon
 role: $fpm.type.heading-large
 color: $fpm.color.main.text-strong

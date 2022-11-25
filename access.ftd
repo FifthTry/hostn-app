@@ -87,25 +87,25 @@ padding-horizontal: 24
 border-bottom: 1
 border-color: $fpm.color.main.border
 
---- ftd.text: Manage
+--- ftd.text: Users
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
 width: fill
 text-align: center
 
---- ftd.text: Manage
+--- ftd.text: Manage Sites
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
 width: fill
 text-align: center
 
---- ftd.text:  Manage
+--- ftd.text:  Billing
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
 width: fill
 text-align: center
 
---- ftd.text: Manage
+--- ftd.text: Manage Teams
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
 width: fill
