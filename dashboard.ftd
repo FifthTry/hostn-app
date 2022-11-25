@@ -52,7 +52,7 @@ package-list: $package-list
 
 
 
--- ftd.column create-package-button:
+/-- ftd.column create-package-button:
 caption title:
 optional string button-link:
 width: fill

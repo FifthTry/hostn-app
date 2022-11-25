@@ -1,7 +1,28 @@
-
-
-
 -- import: fifthtry.github.io/fpm-controller-ui/page-1 
+
+
+
+
+-- page-1.team list team-list:
+
+-- team-list:
+item-title: Personal
+item-link: billing/
+
+-- team-list:
+item-title: Commercial
+item-link: billing/
+
+-- team-list:
+item-title: My Friends
+item-link: billing/
+
+-- team-list:
+item-title: My Company
+item-link: billing/
+
+
+
 
 
 -- record acces:
@@ -33,9 +54,20 @@ billing: true
 -- page-1.page-one: amitu
 team-name: Personal
 $show: true
+teams: $team-list
 
 -- access-component:
 acceslist: $access
+
+
+
+
+
+
+
+
+
+
 
 
 -- ftd.column access-component:

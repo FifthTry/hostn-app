@@ -2,6 +2,15 @@
 
 -- boolean show: false
 
+-- boolean dropdown-open: false
+
+-- optional string site-name:
+
+-- ftd.image-src site-logo: 
+light: $assets.files.logo-fifthtry.svg.light
+dark: $assets.files.logo-fifthtry.svg.dark
+
+
 -- fpm.toc-item list toc-one:
 $processor$: toc
 
@@ -30,14 +39,40 @@ link: $button-link
 $processor$: sitemap
 
 
--- page-one: amitu
+
+
+-- record team:
+string item-title: 
+string item-link: 
+
+
+-- team list teams:
+
+
+
+
+-- page-one: Amitu
 team-name: Personal
+teams: $teams
+
+
+
+
+
+
+
+
 
 -- ftd.column page-one:
 boolean $show: false
 fpm.toc-item list toc: $sitemap.toc
 fpm.toc-item list sections: $sitemap.sections
 fpm.toc-item list sub-sections: $sitemap.subsections
+optional caption username: abc@fifthtry.com
+team list teams: $teams
+optional ftd.image-src user-avatar: $assets.files.avatar.jpg
+boolean show-profile-menu: false
+string team-name:
 width: fill
 boolean widthfill: false
 open: true
@@ -45,44 +80,207 @@ id: main-container
 append-at: main-container
 background-color: $fpm.color.main.background.base
 color: $fpm.color.main.text
-caption user-name:
-string team-name:
-padding-horizontal: 48
-padding-vertical: 48
+height: calc 100vh - 0px
+overflow-y: auto
+
+--- ftd.column:
+width: fill
+padding-vertical: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-4
+background-color: $fpm.color.main.background.step-1
+
+--- ftd.row:
+width: fill
+id: header-container
+
+--- ftd.row:
+width: fill
+align: left
+id: logo-container
+
+--- ftd.text: $site-name
+if: $site-name is not null
+role: $fpm.type.heading-medium
+color: $fpm.color.main.text-strong
+
+--- ftd.image: 
+if: $site-name is null
+src:  $site-logo
+width: 120
+height: auto
+id: logo
+link: index.html
+
+--- container: header-container
 
 --- ftd.row:
 align: right
-margin-bottom: 48
+padding-top if $site-name is not null: $fpm.space.space-4
+padding-top if $site-name is null: $fpm.space.space-2
+spacing: 24
 
---- ftd.text: Hi,
-role: $fpm.type.heading-small
+--- ftd.text: Dashboard
+link: dashboard/
+role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
+white-space: nowrap
+align: center
+border-bottom: 1
+border-color: $fpm.color.main.background.base
+border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
-
---- ftd.text: $user-name
-role: $fpm.type.heading-small
+--- ftd.text: Sign in
+link: sign-in/
+role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
+white-space: nowrap
+align: center
+border-bottom: 1
+border-color: $fpm.color.main.background.base
+border-color if $MOUSE-IN: $fpm.color.main.border-strong
+
+--- ftd.row: 
+background-color: $fpm.color.main.background.step-2
+width: 24
+height: 24
+border-radius: 100
+align: center
+
+--- ftd.image:
+if: $user-avatar is not null
+src: $user-avatar
+width: 24
+height: 24
+$on-mouse-enter$: $show-profile-menu = true
+border-radius: 100
+
+--- ftd.column:
+if: $show-profile-menu
+width: 160	
+background-color: $fpm.color.main.background.base
+border-width: 1
+border-color: $fpm.color.main.border
+padding-horizontal: $fpm.space.space-3
+padding-vertical: $fpm.space.space-3
+anchor: parent
+right: 0
+top: 25
+id: login-menu
+$on-mouse-enter$: $show-profile-menu = true
+$on-mouse-leave$: $show-profile-menu = false
+
+--- ftd.column:
+width: 42
+height: 42
+background-color: $fpm.color.main.background.step-2
+align: center
+border-radius: 100
+
+--- ftd.image:
+if: $user-avatar is not null
+src: $user-avatar
+width: 42
+height: 42
+border-radius: 100
+
+--- container: login-menu
+
+--- ftd.column:
+width: fill
+border-bottom: 1
+border-color: $fpm.color.main.border
+padding-bottom: $fpm.space.space-3
+
+--- ftd.text: $username
+if: $username is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+margin-top: $fpm.space.space-4
+
+--- container: login-menu
+
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-3
+
+
+--- ftd.text: Logout
+link: index.html
+role: $fpm.type.fine-print
+color: $fpm.color.main.text
+margin-top: $fpm.space.space-2
+border-bottom: 1
+border-color: $fpm.color.main.background.base
+border-color if $MOUSE-IN: $fpm.color.main.border-strong
+
+--- container: ftd.main
 
 
 --- container: ftd.main
 
---- ftd.row:
+--- ftd.column:
 width: fill
+padding-horizontal: 24
+padding-vertical: 24
+id: page-content
+
+
+--- ftd.row:
 margin-bottom: 48
 spacing: 12
 
 --- ftd.text: Team:
 role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
+color: $fpm.color.main.text
+align: center
+
+--- ftd.row:
+id: team-dd
+min-width: 160
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-2
+border-width: 1
+border-color: $fpm.color.main.border
+border-radius: 4
+$on-click$: toggle $dropdown-open
+
 --- ftd.text: $team-name
 role: $fpm.type.heading-small
 color: $fpm.color.main.text-strong
 
---- container: ftd.main
+--- ftd.image: 
+if: not $dropdown-open
+src: $assets.files.static.dd-down.svg
+margin-left: 24
+width: 24
+height: 24
+align: center
+
+--- ftd.image:
+if: $dropdown-open
+src: $assets.files.static.dd-up.svg
+margin-left: 24
+width: 24
+height: 24
+align: center
+
+--- container: team-dd
+
+--- dropdown-menu:
+if: $dropdown-open
+options: $teams
+
+
+--- container: page-content
 
 --- ftd.column: 
 width: fill
 id: hhhh
+background-color: $fpm.color.main.background.step-2
+padding-vertical: $fpm.space.space-4
+padding-horizontal: $fpm.space.space-4
+border-radius: 4
 
 --- ftd.row:
 
@@ -92,7 +290,7 @@ is-active: $obj.is-active
 $loop$: $sections as $obj
 
 
---- container: ftd.main
+--- container: page-content
 
 
 
@@ -166,6 +364,14 @@ align if not $widthfill: center
 padding-vertical: 24
 
 
+
+
+
+
+
+
+
+
 -- ftd.row section-loop:
 caption title:
 string url:
@@ -179,7 +385,7 @@ role: $fpm.type.copy-tight
 color if $is-active: $fpm.color.main.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.base
+border-color: $fpm.color.main.background.step-2
 border-color if $is-active: $fpm.color.main.cta-primary.base
 margin-right: 64
 
@@ -244,10 +450,10 @@ border-radius: 8
 padding-left: 24
 padding-top: 16
 spacing: 32
-
-
+background-color: $fpm.color.main.background.step-2
 
 --- ftd.row:
+width: fill
 if: $sub-sections is not empty
 
 --- section-loop: $obj.title
@@ -266,3 +472,59 @@ if: $toc is not empty
 url: $obj.url
 is-active: $obj.is-active
 $loop$: $toc as $obj
+
+
+
+
+
+
+
+
+
+
+-- ftd.column dropdown-menu:
+width: fill	
+background-color: $fpm.color.main.background.base
+border-width: 1
+border-color: $fpm.color.main.border
+team list options:
+anchor: parent
+left: 0
+top: 52
+id: login-menu
+;$on-mouse-enter$: $show-profile-menu = true
+;$on-mouse-leave$: $show-profile-menu = false
+border-top: 0
+border-bottom-radius: 4
+z-index: 9999999
+
+--- ftd.column:
+width: fill
+
+--- options-list:
+$loop$: $options as $obj
+item-title: $obj.item-title
+item-link: $obj.item-link
+
+
+
+
+
+-- ftd.column options-list:
+optional string item-title:
+optional string item-link: 
+width: fill
+border-bottom: 1
+border-color: $fpm.color.main.border
+padding-bottom: $fpm.space.space-3
+background-color if $MOUSE-IN: $fpm.color.main.background.step-1
+padding-horizontal: $fpm.space.space-2
+padding-vertical: $fpm.space.space-2
+
+--- ftd.text: $item-title
+if: $item-title is not null
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+link: $item-link
+

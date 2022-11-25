@@ -2,8 +2,32 @@
 
 
 
+-- page-1.team list team-list:
+
+-- team-list:
+item-title: Personal
+item-link: billing/
+
+-- team-list:
+item-title: Commercial
+item-link: billing/
+
+-- team-list:
+item-title: My Friends
+item-link: billing/
+
+-- team-list:
+item-title: My Company
+item-link: billing/
+
+
+
+
+
 -- page-1.page-one: amitu
 team-name: Personal
+teams: $team-list
+
 
 -- setting-loop:
 
