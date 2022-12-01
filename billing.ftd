@@ -49,7 +49,7 @@ amount:322
 
 
 
--- page-1.page-one: amitu
+-- page-1.page-one: AmitU
 team-name: Personal
 teams: $team-list
 
@@ -74,8 +74,9 @@ id: kkkk
 --- ftd.column:
 width: percent 40
 
---- ftd.text: INVOICES
+--- ftd.text: Invoices
 role: $fpm.type.heading-large
+color: $fpm.color.main.text-strong
 
 --- container: kkkk
 
@@ -83,7 +84,7 @@ role: $fpm.type.heading-large
 width: percent 60
 
 
---- ftd.text: INVOICES
+/--- ftd.text: INVOICES
 role: $fpm.type.copy-large
 margin-bottom: 26
 
@@ -154,8 +155,9 @@ padding-bottom: 24
 
 --- ftd.column:
 width: percent 40
+
 --- ftd.text: $title
-role: $fpm.type.heading-small
+role: $fpm.type.heading-large
 color: $fpm.color.main.text-strong
 
 --- ftd.text:
@@ -174,7 +176,7 @@ width: percent 60
 align: center
 id: iii
 
---- ftd.text: Current-usage
+--- ftd.text: Card details here
 color: $fpm.color.main.text
 role: $fpm.type.copy-relaxed
 width: fill

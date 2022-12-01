@@ -3,6 +3,7 @@
 -- fpm.package: fifthtry.github.io/fpm-controller-ui
 zip: github.com/fifthtry/fpm-controller-ui/archive/refs/heads/main.zip
 download-base-url: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/main
+endpoint: http://127.0.0.1:8001
 
 
 -- fpm.dependency: fifthtry.github.io/button as button
@@ -27,11 +28,13 @@ download-base-url: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/
 ## Info: /site-info/
 ## Access: /site-access/
 ## Metrics: /site-metrics/
-## Activity: /site-activity/
+## Activity: /site-update/
 
 - Site Updates: /site-update/
-- Site Analytics: /site-analytics/
-- Site Logs: /site-logs/
+- Analytics: /site-analytics/
+- Logs: /site-logs/
+
+## Settings: /site-settings/
 
 # Access: /access/
 

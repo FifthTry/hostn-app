@@ -1,4 +1,11 @@
+-- optional string current-new-team-member-name:
+$always-include$: true
 
+-- optional string queried-user:
+$always-include$: true
+
+-- optional string queried-team:
+$always-include$: true
 
 -- boolean show: false
 
@@ -39,7 +46,10 @@ link: $button-link
 $processor$: sitemap
 
 
-
+-- record side-site-data:
+string site-name:
+optional string url:
+boolean is-active:
 
 -- record team:
 string item-title: 
@@ -51,19 +61,48 @@ string item-link:
 
 
 
--- page-one: Amitu
+/-- page-one: AmitU
 team-name: Personal
 teams: $teams
 
 
 
 
+;# sites - /sites/?user={user_name}&team={team_name}
+;# team access - /access/?user={user_name}&team={team_name}
+;# team billing - /billing/?user={user_name}&team={team_name}
+;# team settings - /setting/?user={user_name}&team={team_name}
+;## site info - /site-info/?user={user_name}&team={team_name}&site-id={current_site_id}
+;## site access - /site-access/?user={user_name}&team={team_name}
+;## site metrics - Not implemented yet
+;## site activity - Not implemented yet
+;- site updates - Not implemented yet
+;- site logs - Not implemented yet
+;- site analytics - Not implemented yet
+;## site settings - Not implemented yet
 
 
 
+-- side-site-data list empty-sites-toc:
+-- optional string empty-link:
+/-- optional string sites-link:
+/-- optional string team-access-link:
+/-- optional string team-billings-link:
+/-- optional string team-settings-link:
+/-- optional string site-info-link:
+/-- optional string site-access-link:
 
 
 -- ftd.column page-one:
+optional string query-user:
+optional string query-team:
+side-site-data list left-sites-toc: $empty-sites-toc
+optional string sites-link: $empty-link
+optional string team-access-link: $empty-link
+optional string team-billings-link: $empty-link
+optional string team-settings-link: $empty-link
+optional string site-info-link: $empty-link
+optional string site-access-link: $empty-link
 boolean $show: false
 fpm.toc-item list toc: $sitemap.toc
 fpm.toc-item list sections: $sitemap.sections
@@ -119,7 +158,7 @@ padding-top if $site-name is not null: $fpm.space.space-4
 padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
---- ftd.text: Dashboard
+/--- ftd.text: Dashboard
 link: dashboard/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -129,7 +168,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.text: Sign in
+/--- ftd.text: Sign in
 link: sign-in/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -227,7 +266,7 @@ id: page-content
 
 
 --- ftd.row:
-margin-bottom: 48
+margin-bottom: 15
 spacing: 12
 
 --- ftd.text: Team:
@@ -237,13 +276,13 @@ align: center
 
 --- ftd.row:
 id: team-dd
-min-width: 160
+min-width: 250
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-2
 border-width: 1
 border-color: $fpm.color.main.border
 border-radius: 4
-$on-click$: toggle $dropdown-open
+/$on-click$: toggle $dropdown-open
 
 --- ftd.text: $team-name
 role: $fpm.type.heading-small
@@ -252,24 +291,28 @@ color: $fpm.color.main.text-strong
 --- ftd.image: 
 if: not $dropdown-open
 src: $assets.files.static.dd-down.svg
-margin-left: 24
+margin-left: 110
 width: 24
 height: 24
 align: center
+$on-click$: toggle $dropdown-open
 
 --- ftd.image:
 if: $dropdown-open
 src: $assets.files.static.dd-up.svg
-margin-left: 24
+margin-left: 110
 width: 24
 height: 24
 align: center
+$on-click$: toggle $dropdown-open
 
 --- container: team-dd
 
 --- dropdown-menu:
 if: $dropdown-open
 options: $teams
+query-user: $query-user
+query-team: $query-team
 
 
 --- container: page-content
@@ -282,10 +325,14 @@ padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
 border-radius: 4
 
+;; HEADERS START HERE
 --- ftd.row:
 
 --- section-loop: $obj.title
-url: $obj.url
+sites-link: $sites-link
+team-access-link: $team-access-link
+team-billings-link: $team-billings-link
+team-settings-link: $team-settings-link
 is-active: $obj.is-active
 $loop$: $sections as $obj
 
@@ -307,11 +354,13 @@ width: fill
 width: fill
 id: jjjj
 spacing: 64
-padding-vertical: 64
-
-
+/padding-vertical: 64
 
 --- render-toc:
+if: $left-sites-toc is not empty
+toc-obj: $left-sites-toc
+
+/--- render-toc:
 if: $toc-one is not empty
 toc-obj: $toc-one
 
@@ -334,6 +383,8 @@ width: fill
 --- sub-section-component:
 sub-sections: $sub-sections
 toc: $toc
+site-info-link: $site-info-link
+site-access-link: $site-access-link
 
 
 --- container: kkk
@@ -372,15 +423,91 @@ padding-vertical: 24
 
 
 
--- ftd.row section-loop:
+-- ftd.row sub-section-loop:
+optional string site-info-link:
+optional string site-access-link:
 caption title:
-string url:
 boolean is-active:
 
 --- ftd.text: $title
+if: $title == Info
 color: $fpm.color.main.text-strong
 style: medium
-link: $url
+link: $site-info-link
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Access
+color: $fpm.color.main.text-strong
+style: medium
+link: $site-access-link
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+-- ftd.row section-loop:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billings-link:
+optional string team-settings-link:
+caption title:
+optional string url:
+boolean is-active:
+
+--- ftd.text: $title
+if: $title == Sites
+color: $fpm.color.main.text-strong
+style: medium
+link: $sites-link
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Access
+color: $fpm.color.main.text-strong
+style: medium
+link: $team-access-link
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Billing
+color: $fpm.color.main.text-strong
+style: medium
+link: $team-billings-link
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Settings
+color: $fpm.color.main.text-strong
+style: medium
+link: $team-settings-link
 role: $fpm.type.copy-tight
 color if $is-active: $fpm.color.main.cta-primary.base
 border-bottom: 1
@@ -400,15 +527,15 @@ margin-right: 64
 
 
 -- ftd.column render-toc:
-fpm.toc-item list toc-obj:
+side-site-data list toc-obj:
 sticky: true
 top: 0
-left: 24
+/left: 24
 height: fill
 overflow-y: auto
 width: 350
 align: top-left
-background-color:  $fpm.color.main.background.overlay
+background-color: $fpm.color.main.background.overlay
 border-radius: 8
 padding-left: 24
 padding-top: 16
@@ -425,7 +552,7 @@ toc: $obj
 
 
 -- ftd.column toc-instance:
-fpm.toc-item toc:
+side-site-data toc:
 id: toc-instance
 width: fill
 
@@ -433,22 +560,27 @@ width: fill
 --- ftd.text:
 if: $toc.url is not null
 link: $toc.url
-text: $toc.title
+text: $toc.site-name
 role: $fpm.type.fine-print
 min-width: fit-content
 color: $fpm.color.main.text
 color if $toc.is-active: $fpm.color.main.cta-primary.base
-padding-vertical: 4
+style: medium
+padding-bottom: 4
 padding-horizontal: 14
 
 
+
+
 -- ftd.column sub-section-component:
+optional string site-info-link:
+optional string site-access-link:
 fpm.toc-item list sub-sections:
 fpm.toc-item list toc:
 width: fill
 border-radius: 8
 padding-left: 24
-padding-top: 16
+padding-vertical: 16
 spacing: 32
 background-color: $fpm.color.main.background.step-2
 
@@ -456,20 +588,24 @@ background-color: $fpm.color.main.background.step-2
 width: fill
 if: $sub-sections is not empty
 
---- section-loop: $obj.title
-url: $obj.url
+--- sub-section-loop: $obj.title
+site-info-link: $site-info-link
+site-access-link: $site-access-link
 is-active: $obj.is-active
 $loop$: $sub-sections as $obj
 
 
---- container: ftd.main
+/--- container: ftd.main
 
 
---- ftd.row:
+/--- ftd.row:
 if: $toc is not empty
 
---- section-loop: $obj.title
-url: $obj.url
+/--- section-loop: $obj.title
+sites-link: $sites-link
+team-access-link: $team-access-link
+team-billings-link: $team-billings-link
+team-settings-link: $team-settings-link
 is-active: $obj.is-active
 $loop$: $toc as $obj
 
@@ -483,7 +619,11 @@ $loop$: $toc as $obj
 
 
 -- ftd.column dropdown-menu:
-width: fill	
+optional string query-user:
+optional string query-team:
+boolean show-create-team-component: false
+width: fill
+min-width: 250
 background-color: $fpm.color.main.background.base
 border-width: 1
 border-color: $fpm.color.main.border
@@ -500,6 +640,18 @@ z-index: 9999999
 
 --- ftd.column:
 width: fill
+spacing: 10
+padding-horizontal: 5
+
+--- button.button: Create Team
+role: primary
+small: true
+$on-click$: toggle $show-create-team-component
+
+--- create-team-bar:
+if: $show-create-team-component
+query-user: $query-user
+query-team: $query-team
 
 --- options-list:
 $loop$: $options as $obj
@@ -507,7 +659,32 @@ item-title: $obj.item-title
 item-link: $obj.item-link
 
 
+-- ftd.row create-team-bar:
+optional string query-user:
+optional string query-team:
+spacing: 20
+width: fill
 
+--- ftd.input:
+placeholder: New Team Name
+type: text
+$on-input$: $current-new-team-member-name=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+min-width: 150
+
+--- button.button: Create
+role: primary
+small: true
+$on-click$: $queried-user = $query-user
+$on-click$: $queried-team = $query-team
+$on-click$: message-host $create-team-api
 
 
 -- ftd.column options-list:
@@ -528,3 +705,10 @@ color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 link: $item-link
 
+-- object create-team-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/create-team/
+user: $queried-user
+team: $queried-team
+new-team: $current-new-team-member-name

@@ -164,7 +164,7 @@ weight: 300
 -- about-list-three: Upto 500 PRs per month
 
 
--- page-1.page-one: amitu
+/-- page-1.page-one: AmitU
 team-name: Personal
 widthfill: true
 
@@ -249,6 +249,7 @@ caption title:
 width: fill
 padding-horizontal: 30
 padding-vertical: 78
+background-color: $fpm.color.main.background.base
 
 --- desktop-subscription: $title
 if: not $is-mobile
@@ -299,7 +300,7 @@ voucher-name: Most Popular
 voucher-title-name: Pro Plan
 pricing-name: \${$cut: 19} 9
 days: /month (per user)
-payment-mode: Fast Secure payments with Github
+payment-mode: Fast Secure payments with Stripe
 about-list-two: $about-list-two
 cta-text: Sign up
 cta-bg: $footer-border-color
@@ -316,7 +317,7 @@ voucher-name: ULTIMATE
 voucher-title-name: Scale Plan 
 pricing-name: \$ 99
 days: /month (per user)
-payment-mode: Fast Secure payments with Github
+payment-mode: Fast Secure payments with Stripe
 about-list-three: $about-list-three
 cta-text: Sign up
 cta-bg: $custom-five-bac
@@ -382,7 +383,7 @@ voucher-name: Most Popular
 voucher-title-name: Pro Plan
 pricing-name: `$`{$cut: 19} 9
 days: /month (per user)
-payment-mode: Fast Secure payments with Github
+payment-mode: Fast Secure payments with Stripe
 about-list-two: $about-list-two
 cta-text: Sign up
 cta-bg: $footer-border-color
@@ -404,7 +405,7 @@ voucher-name: ULTIMATE
 voucher-title-name: Scale Plan 
 pricing-name: `$` 99
 days: /month (per user)
-payment-mode: Fast Secure payments with Github
+payment-mode: Fast Secure payments with Stripe
 about-list-three: $about-list-three
 cta-text: Sign up
 cta-bg: $custom-five-bac
@@ -454,13 +455,13 @@ shadow-offset-y: 2
 shadow-size: 6
 shadow-blur: 4
 background-color if $MOUSE-IN: $cta_primary_base
-shadow-color:  $fpm.color.main.background.base
-shadow-color  if $MOUSE-IN:  $blur
+shadow-color: $fpm.color.main.background.base
+shadow-color if $MOUSE-IN: $blur
 boolean list-one: false
 boolean list-two: false
 boolean list-three: false
 
---- ftd.image:
+/--- ftd.image:
 if: $list-two
 src: $assets.files.assets.images.offer-two-overlay.png
 anchor: parent
@@ -580,7 +581,7 @@ caption title:
 spacing: 8
 margin-bottom: 16
 
---- ftd.image:
+/--- ftd.image:
 src: $assets.files.assets.images.Circle-Check.png
 
 --- ftd.text: $title
@@ -609,7 +610,7 @@ padding-vertical: 8
 spacing: 8
 
 
---- ftd.image:
+/--- ftd.image:
 src: $assets.files.assets.images.Circle-Check.png
 
 --- ftd.text: $title
@@ -645,7 +646,7 @@ text-align: center
 color: $fpm.color.main.background.step-1
 margin-right: 4
 
---- ftd.image:
+/--- ftd.image:
 src: $icon-github
 height: 16
 width: auto

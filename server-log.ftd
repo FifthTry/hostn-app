@@ -1,13 +1,10 @@
-
-
-
--- import: fifthtry.github.io/fpm-controller-ui/page-1 
+-- import: fifthtry.github.io/fpm-controller-ui/page-1
 
 
 
 
 
--- page-1.page-one: amitu
+-- page-1.page-one: AmitU
 team-name: Personal
 $show: true
 

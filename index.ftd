@@ -1,11 +1,25 @@
 -- import: fifthtry.github.io/fpm-controller-ui/assets
 -- import: fifthtry.github.io/button as button
 
+-- optional string current-user-name:
+$always-include$: true
+
+-- optional string current-password:
+$always-include$: true
+
 -- optional string site-name:
+
+-- boolean debug: true
 
 -- ftd.image-src site-logo: 
 light: $assets.files.logo-fifthtry.svg.light
 dark: $assets.files.logo-fifthtry.svg.dark
+
+-- ftd.text: $current-user-name
+if: $debug
+
+-- ftd.text: $current-password
+if: $debug
 
 -- page: 
 
@@ -70,7 +84,13 @@ padding-top if $site-name is not null: $fpm.space.space-4
 padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
---- ftd.text: Dashboard
+--- button.button: Deploy Controller UI
+if: $debug
+role: tertiary
+medium: true
+$on-click$: message-host $deploy-fpm-controller-ui-api
+
+/--- ftd.text: Dashboard
 link: dashboard/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -80,7 +100,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.text: Sign in
+/--- ftd.text: Sign in
 link: sign-in/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -224,8 +244,8 @@ string email-label:
 string password-label:
 string cta-primary: Sign In
 string cta-secondary: Sign Up
-string error-email: some email error msg
-string error-password: some passeword error msg
+string error-email: email error
+string error-password: password error
 string email-placeholder: username
 string password-placeholder: password
 padding-vertical: $fpm.space.space-6
@@ -251,18 +271,61 @@ margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
---- form-field:
+/--- form-field:
 label: $email-label
 placeholder: $email-placeholder
 error-msg: $error-email
 
+--- ftd.column:
+width: fill
+padding-bottom: 10
+
+--- ftd.text: $email-label
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.input:
+placeholder: Enter User Name
+type: text
+$on-input$: $current-user-name=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+
 --- container: main-form
 
---- form-field:
+/--- form-field:
 label: $password-label
 placeholder: $password-placeholder
 error-msg: $error-password
 field-type: password
+
+--- ftd.column:
+width: fill
+
+--- ftd.text: $password-label
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.input:
+placeholder: Enter Password
+type: password
+$on-input$: $current-password=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
 
 --- container: main-form
 
@@ -357,9 +420,23 @@ link: sign-up/
 --- button.button: $cta-primary
 role: primary
 medium: true
-link: index.html
+/link: index.html
+$on-click$: message-host $login-api
 
 
+-- object login-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/login/
+user: $current-user-name
+password: $current-password
+
+-- object deploy-fpm-controller-ui-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/create-instance/
+package_name: fpm-controller-ui
+download_base_url: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/latest-ui
 
 
 

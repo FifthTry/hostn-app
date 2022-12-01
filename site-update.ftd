@@ -11,21 +11,21 @@ string date:
 -- siteupdates: 
 package-name: abrark.com
 file-name: index.ftd
-date:23 sep 9090
+date: 23 Sept 2022
 
 -- siteupdates: 
 package-name: abrark.com
 file-name: index.ftd
-date:23 sep 9090
+date: 23 Sept 2022
 
 -- siteupdates: 
 package-name: abrark.com
 file-name: index.ftd
-date:23 sep 9090
+date: 23 Sept 2022
 
 
 
--- page-1.page-one: amitu
+-- page-1.page-one: AmitU
 team-name: Personal
 $show: true
 
@@ -67,17 +67,20 @@ padding-horizontal: 24
 
 --- ftd.text: $package-name
 role: $fpm.type.copy-tight
+padding-horizontal: 20
 
 
 
 --- ftd.text: $file-name
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
+padding-horizontal: 20
 width: fill
 
 
 
 --- ftd.text: $date
 role: $fpm.type.copy-tight
+padding-horizontal: 20
 
 
