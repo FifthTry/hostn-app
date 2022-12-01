@@ -9,7 +9,7 @@ $always-include$: true
 
 -- optional string site-name:
 
--- boolean debug: true
+-- boolean debug: false
 
 -- ftd.image-src site-logo: 
 light: $assets.files.logo-fifthtry.svg.light
