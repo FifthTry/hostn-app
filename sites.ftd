@@ -124,8 +124,14 @@ width: fill
 
 --- ftd.column:
 width: fill
+spacing: 15
 
---- create-package-button: &#65291; New
+--- button.button: &#65291; New
+role: primary
+medium: true
+$on-click$: message-host $redirect-to-create-instance-api
+
+/--- create-package-button: &#65291; New
 button-link: /create-package/
 
 --- sites-loop: $obj.package-name
@@ -135,6 +141,12 @@ package-url: $obj.package-url
 site-id: $obj.site-id
 $loop$: $sites as $obj
 
+-- object redirect-to-create-instance-api:
+function: http
+method: get
+url: /create-package/
+user: $query.user
+team: $query.team
 
 
 

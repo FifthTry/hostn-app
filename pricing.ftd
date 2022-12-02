@@ -8,6 +8,43 @@ if: $ftd.device == mobile
 
 -- fpm.font-display: $font-assets.fonts.Inter
 
+-- boolean debug: false
+
+-- boolean global-not-selected: true
+
+-- optional string selected-plan:
+$always-include$: true
+
+-- ftd.boolean: $global-not-selected
+if: $debug
+
+-- ftd.text: $selected-plan
+if: $selected-plan is not null
+
+-- record query-data:
+string user:
+string team:
+string package-name:
+string base-url:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- ftd.text: Query params
+if: $debug
+
+-- ftd.text: $query.user
+if: $debug
+
+-- ftd.text: $query.team
+if: $debug
+
+-- ftd.text: $query.package-name
+if: $debug
+
+-- ftd.text: $query.base-url
+if: $debug
 
 -- ftd.font-size copy-relaxed-medium-desktop:
 line-height: 24
@@ -152,24 +189,25 @@ weight: 300
 
 -- string list about-list-one:
 
--- about-list-one: Upto 20 PRs per month
+-- about-list-one: Upto 3 Max Number of Sites
 
 -- string list about-list-two:
 
--- about-list-two: Upto 100 PRs per month
+-- about-list-two: Upto 10 Max Number of Sites
 
 
 -- string list about-list-three:
 
--- about-list-three: Upto 500 PRs per month
+-- about-list-three: Upto 20 Max Number of Sites
 
 
-/-- page-1.page-one: AmitU
+-- page-1.page-one: AmitU
 team-name: Personal
 widthfill: true
+show-section-header: false
 
 
--- subscription: Your { green: Better Documentation } journey starts today
+-- subscription: Choose your { green: Plan }
 
 
 
@@ -248,7 +286,8 @@ is exactly as per docs merge both code and doc PRs.
 caption title:
 width: fill
 padding-horizontal: 30
-padding-vertical: 78
+/padding-vertical: 78
+move-up: 10
 background-color: $fpm.color.main.background.base
 
 --- desktop-subscription: $title
@@ -266,7 +305,7 @@ width: fill
 
 --- ftd.text: $title
 align: center
-padding-bottom: 76
+padding-bottom: 32
 role: $hero-large
 color:  $fpm.color.main.text-strong
 
@@ -280,7 +319,7 @@ list-one: true
 list-two: false
 list-three: false
 voucher-name: Free Forever
-voucher-title-name: Personal Plan
+voucher-title-name: Basic
 pricing-name: \$ 0
 days: /month
 payment-mode: No Credit Card Required
@@ -289,7 +328,7 @@ cta-text: Sign up
 cta-bg: $cta_secondary_base
 cta-color: $fpm.color.main.text-strong
 
-With Personal Plan you can use Continuous Documentation for small projects.
+With Basic Plan you can deploy your sites for small projects.
 
 --- pricing: 
 width: percent 20
@@ -297,16 +336,16 @@ list-one: false
 list-two: true
 list-three: false
 voucher-name: Most Popular
-voucher-title-name: Pro Plan
+voucher-title-name: Standard
 pricing-name: \${$cut: 19} 9
-days: /month (per user)
+days: /month
 payment-mode: Fast Secure payments with Stripe
 about-list-two: $about-list-two
 cta-text: Sign up
 cta-bg: $footer-border-color
 cta-color: $fpm.color.main.text-strong
 
-With Pro Plan you can start using Continuous Documentation for a medium team.
+With Standard Plan you can deploy your sites relatively suitable for a medium team.
 
 --- pricing: 
 width: percent 20
@@ -314,20 +353,37 @@ list-one: false
 list-two: false
 list-three: true
 voucher-name: ULTIMATE
-voucher-title-name: Scale Plan 
+voucher-title-name: Advanced
 pricing-name: \$ 99
-days: /month (per user)
+days: /month
 payment-mode: Fast Secure payments with Stripe
 about-list-three: $about-list-three
 cta-text: Sign up
 cta-bg: $custom-five-bac
 cta-color: $fpm.color.main.text-strong
 
-Scale plan helps your team when scaling!
+Advanced plan is suitable for bigger companies!
 
+--- container: ftd.main
 
+--- ftd.row:
+align: center
+padding-vertical: 40
 
+--- button.button: Deploy
+role: primary
+large: true
+$on-click$: message-host $create-site-api
 
+-- object create-site-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/create-site/
+user: $query.user
+team: $query.team
+package-name: $query.package-name
+base-url: $query.base-url
+instance-name: Basic
 
 
 
@@ -429,9 +485,10 @@ light: #2dd4bf9e
 
 
 -- ftd.column pricing:
-min-height: 500
+min-height: 400
 min-width: 396
 string voucher-name:
+boolean is-selected: false
 optional string voucher-title-name:
 string pricing-name:
 string width: fill
@@ -454,16 +511,22 @@ shadow-offset-x: 2
 shadow-offset-y: 2
 shadow-size: 6
 shadow-blur: 4
-background-color if $MOUSE-IN: $cta_primary_base
+/background-color if $MOUSE-IN: $cta_primary_base
 shadow-color: $fpm.color.main.background.base
 shadow-color if $MOUSE-IN: $blur
 boolean list-one: false
 boolean list-two: false
 boolean list-three: false
+border-width: 4
+border-color if $is-selected: $cta_primary_base
+border-color if not $is-selected: $fpm.color.main.background.step-1
+$on-click$: toggle $is-selected
+$on-click$: toggle $global-not-selected
+$on-click$: $selected-plan = $voucher-title-name
 
-/--- ftd.image:
+--- ftd.image:
 if: $list-two
-src: $assets.files.assets.images.offer-two-overlay.png
+src: $assets.files.static.offer-two-overlay.png
 anchor: parent
 width: 155
 height: 28
@@ -560,7 +623,7 @@ width: fill
 cta-bg: $cta_secondary_base
 
 
---- github-button:
+/--- github-button:
 link: https://cdoc.fifthtry.com/initiate-github-login/
 sign-in: $cta-text
 
@@ -581,8 +644,8 @@ caption title:
 spacing: 8
 margin-bottom: 16
 
-/--- ftd.image:
-src: $assets.files.assets.images.Circle-Check.png
+--- ftd.image:
+src: $assets.files.static.Circle-Check.png
 
 --- ftd.text: $title
 role: $copy-relaxed-medium
@@ -610,8 +673,8 @@ padding-vertical: 8
 spacing: 8
 
 
-/--- ftd.image:
-src: $assets.files.assets.images.Circle-Check.png
+--- ftd.image:
+src: $assets.files.static.Circle-Check.png
 
 --- ftd.text: $title
 role: $copy-relaxed-medium

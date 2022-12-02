@@ -1,22 +1,55 @@
 -- import: fifthtry.github.io/fpm-controller-ui/page-1 
 
+-- boolean debug: false
 
+-- record query-data:
+string user:
+string team:
 
--- page-1.team list team-list:
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
 
--- team-list:
+-- ftd.text: Query params
+if: $debug
+
+-- ftd.text: $query.user
+if: $debug
+
+-- ftd.text: $query.team
+if: $debug
+
+-- record billing-contents:
+page-1.team list teams:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billing-link:
+optional string team-settings-link:
+optional string site-info-link:
+optional string site-access-link:
+
+-- billing-contents team-billing:
+$processor$: http
+method: get
+url: /-/fifthtry.github.io/fpm-controller-ui/api/billing/
+user: $query.user
+team: $query.team
+
+-- page-1.team list team-list: $team-billing.teams
+
+/-- team-list:
 item-title: Personal
 item-link: billing/
 
--- team-list:
+/-- team-list:
 item-title: Commercial
 item-link: billing/
 
--- team-list:
+/-- team-list:
 item-title: My Friends
 item-link: billing/
 
--- team-list:
+/-- team-list:
 item-title: My Company
 item-link: billing/
 
@@ -31,18 +64,18 @@ string amount:
 -- biling list bilings:
 
 -- bilings: 
-status: paid
-date: 23 sep 9090
+status: PAID
+date: 23 Sept 2022
 amount:322
 
 -- bilings: AMITU.COM
-status: paid
-date: 23 sep 9090
+status: PAID
+date: 23 Sept 2022
 amount:322
 
 -- bilings: AMITU.COM
-status: paid
-date: 23 sep 9090
+status: PAID
+date: 23 Sept 2022
 amount:322
 
 
@@ -50,8 +83,16 @@ amount:322
 
 
 -- page-1.page-one: AmitU
-team-name: Personal
+team-name: $query.team
 teams: $team-list
+query-user: $query.user
+query-team: $query.team
+sites-link: $team-billing.sites-link
+team-access-link: $team-billing.team-access-link
+team-billings-link: $team-billing.team-billing-link
+team-settings-link: $team-billing.team-settings-link
+site-info-link: $team-billing.site-info-link
+site-access-link: $team-billing.site-access-link
 
 -- billing-component:
 bilinglist: $bilings
@@ -155,6 +196,7 @@ padding-bottom: 24
 
 --- ftd.column:
 width: percent 40
+spacing: 10
 
 --- ftd.text: $title
 role: $fpm.type.heading-large
@@ -189,14 +231,14 @@ width: fill
 color: $fpm.color.main.text
 role: $fpm.type.copy-relaxed
 
---- ftd.text: $amount
+--- ftd.text: 100
 color: $fpm.color.main.text
 role: $fpm.type.copy-relaxed
 
 --- container: iii
 
 
---- ftd.text: view-detail
+--- ftd.text: View details
 link: $url
 color: $fpm.color.main.text
 role: $fpm.type.copy-relaxed

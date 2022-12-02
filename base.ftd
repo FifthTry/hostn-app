@@ -57,7 +57,7 @@ padding-top if $site-name is not null: $fpm.space.space-4
 padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
---- ftd.text: Dashboard
+/--- ftd.text: Dashboard
 link: dashboard/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -67,7 +67,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.text: Sign in
+/--- ftd.text: Sign in
 link: sign-in/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong

@@ -104,6 +104,7 @@ optional string team-settings-link: $empty-link
 optional string site-info-link: $empty-link
 optional string site-access-link: $empty-link
 boolean $show: false
+boolean show-section-header: true
 fpm.toc-item list toc: $sitemap.toc
 fpm.toc-item list sections: $sitemap.sections
 fpm.toc-item list sub-sections: $sitemap.subsections
@@ -320,13 +321,14 @@ query-team: $query-team
 --- ftd.column: 
 width: fill
 id: hhhh
-background-color: $fpm.color.main.background.step-2
+background-color if $show-section-header: $fpm.color.main.background.step-2
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
 border-radius: 4
 
 ;; HEADERS START HERE
 --- ftd.row:
+if: $show-section-header
 
 --- section-loop: $obj.title
 sites-link: $sites-link
@@ -455,6 +457,49 @@ border-color: $fpm.color.main.background.step-2
 border-color if $is-active: $fpm.color.main.cta-primary.base
 margin-right: 64
 
+--- ftd.text: $title
+if: $title == Metrics
+color: $fpm.color.main.text-strong
+style: medium
+link: /site-metrics/
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Activity
+color: $fpm.color.main.text-strong
+style: medium
+link: /site-update/
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Settings
+color: $fpm.color.main.text-strong
+style: medium
+link: /site-settings/
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+;## Metrics: /site-metrics/
+;## Activity: /site-update/
+;## Settings: /site-settings/
+
 -- ftd.row section-loop:
 optional string sites-link:
 optional string team-access-link:
@@ -516,7 +561,57 @@ border-color: $fpm.color.main.background.step-2
 border-color if $is-active: $fpm.color.main.cta-primary.base
 margin-right: 64
 
+-- ftd.row toc-loop:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billings-link:
+optional string team-settings-link:
+caption title:
+optional string url:
+boolean is-active:
 
+;- Site Updates: /site-update/
+;- Analytics: /site-analytics/
+;- Logs: /site-logs/
+
+--- ftd.text: $title
+if: $title == Site Updates
+color: $fpm.color.main.text-strong
+style: medium
+link: /site-update/
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Analytics
+color: $fpm.color.main.text-strong
+style: medium
+link: /site-analytics/
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
+
+--- ftd.text: $title
+if: $title == Logs
+color: $fpm.color.main.text-strong
+style: medium
+link: /site-logs/
+role: $fpm.type.copy-tight
+color if $is-active: $fpm.color.main.cta-primary.base
+border-bottom: 1
+padding-bottom: 4
+border-color: $fpm.color.main.background.step-2
+border-color if $is-active: $fpm.color.main.cta-primary.base
+margin-right: 64
 
 
 
@@ -595,17 +690,13 @@ is-active: $obj.is-active
 $loop$: $sub-sections as $obj
 
 
-/--- container: ftd.main
+--- container: ftd.main
 
 
-/--- ftd.row:
+--- ftd.row:
 if: $toc is not empty
 
-/--- section-loop: $obj.title
-sites-link: $sites-link
-team-access-link: $team-access-link
-team-billings-link: $team-billings-link
-team-settings-link: $team-settings-link
+--- toc-loop: $obj.title
 is-active: $obj.is-active
 $loop$: $toc as $obj
 
