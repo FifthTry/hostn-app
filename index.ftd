@@ -9,7 +9,7 @@ $always-include$: true
 
 -- optional string site-name:
 
--- boolean debug: false
+-- boolean debug: true
 
 -- ftd.image-src site-logo: 
 light: $assets.files.logo-fifthtry.svg.light
@@ -89,6 +89,12 @@ if: $debug
 role: tertiary
 medium: true
 $on-click$: message-host $deploy-fpm-controller-ui-api
+
+--- button.button: Deploy Controller Service
+if: $debug
+role: tertiary
+medium: true
+$on-click$: message-host $deploy-controller-service-api
 
 /--- ftd.text: Dashboard
 link: dashboard/
@@ -438,7 +444,10 @@ url: /-/fifthtry.github.io/fpm-controller-ui/api/create-instance/
 package_name: fpm-controller-ui
 download_base_url: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/latest-ui
 
-
+-- object deploy-controller-service-api:
+function: http
+method: post
+url: /-/fifthtry.github.io/fpm-controller-ui/api/deploy-controller/
 
 
 

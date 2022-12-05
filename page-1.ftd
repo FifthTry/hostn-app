@@ -179,6 +179,12 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
+--- team-selection-bar:
+team-name: $team-name
+teams: $teams
+query-user: $query-user
+query-team: $query-team
+
 --- ftd.row: 
 background-color: $fpm.color.main.background.step-2
 width: 24
@@ -231,7 +237,7 @@ border-bottom: 1
 border-color: $fpm.color.main.border
 padding-bottom: $fpm.space.space-3
 
---- ftd.text: $username
+--- ftd.text: $query-user
 if: $username is not null
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
@@ -246,7 +252,7 @@ margin-top: $fpm.space.space-3
 
 
 --- ftd.text: Logout
-link: index.html
+link: /
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 margin-top: $fpm.space.space-2
@@ -264,56 +270,6 @@ width: fill
 padding-horizontal: 24
 padding-vertical: 24
 id: page-content
-
-
---- ftd.row:
-margin-bottom: 15
-spacing: 12
-
---- ftd.text: Team:
-role: $fpm.type.heading-small
-color: $fpm.color.main.text
-align: center
-
---- ftd.row:
-id: team-dd
-min-width: 250
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-2
-border-width: 1
-border-color: $fpm.color.main.border
-border-radius: 4
-/$on-click$: toggle $dropdown-open
-
---- ftd.text: $team-name
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-
---- ftd.image: 
-if: not $dropdown-open
-src: $assets.files.static.dd-down.svg
-margin-left: 110
-width: 24
-height: 24
-align: center
-$on-click$: toggle $dropdown-open
-
---- ftd.image:
-if: $dropdown-open
-src: $assets.files.static.dd-up.svg
-margin-left: 110
-width: 24
-height: 24
-align: center
-$on-click$: toggle $dropdown-open
-
---- container: team-dd
-
---- dropdown-menu:
-if: $dropdown-open
-options: $teams
-query-user: $query-user
-query-team: $query-team
 
 
 --- container: page-content
@@ -417,7 +373,58 @@ align if not $widthfill: center
 padding-vertical: 24
 
 
+-- ftd.row team-selection-bar:
+optional string query-user:
+optional string query-team:
+team list teams:
+string team-name:
+margin-bottom: 15
+spacing: 12
 
+--- ftd.text: Team:
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+align: center
+
+--- ftd.row:
+id: team-dd
+min-width: 250
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-2
+border-width: 1
+border-color: $fpm.color.main.border
+border-radius: 4
+/$on-click$: toggle $dropdown-open
+
+--- ftd.text: $team-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+--- ftd.image:
+if: not $dropdown-open
+src: $assets.files.static.dd-down.svg
+margin-left: 110
+width: 24
+height: 24
+align: center
+$on-click$: toggle $dropdown-open
+
+--- ftd.image:
+if: $dropdown-open
+src: $assets.files.static.dd-up.svg
+margin-left: 110
+width: 24
+height: 24
+align: center
+$on-click$: toggle $dropdown-open
+
+--- container: team-dd
+
+--- dropdown-menu:
+if: $dropdown-open
+options: $teams
+query-user: $query-user
+query-team: $query-team
 
 
 

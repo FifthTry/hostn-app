@@ -69,14 +69,14 @@ date: 23 Sept 2022
 amount:322
 
 -- bilings: AMITU.COM
-status: PAID
+status: PENDING
 date: 23 Sept 2022
-amount:322
+amount:768
 
 -- bilings: AMITU.COM
 status: PAID
 date: 23 Sept 2022
-amount:322
+amount:999
 
 
 
@@ -150,6 +150,7 @@ string date:
 string amount:
 padding-vertical: 24
 padding-horizontal: 24
+border-color if $status == PENDING: $fpm.color.main.error.border
 
 
 

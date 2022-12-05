@@ -32,6 +32,7 @@ if: $debug
 
 -- record settings-data:
 page-1.team list teams:
+string active-plan:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -88,9 +89,11 @@ site-access-link: $settings.site-access-link
 
 -- ftd.column setting-loop:
 caption title: $query.team
+string active-team-plan: $settings.active-plan
 string edit-url: /
 string package-name: Personal
 string team-name: Team Name
+string team-plan-label: Current Team Plan
 width: fill
 background-color: $fpm.color.main.background.step-1
 border-radius: 12
@@ -137,6 +140,36 @@ $on-click$: toggle $show-edit-bar
 --- team-edit-bar:
 if: $show-edit-bar
 
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: $team-plan-label
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+width: fill
+
+--- ftd.text: $active-team-plan
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+width: fill
+
+--- ftd.text: CHANGE PLAN
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color if $MOUSE-IN: $fpm.color.main.error.text
+background-color if $MOUSE-IN: $fpm.color.main.error.base
+color: $fpm.color.main.error.text
+background-color: $fpm.color.main.text-strong
+border-color if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+/$on-click$: toggle $show-edit-bar
+
+--- container: ftd.main
+
 --- ftd.text: DELETE TEAM
 padding-vertical: 8
 padding-horizontal: 12
@@ -160,6 +193,7 @@ spacing: 20
 
 --- ftd.input:
 placeholder: New Team Name
+value: $query.team
 type: text
 $on-input$: $current-new-team-name=$VALUE
 role: $fpm.type.copy-tight
@@ -172,7 +206,7 @@ border-color: $fpm.color.main.border
 width: fill
 min-width: 200
 
---- button.button: Edit
+--- button.button: Save
 role: primary
 medium: true
 $on-click$: message-host $edit-team-name-api
@@ -196,7 +230,7 @@ spacing: 24
 border-radius: 8
 
 
---- ftd.text: ARE YOU SURE
+--- ftd.text: ARE YOU SURE ?
 role: $fpm.type.copy-relaxed
 
 

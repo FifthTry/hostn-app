@@ -40,6 +40,7 @@ string site-id:
 string status:
 string date:
 string package-url:
+string instance-type:
 
 
 -- record dashboard-data:
@@ -139,6 +140,7 @@ status: $obj.status
 date: $obj. date
 package-url: $obj.package-url
 site-id: $obj.site-id
+instance-type: $obj.instance-type
 $loop$: $sites as $obj
 
 -- object redirect-to-create-instance-api:
@@ -165,10 +167,11 @@ string site-id:
 string status:
 string date: 
 string package-url:
+string instance-type:
 padding-vertical: 24
 padding-horizontal: 24
 margin-bottom: 28
-spacing: 32
+spacing: 20
 border-color if $status == INITIALIZED: $fpm.color.main.cta-secondary.base
 border-color if $status == PENDING: $dark-red
 border-color if $status == READY: $fpm.color.main.success.text
@@ -186,6 +189,10 @@ spacing: 12
 
 --- ftd.text: $package-name
 role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text-strong
+link: $package-url
+border-bottom if $MOUSE-IN: 1
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
 $on-click$: $external-link = $package-url
 $on-click$: message-host $external-redirect-api
 
@@ -218,6 +225,18 @@ color if $status == PENDING: $dark-red
 color if $status == READY: $fpm.color.main.success.text
 color if $status == STOPPED: $fpm.color.main.error.border
 color if $status == TERMINATED: $fpm.color.main.warning.text
+
+--- container: ftd.main
+
+--- ftd.row:
+color: $fpm.color.main.text
+spacing: 12
+
+--- ftd.text: Instance-Type:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $instance-type
+role: $fpm.type.copy-tight
 
 --- container: ftd.main
 

@@ -18,7 +18,7 @@ $always-include$: true
 -- ftd.boolean: $global-not-selected
 if: $debug
 
--- ftd.text: $selected-plan
+/-- ftd.text: $selected-plan
 if: $selected-plan is not null
 
 -- record query-data:
@@ -189,16 +189,16 @@ weight: 300
 
 -- string list about-list-one:
 
--- about-list-one: Upto 3 Max Number of Sites
+-- about-list-one: 1 Vcpu, 256MB RAM
 
 -- string list about-list-two:
 
--- about-list-two: Upto 10 Max Number of Sites
+-- about-list-two: 2 Vcpu's, 512MB RAM
 
 
 -- string list about-list-three:
 
--- about-list-three: Upto 20 Max Number of Sites
+-- about-list-three: 4 Vcpu's, 2048MB RAM
 
 
 -- page-1.page-one: AmitU
@@ -207,7 +207,7 @@ widthfill: true
 show-section-header: false
 
 
--- subscription: Choose your { green: Plan }
+-- subscription: Choose your { green: Instance }
 
 
 
@@ -328,7 +328,7 @@ cta-text: Sign up
 cta-bg: $cta_secondary_base
 cta-color: $fpm.color.main.text-strong
 
-With Basic Plan you can deploy your sites for small projects.
+Basic Instances are suitable to deploy your sites for small projects.
 
 --- pricing: 
 width: percent 20
@@ -345,7 +345,7 @@ cta-text: Sign up
 cta-bg: $footer-border-color
 cta-color: $fpm.color.main.text-strong
 
-With Standard Plan you can deploy your sites relatively suitable for a medium team.
+Standard Instances are relatively suitable for deploying sites for medium scale projects.
 
 --- pricing: 
 width: percent 20
@@ -362,7 +362,7 @@ cta-text: Sign up
 cta-bg: $custom-five-bac
 cta-color: $fpm.color.main.text-strong
 
-Advanced plan is suitable for bigger companies!
+Advanced Instances provide support to deploy sites for large scale projects.
 
 --- container: ftd.main
 
@@ -383,7 +383,7 @@ user: $query.user
 team: $query.team
 package-name: $query.package-name
 base-url: $query.base-url
-instance-name: Basic
+instance-name: $selected-plan
 
 
 
@@ -485,7 +485,7 @@ light: #2dd4bf9e
 
 
 -- ftd.column pricing:
-min-height: 400
+min-height: 450
 min-width: 396
 string voucher-name:
 boolean is-selected: false

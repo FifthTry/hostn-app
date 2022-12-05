@@ -138,6 +138,7 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 width: fill
+min-width: 200
 
 --- button.button: Add Site Member Access
 role: primary
@@ -161,7 +162,7 @@ width: fill
 --- ftd.row:
 width: fill
 padding-vertical: 24
-padding-horizontal: 24
+/padding-horizontal: 24
 border-bottom: 1
 border-color: $fpm.color.main.border
 
@@ -189,13 +190,13 @@ color: $fpm.color.main.text
 width: fill
 text-align: center
 
---- ftd.text: Update Access
+--- ftd.text: Delete Member
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
 width: fill
 text-align: center
 
---- ftd.text: Delete Member
+--- ftd.text: Update Access
 role: $fpm.type.copy-relaxed
 color: $fpm.color.main.text
 width: fill
@@ -223,8 +224,8 @@ boolean team:
 boolean billing:
 boolean is-active:
 boolean not-changed: true
-padding-vertical: 14
-padding-horizontal: 24
+/padding-vertical: 14
+/padding-horizontal: 24
 
 --- ftd.row:
 width: fill
@@ -315,23 +316,23 @@ text-align: center
 $on-click$: toggle $team
 $on-click$: $not-changed = false
 
+--- button.button: Delete
+role: primary
+medium: true
+move-right: 50
+$on-click$: $selected-team-member = $member-name
+$on-click$: message-host $delete-site-member-access-api
+
 --- button.button: Update
 role: primary
 medium: true
-move-right: 20
+move-right: 50
 /disabled: $not-changed
 $on-click$: $selected-team-member = $member-name
 $on-click$: $selected-manage-teams = $team
 $on-click$: $selected-manage-billings = $billing
 $on-click$: $selected-manage-sites = $sites
 $on-click$: message-host $update-site-member-access-api
-
---- button.button: Delete
-role: primary
-medium: true
-move-right: 20
-$on-click$: $selected-team-member = $member-name
-$on-click$: message-host $delete-site-member-access-api
 
 -- object update-site-member-access-api:
 function: http
