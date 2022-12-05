@@ -442,7 +442,7 @@ function: http
 method: post
 url: /-/fifthtry.github.io/fpm-controller-ui/api/create-instance/
 package_name: fpm-controller-ui
-download_base_url: https://raw.githubusercontent.com/fifthtry/fpm-controller-ui/latest-ui
+download_base_url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/latest-ui/
 
 -- object deploy-controller-service-api:
 function: http
