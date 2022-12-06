@@ -1,6 +1,6 @@
 -- import: fpm
 
--- fpm.package: fifthtry.github.io/fpm-controller-ui
+-- fpm.package: fpm-controller-ui.fly.dev
 zip: github.com/fifthtry/fpm-controller-ui/archive/refs/heads/latest-ui.zip
 download-base-url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/latest-ui
 endpoint: http://controller-service.fly.dev
@@ -14,9 +14,9 @@ endpoint: http://controller-service.fly.dev
 
 -- fpm.auto-import: fpm
 -- fpm.dependency: fifthtry.github.io/inter
--- fpm.auto-import: fifthtry.github.io/fpm-controller-ui/assets
+-- fpm.auto-import: fpm-controller-ui.fly.dev/assets
 -- fpm.auto-import: button
--- fpm.auto-import: fifthtry.github.io/fpm-controller-ui/FPM/config
+-- fpm.auto-import: fpm-controller-ui.fly.dev/FPM/config
 
 
 

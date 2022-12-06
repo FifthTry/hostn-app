@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/page-1
+-- import: fpm-controller-ui.fly.dev/page-1
 
 -- optional string selected-team-member:
 $always-include$: true
@@ -64,7 +64,7 @@ optional string site-access-link:
 -- access-contents team-access:
 $processor$: http
 method: get
-url: /-/fifthtry.github.io/fpm-controller-ui/api/access/
+url: /-/fpm-controller-ui.fly.dev/api/access/
 user: $query.user
 team: $query.team
 
@@ -364,7 +364,7 @@ $on-click$: message-host $update-team-member-access-api
 -- object update-team-member-access-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/update-team-member-access/
+url: /-/fpm-controller-ui.fly.dev/api/update-team-member-access/
 user: $query.user
 team: $query.team
 team-member: $selected-team-member
@@ -375,7 +375,7 @@ manage-sites: $selected-manage-sites
 -- object delete-team-member-access-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/delete-team-member-access/
+url: /-/fpm-controller-ui.fly.dev/api/delete-team-member-access/
 user: $query.user
 team: $query.team
 team-member: $selected-team-member
@@ -383,7 +383,7 @@ team-member: $selected-team-member
 -- object add-team-member-access-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/add-team-member-access/
+url: /-/fpm-controller-ui.fly.dev/api/add-team-member-access/
 user: $query.user
 team: $query.team
 team-member-email: $current-new-team-member-email

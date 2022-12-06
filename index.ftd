@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/assets
+-- import: fpm-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/button as button
 
 -- optional string current-user-name:
@@ -433,21 +433,21 @@ $on-click$: message-host $login-api
 -- object login-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/login/
+url: /-/fpm-controller-ui.fly.dev/api/login/
 user: $current-user-name
 password: $current-password
 
 -- object deploy-fpm-controller-ui-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/create-instance/
+url: /-/fpm-controller-ui.fly.dev/api/create-instance/
 package_name: fpm-controller-ui
 download_base_url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/latest-ui/
 
 -- object deploy-controller-service-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/deploy-controller/
+url: /-/fpm-controller-ui.fly.dev/api/deploy-controller/
 
 
 

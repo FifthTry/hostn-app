@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/page-1
+-- import: fpm-controller-ui.fly.dev/page-1
 
 -- ftd.color light-red:
 light: #ffc297
@@ -56,7 +56,7 @@ optional string site-access-link:
 -- dashboard-data dashboard:
 $processor$: http
 method: get
-url: /-/fifthtry.github.io/fpm-controller-ui/api/dashboard/
+url: /-/fpm-controller-ui.fly.dev/api/dashboard/
 user: $query.user
 team: $query.team
 
@@ -277,7 +277,7 @@ url: $external-link
 /-- object redirect-to-team-access-api:
 function: http
 method: get
-url: /-/fifthtry.github.io/fpm-controller-ui/api/access/
+url: /-/fpm-controller-ui.fly.dev/api/access/
 user: $query.user
 team: $query.team
 

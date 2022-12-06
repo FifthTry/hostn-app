@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/assets
+-- import: fpm-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/button as button
 
 -- optional string site-name:

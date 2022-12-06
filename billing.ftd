@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/page-1 
+-- import: fpm-controller-ui.fly.dev/page-1
 
 -- boolean debug: false
 
@@ -31,7 +31,7 @@ optional string site-access-link:
 -- billing-contents team-billing:
 $processor$: http
 method: get
-url: /-/fifthtry.github.io/fpm-controller-ui/api/billing/
+url: /-/fpm-controller-ui.fly.dev/api/billing/
 user: $query.user
 team: $query.team
 

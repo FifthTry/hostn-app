@@ -806,7 +806,7 @@ link: $item-link
 -- object create-team-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/create-team/
+url: /-/fpm-controller-ui.fly.dev/api/create-team/
 user: $queried-user
 team: $queried-team
 new-team: $current-new-team-member-name

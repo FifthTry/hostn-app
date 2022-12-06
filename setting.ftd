@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/page-1 
+-- import: fpm-controller-ui.fly.dev/page-1
 
 -- optional string current-new-team-name:
 $always-include$: true
@@ -43,7 +43,7 @@ optional string site-access-link:
 -- settings-data settings:
 $processor$: http
 method: get
-url: /-/fifthtry.github.io/fpm-controller-ui/api/settings/
+url: /-/fpm-controller-ui.fly.dev/api/settings/
 user: $query.user
 team: $query.team
 
@@ -175,7 +175,7 @@ padding-vertical: 8
 padding-horizontal: 12
 role: $fpm.type.fine-print
 style: bold
-color  if $MOUSE-IN: $fpm.color.main.error.text
+color if $MOUSE-IN: $fpm.color.main.error.text
 background-color  if $MOUSE-IN: $fpm.color.main.error.base
 color : $fpm.color.main.error.text
 background-color : $fpm.color.main.text-strong
@@ -324,7 +324,7 @@ color: $fpm.color.main.warning.text
 -- object edit-team-name-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/edit-team-name/
+url: /-/fpm-controller-ui.fly.dev/api/edit-team-name/
 user: $query.user
 team: $query.team
 new-team: $current-new-team-name
@@ -332,7 +332,8 @@ new-team: $current-new-team-name
 -- object delete-team-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/delete-team/
+url: /-/fpm-controller-ui.fly.dev/api/delete-team/
 user: $query.user
 team: $query.team
 verification-text: $verification-team-name-text
+$verification-text-error: $verification-text-error

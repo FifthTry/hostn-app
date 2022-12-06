@@ -1,5 +1,5 @@
 -- import: fpm
--- import: fifthtry.github.io/fpm-controller-ui/page-1 
+-- import: fpm-controller-ui.fly.dev/page-1
 -- import: fifthtry.github.io/inter/assets as font-assets
 -- boolean is-mobile: false
 
@@ -378,7 +378,7 @@ $on-click$: message-host $create-site-api
 -- object create-site-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/create-site/
+url: /-/fpm-controller-ui.fly.dev/api/create-site/
 user: $query.user
 team: $query.team
 package-name: $query.package-name

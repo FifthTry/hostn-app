@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/page-1
+-- import: fpm-controller-ui.fly.dev/page-1
 
 -- ftd.color light-red:
 light: #ffc297
@@ -81,7 +81,7 @@ optional string site-access-link:
 -- site-access-data access:
 $processor$: http
 method: get
-url: /-/fifthtry.github.io/fpm-controller-ui/api/site-access/
+url: /-/fpm-controller-ui.fly.dev/api/site-access/
 user: $query.user
 team: $query.team
 site-id: $query.site-id
@@ -337,7 +337,7 @@ $on-click$: message-host $update-site-member-access-api
 -- object update-site-member-access-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/update-site-member-access/
+url: /-/fpm-controller-ui.fly.dev/api/update-site-member-access/
 site-member: $selected-team-member
 site-id: $query.site-id
 manage-teams: $selected-manage-teams
@@ -347,13 +347,13 @@ manage-sites: $selected-manage-sites
 -- object delete-site-member-access-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/delete-site-member-access/
+url: /-/fpm-controller-ui.fly.dev/api/delete-site-member-access/
 site-member: $selected-team-member
 site-id: $query.site-id
 
 -- object add-site-member-access-api:
 function: http
 method: post
-url: /-/fifthtry.github.io/fpm-controller-ui/api/add-site-member-access/
+url: /-/fpm-controller-ui.fly.dev/api/add-site-member-access/
 site-member-email: $current-new-site-member-email
 site-id: $query.site-id
