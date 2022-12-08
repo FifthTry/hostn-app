@@ -13,6 +13,10 @@ dark: #bb5c2d
 -- optional string selected-site-id:
 $always-include$: true
 
+-- optional string selected-site-package:
+$always-include$: true
+
+
 -- optional string external-link:
 $always-include$: true
 
@@ -143,13 +147,6 @@ site-id: $obj.site-id
 instance-type: $obj.instance-type
 $loop$: $sites as $obj
 
--- object redirect-to-create-instance-api:
-function: http
-method: get
-url: /create-package/
-user: $query.user
-team: $query.team
-
 
 
 
@@ -207,6 +204,20 @@ background-color: $fpm.color.main.cta-primary.base
 border-radius: 8
 $on-click$: $selected-site-id = $site-id
 $on-click$: message-host $redirect-to-site-info-api
+
+--- ftd.text: Terminate
+if: $status == READY
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.error.border
+/link: $package-url
+border-radius: 8
+$on-click$: $selected-site-id = $site-id
+$on-click$: $selected-site-package = $package-name
+$on-click$: message-host $delete-site-api
 
 --- container: first-column
 
@@ -274,17 +285,24 @@ function: http
 method: get
 url: $external-link
 
-/-- object redirect-to-team-access-api:
-function: http
-method: get
-url: /-/fpm-controller-ui.fly.dev/api/access/
-user: $query.user
-team: $query.team
-
 -- object redirect-to-site-info-api:
 function: http
 method: get
-url: /site-info/
+url: /-/fpm-controller-ui.fly.dev/site-info/
 user: $query.user
 team: $query.team
 site-id: $selected-site-id
+
+-- object redirect-to-create-instance-api:
+function: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/create-package/
+user: $query.user
+team: $query.team
+
+-- object delete-site-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/delete-instance/
+site-id: $selected-site-id
+package-name: $selected-site-package

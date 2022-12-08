@@ -318,7 +318,7 @@ if: $verification-text-error is not null
 
 --- ftd.text: $verification-text-error
 role: $fpm.type.fine-print
-color: $fpm.color.main.warning.text
+color: $fpm.color.main.error.border
 
 
 -- object edit-team-name-api:

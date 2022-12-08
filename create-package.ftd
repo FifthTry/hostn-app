@@ -3,16 +3,13 @@
 -- optional string package-name:
 $always-include$: true
 
--- optional string plan:
+-- optional string base-url:
 $always-include$: true
 
--- optional string error-package-name:
+-- optional string package-name-error:
 $always-include$: true
 
--- optional string error-plan:
-$always-include$: true
-
--- optional string error-form:
+-- optional string base-url-error:
 $always-include$: true
 
 -- boolean debug: false
@@ -37,11 +34,11 @@ if: $debug
 -- ftd.text: $package-name
 if: $debug
 
--- ftd.text: $plan
+-- ftd.text: $base-url
 if: $debug
 
 
--- page: Create new package
+-- page: Enter Site Details
 csrf_token: sometoken
 
 
@@ -84,13 +81,13 @@ width: fill
 align: center
 margin-top: $fpm.space.space-4
 
---- ftd.text: Enter package name
+--- ftd.text: Enter Site Name
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
-placeholder: Package name
+placeholder: Site name
 $on-change$: $package-name=$VALUE
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
@@ -101,21 +98,27 @@ border-width: 1
 border-color: $fpm.color.main.border
 width: fill
 
+--- ftd.text: $package-name-error
+if: $package-name-error is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.border
+padding-top: 5
+
 --- container: main-form
 --- ftd.column:
 width: fill
 align: center
 margin-top: $fpm.space.space-4
 
---- ftd.text: Enter the base url
+--- ftd.text: Enter your Git Repository
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
 
 --- ftd.input:
-placeholder: Base url
-$on-change$: $plan=$VALUE
+placeholder: GIT-USERNAME/REPO
+$on-change$: $base-url=$VALUE
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 background-color: $fpm.color.main.background.step-1
@@ -124,6 +127,12 @@ padding-horizontal: $fpm.space.space-3
 border-width: 1
 border-color: $fpm.color.main.border
 width: fill
+
+--- ftd.text: $base-url-error
+if: $package-name-error is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.border
+padding-top: 5
 
 --- container: main-form
 
@@ -146,14 +155,8 @@ align: right
 --- button.button: Next
 role: primary
 medium: true
-$on-click$: message-host $redirect-to-pricing-api
-
--- object login-form-api:
-function: http
-method: post
-url: /pricing/
-name: $package-name
-plan: $plan
+/$on-click$: message-host $redirect-to-pricing-api
+$on-click$: message-host $pre-deployment-check-api
 
 -- object redirect-to-pricing-api:
 function: http
@@ -162,10 +165,18 @@ url: /pricing/
 user: $query.user
 team: $query.team
 package-name: $package-name
-base-url: $plan
+base-url: $base-url
 
-;;csrfmiddlewaretoken: $csrf_token
-
+-- object pre-deployment-check-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/pre-deployment-check/
+user: $query.user
+team: $query.team
+package-name: $package-name
+base-url: $base-url
+$package-name-error: $package-name-error
+$base-url-error: $base-url-error
 
 
 

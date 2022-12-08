@@ -1,7 +1,13 @@
 -- import: fpm-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/button as button
 
+;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
+;; DEBUG new - AbrarNitk/abrark/main
+
 -- optional string current-user-name:
+$always-include$: true
+
+-- optional string username-error:
 $always-include$: true
 
 -- optional string current-password:
@@ -9,7 +15,7 @@ $always-include$: true
 
 -- optional string site-name:
 
--- boolean debug: true
+-- boolean debug: false
 
 -- ftd.image-src site-logo: 
 light: $assets.files.logo-fifthtry.svg.light
@@ -304,6 +310,12 @@ border-width: 1
 border-color: $fpm.color.main.border
 width: fill
 
+--- ftd.text: $username-error
+if: $username-error is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.border
+padding-top: 5
+
 --- container: main-form
 
 /--- form-field:
@@ -436,6 +448,7 @@ method: post
 url: /-/fpm-controller-ui.fly.dev/api/login/
 user: $current-user-name
 password: $current-password
+$username-error: $username-error
 
 -- object deploy-fpm-controller-ui-api:
 function: http
