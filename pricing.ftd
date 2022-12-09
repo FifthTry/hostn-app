@@ -15,7 +15,7 @@ if: $ftd.device == mobile
 -- optional string selected-plan:
 $always-include$: true
 
--- ftd.text: $selected-plan
+/-- ftd.text: $selected-plan
 if: $selected-plan is not null
 
 -- ftd.boolean: $global-not-selected

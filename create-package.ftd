@@ -129,7 +129,7 @@ border-color: $fpm.color.main.border
 width: fill
 
 --- ftd.text: $base-url-error
-if: $package-name-error is not null
+if: $base-url-error is not null
 role: $fpm.type.fine-print
 color: $fpm.color.main.error.border
 padding-top: 5
@@ -155,17 +155,7 @@ align: right
 --- button.button: Next
 role: primary
 medium: true
-/$on-click$: message-host $redirect-to-pricing-api
 $on-click$: message-host $pre-deployment-check-api
-
--- object redirect-to-pricing-api:
-function: http
-method: get
-url: /pricing/
-user: $query.user
-team: $query.team
-package-name: $package-name
-base-url: $base-url
 
 -- object pre-deployment-check-api:
 function: http

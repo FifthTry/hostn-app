@@ -2,7 +2,7 @@
 -- import: fifthtry.github.io/button as button
 
 ;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
-;; DEBUG new - AbrarNitk/abrark/main
+;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
 
 -- optional string current-user-name:
 $always-include$: true
@@ -18,8 +18,8 @@ $always-include$: true
 -- boolean debug: false
 
 -- ftd.image-src site-logo: 
-light: $assets.files.logo-fifthtry.svg.light
-dark: $assets.files.logo-fifthtry.svg.dark
+light: $assets.files.static.logo-fifthtry.svg.light
+dark: $assets.files.static.logo-fifthtry.svg.dark
 
 -- ftd.text: $current-user-name
 if: $debug

@@ -4,9 +4,8 @@
 -- optional string site-name:
 
 -- ftd.image-src site-logo: 
-light: $assets.files.logo-fifthtry.svg.light
-dark: $assets.files.logo-fifthtry.svg.dark
-
+light: $assets.files.static.logo-fifthtry.svg.light
+dark: $assets.files.static.logo-fifthtry.svg.dark
 
 
 

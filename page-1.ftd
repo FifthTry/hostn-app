@@ -14,8 +14,8 @@ $always-include$: true
 -- optional string site-name:
 
 -- ftd.image-src site-logo: 
-light: $assets.files.logo-fifthtry.svg.light
-dark: $assets.files.logo-fifthtry.svg.dark
+light: $assets.files.static.logo-fifthtry.svg.light
+dark: $assets.files.static.logo-fifthtry.svg.dark
 
 
 -- fpm.toc-item list toc-one:
@@ -402,7 +402,7 @@ color: $fpm.color.main.text-strong
 
 --- ftd.image:
 if: not $dropdown-open
-src: $assets.files.static.dd-down.svg
+src: $assets.files.dd-down.svg
 margin-left: 110
 width: 24
 height: 24
