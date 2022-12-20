@@ -54,7 +54,7 @@ site-id: $query.site-id
 -- page-1.team list team-list: $info.teams
 
 -- page-1.page-one: AmitU
-team-name: Personal
+team-name: $query.team
 teams: $team-list
 left-sites-toc: $info.sites-list
 query-user: $query.user
@@ -94,6 +94,7 @@ border-width: 2
 role: $fpm.type.heading-small
 color: $fpm.color.main.text-strong
 border-bottom if $MOUSE-IN: 1
+min-width: 150
 link: $data.domain
 
 /--- ftd.text: View
