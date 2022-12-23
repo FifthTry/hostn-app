@@ -3,13 +3,11 @@
 -- fpm.package: fpm-controller-ui.fly.dev
 zip: github.com/fifthtry/fpm-controller-ui/archive/refs/heads/latest-ui.zip
 download-base-url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/latest-ui
-endpoint: http://controller-service.fly.dev
-/endpoint: http://127.0.0.1:8001
-
+/endpoint: http://controller-service.fly.dev
+endpoint: http://127.0.0.1:8001
 
 -- fpm.dependency: fifthtry.github.io/button as button
 -- fpm.dependency: fifthtry.github.io/roboto
-
 
 
 -- fpm.auto-import: fpm

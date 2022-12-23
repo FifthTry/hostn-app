@@ -34,7 +34,6 @@ boolean manage-billings:
 boolean is-active:
 
 -- record query-data:
-string user:
 string team:
 
 ;; <<-- Query Parameters -->>
@@ -44,9 +43,6 @@ $processor$: request-data
 -- ftd.text: Query params
 if: $debug
 
--- ftd.text: $query.user
-if: $debug
-
 -- ftd.text: $query.team
 if: $debug
 
@@ -54,6 +50,7 @@ if: $debug
 -- record access-contents:
 page-1.team list teams:
 access-data list team-members:
+string current-user:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -65,7 +62,6 @@ optional string site-access-link:
 $processor$: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/api/access/
-user: $query.user
 team: $query.team
 
 -- page-1.team list team-list: $team-access.teams
@@ -112,7 +108,7 @@ billing: true
 team-name: $query.team
 /$show: true
 teams: $team-list
-query-user: $query.user
+query-user: $team-access.current-user
 query-team: $query.team
 sites-link: $team-access.sites-link
 team-access-link: $team-access.team-access-link
@@ -365,7 +361,6 @@ $on-click$: message-host $update-team-member-access-api
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/update-team-member-access/
-user: $query.user
 team: $query.team
 team-member: $selected-team-member
 manage-teams: $selected-manage-teams
@@ -376,7 +371,6 @@ manage-sites: $selected-manage-sites
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/delete-team-member-access/
-user: $query.user
 team: $query.team
 team-member: $selected-team-member
 
@@ -384,6 +378,5 @@ team-member: $selected-team-member
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/add-team-member-access/
-user: $query.user
 team: $query.team
 team-member-email: $current-new-team-member-email

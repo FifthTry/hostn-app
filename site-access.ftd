@@ -17,7 +17,6 @@ $always-include$: true
 $always-include$: true
 
 -- record query-data:
-string user:
 string team:
 string site-id:
 
@@ -26,9 +25,6 @@ string site-id:
 $processor$: request-data
 
 -- ftd.text: Query params
-if: $debug
-
--- ftd.text: $query.user
 if: $debug
 
 -- ftd.text: $query.team
@@ -71,6 +67,7 @@ boolean is-active:
 page-1.team list teams:
 page-1.side-site-data list sites-list:
 site-access list current-site-access-list:
+string current-user:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -82,7 +79,6 @@ optional string site-access-link:
 $processor$: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/api/site-access/
-user: $query.user
 team: $query.team
 site-id: $query.site-id
 
@@ -93,7 +89,7 @@ site-id: $query.site-id
 team-name: Personal
 teams: $team-list
 left-sites-toc: $access.sites-list
-query-user: $query.user
+query-user: $access.current-user
 query-team: $query.team
 $show: true
 sites-link: $access.sites-link

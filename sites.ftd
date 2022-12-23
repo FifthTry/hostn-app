@@ -21,7 +21,6 @@ $always-include$: true
 $always-include$: true
 
 -- record query-data:
-string user:
 string team:
 
 ;; <<-- Query Parameters -->>
@@ -29,9 +28,6 @@ string team:
 $processor$: request-data
 
 -- ftd.text: Query params
-if: $debug
-
--- ftd.text: $query.user
 if: $debug
 
 -- ftd.text: $query.team
@@ -50,6 +46,7 @@ string instance-type:
 -- record dashboard-data:
 page-1.team list teams:
 site list sites:
+string current-user:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -61,7 +58,6 @@ optional string site-access-link:
 $processor$: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/api/dashboard/
-user: $query.user
 team: $query.team
 
 
@@ -104,7 +100,7 @@ status: online
 -- page-1.page-one: AmitU
 team-name: $query.team
 teams: $team-list
-query-user: $query.user
+query-user: $dashboard.current-user
 query-team: $query.team
 sites-link: $dashboard.sites-link
 team-access-link: $dashboard.team-access-link
@@ -289,7 +285,6 @@ url: $external-link
 function: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/site-info/
-user: $query.user
 team: $query.team
 site-id: $selected-site-id
 
@@ -297,7 +292,6 @@ site-id: $selected-site-id
 function: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/create-package/
-user: $query.user
 team: $query.team
 
 -- object delete-site-api:

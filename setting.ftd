@@ -14,7 +14,6 @@ $always-include$: true
 -- boolean debug: false
 
 -- record query-data:
-string user:
 string team:
 
 ;; <<-- Query Parameters -->>
@@ -24,15 +23,13 @@ $processor$: request-data
 -- ftd.text: Query params
 if: $debug
 
--- ftd.text: $query.user
-if: $debug
-
 -- ftd.text: $query.team
 if: $debug
 
 -- record settings-data:
 page-1.team list teams:
 string active-plan:
+string current-user:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -44,7 +41,6 @@ optional string site-access-link:
 $processor$: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/api/settings/
-user: $query.user
 team: $query.team
 
 -- page-1.team list team-list: $settings.teams
@@ -72,7 +68,7 @@ item-link: billing/
 -- page-1.page-one: AmitU
 team-name: $query.team
 teams: $team-list
-query-user: $query.user
+query-user: $settings.current-user
 query-team: $query.team
 sites-link: $settings.sites-link
 team-access-link: $settings.team-access-link
@@ -325,7 +321,6 @@ color: $fpm.color.main.error.border
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/edit-team-name/
-user: $query.user
 team: $query.team
 new-team: $current-new-team-name
 
@@ -333,7 +328,6 @@ new-team: $current-new-team-name
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/delete-team/
-user: $query.user
 team: $query.team
 verification-text: $verification-team-name-text
 $verification-text-error: $verification-text-error

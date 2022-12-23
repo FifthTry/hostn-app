@@ -382,7 +382,6 @@ $on-click$: message-host $create-site-api
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/create-site/
-user: $query.user
 team: $query.team
 package-name: $query.package-name
 base-url: $query.base-url

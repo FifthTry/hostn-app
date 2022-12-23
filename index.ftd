@@ -4,6 +4,14 @@
 ;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
 ;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
 
+-- record user-details:
+boolean is-login:
+$always-include$: true
+
+-- user-details ud:
+$processor$: user-details
+is-login: false
+
 -- optional string current-user-name:
 $always-include$: true
 
@@ -122,14 +130,14 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.row: 
+/--- ftd.row:
 background-color: $fpm.color.main.background.step-2
 width: 24
 height: 24
 border-radius: 100
 align: center
 
---- ftd.image:
+/--- ftd.image:
 if: $user-avatar is not null
 src: $user-avatar
 width: 24
@@ -152,21 +160,21 @@ id: login-menu
 $on-mouse-enter$: $show-profile-menu = true
 $on-mouse-leave$: $show-profile-menu = false
 
---- ftd.column:
+/--- ftd.column:
 width: 42
 height: 42
 background-color: $fpm.color.main.background.step-2
 align: center
 border-radius: 100
 
---- ftd.image:
+/--- ftd.image:
 if: $user-avatar is not null
 src: $user-avatar
 width: 42
 height: 42
 border-radius: 100
 
---- container: login-menu
+/--- container: login-menu
 
 --- ftd.column:
 width: fill
@@ -283,163 +291,13 @@ margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
-/--- form-field:
-label: $email-label
-placeholder: $email-placeholder
-error-msg: $error-email
-
 --- ftd.column:
-width: fill
-padding-bottom: 10
-
---- ftd.text: $email-label
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
-
---- ftd.input:
-placeholder: Enter User Name
-type: text
-$on-input$: $current-user-name=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-width: fill
-
---- ftd.text: $username-error
-if: $username-error is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.border
-padding-top: 5
-
---- container: main-form
-
-/--- form-field:
-label: $password-label
-placeholder: $password-placeholder
-error-msg: $error-password
-field-type: password
-
---- ftd.column:
-width: fill
-
---- ftd.text: $password-label
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
-
---- ftd.input:
-placeholder: Enter Password
-type: password
-$on-input$: $current-password=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-width: fill
-
---- container: main-form
-
---- ftd.column: 
-width: fill
-margin-top: $fpm.space.space-4
-margin-bottom: $fpm.space.space-4
-
---- ftd.row:
-width: fill
-
---- ftd.input:
-type: checkbox
-width: 16
-height: 16
-
---- ftd.text: I accept
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-3
-
---- ftd.text: Terms &amp; conditions
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
-link: https://www.fifthtry.com/terms/
-open-in-new-tab: true
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- ftd.text: and
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- ftd.text: Privacy policy
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
-link: https://www.fifthtry.com/privacy/
-open-in-new-tab: true
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- container: main-form
-
---- ftd.column: 
-width: fill
-margin-top: $fpm.space.space-6
-
---- ftd.row:
-spacing: 34
-id: button-row
-align: right
-
---- ftd.row:
 align: center
 
---- ftd.text: Forgot Password?
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.background.step-1
-border-color if $MOUSE-IN: $fpm.color.main.text
-color: $fpm.color.main.text
-link: forgot-password/
-white-space: nowrap
-
---- container: button-row
-
---- ftd.row:
-align: right
-min-width: 210
-spacing: 34
-
---- button.button: $cta-secondary
-role: tertiary
-medium: true
-link: sign-up/
-
---- button.button: $cta-primary
-role: primary
-medium: true
-/link: index.html
-$on-click$: message-host $login-api
+--- github-button:
+if: not $ud.is-login
+button-text: Login using GitHub
+link: /auth/login/?platform=github&next=/sites/?team=Personal
 
 
 -- object login-api:
@@ -461,10 +319,6 @@ download_base_url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/deploy-controller/
-
-
-
-
 
 
 -- ftd.column form-field:
@@ -503,3 +357,33 @@ width: fill
 --- ftd.text: $error-msg
 role: $fpm.type.fine-print
 color: $fpm.color.main.error.text
+
+-- ftd.row github-button:
+optional string button-text:
+optional string width:
+ftd.image-src github-icon: $assets.files.static.github-logo-dark.svg
+string link: https://github.com/apps/continuous-documentation
+border-radius: 4
+width: $width
+cursor: pointer
+background-color if $MOUSE-IN: $fpm.color.main.cta-primary.hover
+background-color: $fpm.color.main.cta-primary.base
+margin-top: -4
+link: $link
+spacing: 10
+padding: 10
+
+--- ftd.image:
+src: $github-icon
+height: 30
+width: auto
+move-down: 3
+
+--- ftd.text:
+if: $button-text is not null
+text: $button-text
+white-space: nowrap
+role: $fpm.type.heading-small
+align: center
+text-align: center
+color: $fpm.color.main.text-strong

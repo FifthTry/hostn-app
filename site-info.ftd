@@ -9,7 +9,6 @@ light: #bb5c2d
 dark: #bb5c2d
 
 -- record query-data:
-string user:
 string team:
 string site-id:
 
@@ -35,6 +34,7 @@ string updated-on:
 page-1.team list teams:
 page-1.side-site-data list sites-list:
 site-info current-site:
+string current-user:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -46,7 +46,6 @@ optional string site-access-link:
 $processor$: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/api/site-info/
-user: $query.user
 team: $query.team
 site-id: $query.site-id
 
@@ -57,7 +56,7 @@ site-id: $query.site-id
 team-name: $query.team
 teams: $team-list
 left-sites-toc: $info.sites-list
-query-user: $query.user
+query-user: $info.current-user
 query-team: $query.team
 $show: true
 sites-link: $info.sites-link

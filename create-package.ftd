@@ -15,7 +15,6 @@ $always-include$: true
 -- boolean debug: false
 
 -- record query-data:
-string user:
 string team:
 
 ;; <<-- Query Parameters -->>
@@ -23,9 +22,6 @@ string team:
 $processor$: request-data
 
 -- ftd.text: Query params
-if: $debug
-
--- ftd.text: $query.user
 if: $debug
 
 -- ftd.text: $query.team
@@ -117,7 +113,7 @@ margin-bottom: $fpm.space.space-2
 
 
 --- ftd.input:
-placeholder: GIT-USERNAME/REPO
+placeholder: git-username/repo
 $on-change$: $base-url=$VALUE
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
@@ -161,7 +157,6 @@ $on-click$: message-host $pre-deployment-check-api
 function: http
 method: post
 url: /-/fpm-controller-ui.fly.dev/api/pre-deployment-check/
-user: $query.user
 team: $query.team
 package-name: $package-name
 base-url: $base-url

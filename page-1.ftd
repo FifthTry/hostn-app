@@ -252,7 +252,7 @@ margin-top: $fpm.space.space-3
 
 
 --- ftd.text: Logout
-link: /
+link: /auth/logout/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 margin-top: $fpm.space.space-2
@@ -437,6 +437,9 @@ optional string site-info-link:
 optional string site-access-link:
 caption title:
 boolean is-active:
+
+--- ftd.text: Not empty
+color: $fpm.color.main.text-strong
 
 --- ftd.text: $title
 if: $title == Info
@@ -690,11 +693,11 @@ background-color: $fpm.color.main.background.step-2
 width: fill
 if: $sub-sections is not empty
 
---- sub-section-loop: $obj.title
+--- sub-section-loop: $sub.title
 site-info-link: $site-info-link
 site-access-link: $site-access-link
-is-active: $obj.is-active
-$loop$: $sub-sections as $obj
+is-active: $sub.is-active
+$loop$: $sub-sections as $sub
 
 
 --- container: ftd.main

@@ -3,7 +3,6 @@
 -- boolean debug: false
 
 -- record query-data:
-string user:
 string team:
 
 ;; <<-- Query Parameters -->>
@@ -13,14 +12,12 @@ $processor$: request-data
 -- ftd.text: Query params
 if: $debug
 
--- ftd.text: $query.user
-if: $debug
-
 -- ftd.text: $query.team
 if: $debug
 
 -- record billing-contents:
 page-1.team list teams:
+string current-user:
 optional string sites-link:
 optional string team-access-link:
 optional string team-billing-link:
@@ -32,7 +29,6 @@ optional string site-access-link:
 $processor$: http
 method: get
 url: /-/fpm-controller-ui.fly.dev/api/billing/
-user: $query.user
 team: $query.team
 
 -- page-1.team list team-list: $team-billing.teams
@@ -85,7 +81,7 @@ amount:999
 -- page-1.page-one: AmitU
 team-name: $query.team
 teams: $team-list
-query-user: $query.user
+query-user: $team-billing.current-user
 query-team: $query.team
 sites-link: $team-billing.sites-link
 team-access-link: $team-billing.team-access-link
