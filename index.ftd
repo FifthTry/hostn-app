@@ -1,5 +1,6 @@
 -- import: fpm-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/button as button
+-- import: fpm/processors
 
 ;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
 ;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
@@ -8,7 +9,7 @@
 boolean is-login:
 
 -- user-details ud:
-$processor$: user-details
+$processor$: processors.user-details
 is-login: false
 
 -- optional string current-user-name:
@@ -54,19 +55,19 @@ optional caption title:
 optional body body:
 optional string username:
 ftd.image-src user-avatar: $assets.files.avatar.jpg
-boolean show-profile-menu: false
+boolean $show-profile-menu: false
 
 -- ftd.column:
-width: fill-container-container
+width: fill-container
 padding-vertical.px: 16
 padding-horizontal.px: 16
 background.solid: $inherited.colors.background.step-1
 
 -- ftd.row:
-width: fill-container-container
+width: fill-container
 
 -- ftd.row:
-width: fill-container-container
+width: fill-container
 align-content: left
 
 -- ftd.text: $site-name
@@ -86,17 +87,17 @@ link: index.html
 
 -- ftd.row:
 align-content: right
-padding-top if { site-name != NULL }: 16
-padding-top if { site-name == NULL }: 8
+padding-top.px if { site-name != NULL }: 16
+padding-top.px if { site-name == NULL }: 8
 spacing.px: 24
 
--- button.button: Deploy Controller UI
+/-- button.button: Deploy Controller UI
 if: { debug }
 role: tertiary
 medium: true
 $on-click$: $deploy-fpm-controller-ui-api()
 
--- button.button: Deploy Controller Service
+/-- button.button: Deploy Controller Service
 if: { debug }
 role: tertiary
 medium: true
@@ -105,7 +106,7 @@ $on-click$: $deploy-controller-service-api()
 -- end: ftd.row
 
 -- ftd.column:
-if: { show-profile-menu }
+if: { page.show-profile-menu }
 width.fixed.px: 160
 background.solid: $inherited.colors.background.base
 border-width.px: 1
@@ -115,19 +116,19 @@ padding-vertical.px: 12
 anchor: parent
 right.px: 0
 top.px: 25
-$on-mouse-enter$: $ftd.set-bool($a = $show-profile-menu, v = true)
-$on-mouse-leave$: $ftd.set-bool($a = $show-profile-menu, v = false)
+$on-mouse-enter$: $ftd.set-bool($a = $page.show-profile-menu, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $page.show-profile-menu, v = false)
 
 -- end: ftd.column
 
 -- ftd.column:
-width: fill-container-container
-border-bottom.px: 1
+width: fill-container
+border-bottom-width.px: 1
 border-color: $inherited.colors.border
 padding-bottom.px: 12
 
--- ftd.text: $username
-if: { username != NULL }
+-- ftd.text: $page.username
+if: { page.username != NULL }
 role: $inherited.types.fine-print
 color: $inherited.colors.text
 margin-top.px: 16
@@ -136,7 +137,7 @@ margin-top.px: 16
 
 
 -- ftd.column:
-width: fill-container-container
+width: fill-container
 margin-top.px: 12
 
 
@@ -145,7 +146,7 @@ link: index.html
 role: $inherited.types.fine-print
 color: $inherited.colors.text
 margin-top.px: 8
-border-bottom.px: 1
+border-bottom-width.px: 1
 border-color: $inherited.colors.background.base
 /border-color if $MOUSE-IN: $inherited.colors.border-strong
 ;; we don't have $MOUSE-IN for now
@@ -154,29 +155,29 @@ border-color: $inherited.colors.background.base
 
 
 -- ftd.column:
-width: fill-container-container
+width: fill-container
 background.solid: $inherited.colors.background.base
 
 -- ftd.column:
 align-content: center
 min-height.fixed.calc: 100vh - 173px
 max-width.fixed.px: 800
-width: fill-container-container
+width: fill-container
 
 -- ftd.column:
-width: fill-container-container
+width: fill-container
 margin-top.px: 48
 
--- ftd.text: $title
-if: { title != NULL }
+-- ftd.text: $page.title
+if: { page.title != NULL }
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 
 -- ftd.text:
-if: { body != NULL }
+if: { page.body != NULL }
 role: $inherited.types.copy-large
 color: $inherited.colors.text
-text: $body
+text: $page.body
 
 -- end: ftd.column
 -- end: ftd.column
@@ -271,3 +272,43 @@ http("/-/fpm-controller-ui.fly.dev/api/create-instance/", "post", ("package_name
 -- void deploy-controller-service-api():
 
 http("/-/fpm-controller-ui.fly.dev/api/deploy-controller/", "post")
+
+
+
+
+-- component github-button:
+optional string sign-in:
+optional string button-text:
+optional ftd.resizing width:
+optional ftd.image-src icon-github: $assets.files.assets.images.icon-github.svg
+optional string link: https://github.com/apps/continuous-documentation
+
+-- ftd.row:
+align-content: center
+padding-horizontal.px: 16
+padding-vertical.px: 8
+color: $inherited.colors.background.step-1
+background.solid: $inherited.colors.cta-primary.base
+border-radius.px: 4
+width: $github-button.width
+cursor: pointer
+link: $github-button.link
+
+
+-- ftd.text: $github-button.sign-in
+if: { github-button.sign-in != NULL }
+white-space: nowrap
+role: $inherited.types.fine-print
+text-align: center
+color: $inherited.colors.background.step-1
+margin-right.px: 4
+
+-- ftd.text: $github-button.button-text
+if: { github-button.button-text != NULL }
+margin-left.px: 4
+white-space: nowrap
+role: $inherited.types.fine-print
+
+-- end: ftd.row
+
+-- end: github-button

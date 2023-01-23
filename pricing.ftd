@@ -684,42 +684,39 @@ color: $inherited.colors.text-strong
 
 
 
--- ftd.row github-button:
+-- component github-button:
 optional string sign-in: 
 optional string github-cta:
-optional string width:
+optional ftd.resizing width:
 optional ftd.image-src icon-github: $assets.files.assets.images.icon-github.svg
 optional string link: https://github.com/apps/continuous-documentation
-padding-horizontal: $fpm.space.space-4
-padding-vertical: $fpm.space.space-2
+
+-- ftd.row:
+width: fill-container
+align-content: center
+padding-horizontal.px: 16
+padding-vertical.px: 8
 color: $inherited.colors.background.step-1
 background.solid: $inherited.colors.cta-primary.base
-border-radius: 4
-width: $width
+border-radius.px: 4
+width: $github-button.width
 cursor: pointer
-link: $link
-align: center
+link: $github-button.link
 
---- ftd.row:
-width: fill-container
-align: center
 
---- ftd.text: $sign-in
+-- ftd.text: $github-button.sign-in
 white-space: nowrap
 role: $inherited.types.fine-print
 text-align: center
 color: $inherited.colors.background.step-1
-margin-right: 4
+margin-right.px: 4
 
-/--- ftd.image:
-src: $icon-github
-height: 16
-width: auto
-
-
---- ftd.text: $github-cta
-if: $github-cta is not null
-margin-left: 4
+-- ftd.text: $github-button.github-cta
+if: { github-button.github-cta != NULL }
+margin-left.px: 4
 white-space: nowrap
 role: $inherited.types.fine-print
 
+-- end: ftd.row
+
+-- end: github-button
