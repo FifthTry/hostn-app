@@ -1,0 +1,17 @@
+-- component button:
+caption title:
+
+-- ftd.row:
+background.solid: $inherited.colors.cta-tertiary.base
+padding-vertical.px: 8
+padding-horizontal.px: 16
+border-radius.px: 4
+
+-- ftd.text: $button.title
+role: $inherited.types.fine-print
+color: $inherited.colors.text-strong
+
+
+-- end: ftd.row
+
+-- end: button

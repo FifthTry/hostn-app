@@ -1,6 +1,7 @@
 -- import: fpm-controller-ui.fly.dev/assets
--- import: fifthtry.github.io/button as button
+/-- import: fifthtry.github.io/button as button
 -- import: fpm/processors
+-- import: fpm-controller-ui.fly.dev/button
 
 ;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
 ;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
@@ -91,19 +92,26 @@ padding-top.px if { site-name != NULL }: 16
 padding-top.px if { site-name == NULL }: 8
 spacing.px: 24
 
-/-- button.button: Deploy Controller UI
-if: { debug }
-role: tertiary
-medium: true
+
+
+-- ftd.column:
 $on-click$: $deploy-fpm-controller-ui-api()
 
-/-- button.button: Deploy Controller Service
-if: { debug }
-role: tertiary
-medium: true
+-- button.button: Deploy Controller UI
+
+-- end: ftd.column
+
+
+-- ftd.column:
 $on-click$: $deploy-controller-service-api()
 
+-- button.button: Deploy Controller Service
+
+-- end: ftd.column
+
 -- end: ftd.row
+
+
 
 -- ftd.column:
 if: { page.show-profile-menu }
