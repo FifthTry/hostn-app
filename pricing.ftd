@@ -287,11 +287,11 @@ is exactly as per docs merge both code and doc PRs.
 
 -- ftd.column subscription:
 caption title:
-width: fill
+width: fill-container
 padding-horizontal: 30
 /padding-vertical: 78
 move-up: 10
-background-color: $fpm.color.main.background.base
+background.solid: $inherited.colors.background.base
 
 --- desktop-subscription: $title
 if: not $is-mobile
@@ -303,18 +303,18 @@ if:$is-mobile
 
 -- ftd.column desktop-subscription:
 caption title:
-width: fill
+width: fill-container
 
 
 --- ftd.text: $title
 align: center
 padding-bottom: 32
 role: $hero-large
-color:  $fpm.color.main.text-strong
+color:  $inherited.colors.text-strong
 
 --- ftd.row:
 spacing: 32
-width: fill
+width: fill-container
 
 --- pricing:
 width: percent 20
@@ -329,7 +329,7 @@ payment-mode: No Credit Card Required
 about-list-one: $about-list-one
 cta-text: Sign up
 cta-bg: $cta_secondary_base
-cta-color: $fpm.color.main.text-strong
+cta-color: $inherited.colors.text-strong
 
 Basic Instances are suitable to deploy your sites for small projects.
 
@@ -346,7 +346,7 @@ payment-mode: Fast Secure payments with Stripe
 about-list-two: $about-list-two
 cta-text: Sign up
 cta-bg: $footer-border-color
-cta-color: $fpm.color.main.text-strong
+cta-color: $inherited.colors.text-strong
 
 Standard Instances are relatively suitable for deploying sites for medium scale projects.
 
@@ -363,7 +363,7 @@ payment-mode: Fast Secure payments with Stripe
 about-list-three: $about-list-three
 cta-text: Sign up
 cta-bg: $custom-five-bac
-cta-color: $fpm.color.main.text-strong
+cta-color: $inherited.colors.text-strong
 
 Advanced Instances provide support to deploy sites for large scale projects.
 
@@ -394,15 +394,15 @@ instance-name: $selected-plan
 
 -- ftd.column mobile-subscription:
 caption title:
-width: fill
+width: fill-container
 padding-horizontal: 30
 padding-vertical: 18
 
 --- ftd.text: $title
 text-align: center
 padding-bottom: 76
-role: $fpm.type.heading-hero
-color:  $fpm.color.main.text-strong
+role: $inherited.types.heading-hero
+color:  $inherited.colors.text-strong
 
 --- container: ftd.main
 
@@ -410,7 +410,7 @@ color:  $fpm.color.main.text-strong
 padding-bottom: 32
 
 --- pricing:
-width: fill
+width: fill-container
 list-one: true
 list-two: false
 list-three: false
@@ -422,7 +422,7 @@ payment-mode: No Credit Card Required
 about-list-one: $about-list-one
 cta-text: Sign up
 cta-bg: $cta_secondary_base
-cta-color: $fpm.color.main.text-strong
+cta-color: $inherited.colors.text-strong
 
 With Personal Plan you can use Continuous Documentation for small projects.
 
@@ -433,7 +433,7 @@ With Personal Plan you can use Continuous Documentation for small projects.
 padding-bottom: 32
 
 --- pricing: 
-width: fill
+width: fill-container
 list-one: false
 list-two: true
 list-three: false
@@ -445,7 +445,7 @@ payment-mode: Fast Secure payments with Stripe
 about-list-two: $about-list-two
 cta-text: Sign up
 cta-bg: $footer-border-color
-cta-color: $fpm.color.main.text-strong
+cta-color: $inherited.colors.text-strong
 
 With Pro Plan you can start using Continuous Documentation for a medium team.
 
@@ -455,7 +455,7 @@ With Pro Plan you can start using Continuous Documentation for a medium team.
 padding-bottom: 32
 
 --- pricing: 
-width: fill
+width: fill-container
 list-one: false
 list-two: false
 list-three: true
@@ -467,7 +467,7 @@ payment-mode: Fast Secure payments with Stripe
 about-list-three: $about-list-three
 cta-text: Sign up
 cta-bg: $custom-five-bac
-cta-color: $fpm.color.main.text-strong
+cta-color: $inherited.colors.text-strong
 
 Scale plan helps your team when scaling!
 
@@ -493,18 +493,18 @@ string voucher-name:
 boolean is-selected: false
 optional string voucher-title-name:
 string pricing-name:
-string width: fill
+string width: fill-container
 optional string days:
 string list about-list-one: $about-list-one
 string list about-list-two: $about-list-two
 string list about-list-three: $about-list-three
 body body:
 string payment-mode:
-optional ftd.color cta-bg: $fpm.color.main.text-strong
+optional ftd.color cta-bg: $inherited.colors.text-strong
 optional ftd.color cta-color: $cta_secondary_base
 padding-horizontal: 31
-ftd.color bg-color: $fpm.color.main.background.step-1
-background-color: $bg-color
+ftd.color bg-color: $inherited.colors.background.step-1
+background.solid: $bg-color
 padding-vertical: 54
 width: $width
 string cta-text:
@@ -514,14 +514,14 @@ shadow-offset-y: 2
 shadow-size: 6
 shadow-blur: 4
 /background-color if $MOUSE-IN: $cta_primary_base
-shadow-color: $fpm.color.main.background.base
+shadow-color: $inherited.colors.background.base
 shadow-color if $MOUSE-IN: $blur
 boolean list-one: false
 boolean list-two: false
 boolean list-three: false
 border-width: 4
 border-color if $is-selected: $cta_primary_base
-border-color if not $is-selected: $fpm.color.main.background.step-1
+border-color if not $is-selected: $inherited.colors.background.step-1
 $on-click$: toggle $is-selected
 $on-click$: toggle $global-not-selected
 $on-click$: $selected-plan = $voucher-title-name
@@ -539,7 +539,7 @@ z-index: 10
 
 --- ftd.text: $voucher-name
 color: $cta-color
-background-color:$cta-bg
+background.solid:$cta-bg
 border-color: $cta_hover
 border-radius: 25
 role: $copy-relaxed
@@ -552,7 +552,7 @@ id: about-container
 
 --- ftd.text: $voucher-title-name
 role: $list-title
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 margin-top: 32
 white-space: nowrap
 
@@ -560,10 +560,10 @@ white-space: nowrap
 --- ftd.row:
 id: pricing-id
 spacing: 8
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 
 --- ftd.row:
-background-color: $fpm.color.main.background.base
+background.solid: $inherited.colors.background.base
 
 --- ftd.row:
 if: $list-two
@@ -572,7 +572,7 @@ width: 48
 height: 3
 left: 30
 top: 25
-background-color: $orange
+background.solid: $orange
 open: false
 z-index: 10
 
@@ -598,7 +598,7 @@ margin-top: 8
 margin-bottom: 32
 text: $body
 role: $copy-relaxed
-color: $fpm.color.main.text
+color: $inherited.colors.text
 
 --- img-text: $obj
 if: $list-one
@@ -621,7 +621,7 @@ align: center
 
 /--- cta: $cta-text
 link: https://cdoc.fifthtry.com/initiate-github-login/
-width: fill
+width: fill-container
 cta-bg: $cta_secondary_base
 
 
@@ -636,7 +636,7 @@ sign-in: $cta-text
 --- ftd.text: 
 text: $payment-mode
 role: $copy-relaxed
-color: $fpm.color.main.text
+color: $inherited.colors.text
 align: center
 padding-top: 16
 
@@ -651,7 +651,7 @@ src: $assets.files.static.Circle-Check.png
 
 --- ftd.text: $title
 role: $copy-relaxed-medium
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 
 
 
@@ -680,7 +680,7 @@ src: $assets.files.static.Circle-Check.png
 
 --- ftd.text: $title
 role: $copy-relaxed-medium
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 
 
 
@@ -692,8 +692,8 @@ optional ftd.image-src icon-github: $assets.files.assets.images.icon-github.svg
 optional string link: https://github.com/apps/continuous-documentation
 padding-horizontal: $fpm.space.space-4
 padding-vertical: $fpm.space.space-2
-color: $fpm.color.main.background.step-1
-background-color: $fpm.color.main.cta-primary.base
+color: $inherited.colors.background.step-1
+background.solid: $inherited.colors.cta-primary.base
 border-radius: 4
 width: $width
 cursor: pointer
@@ -701,14 +701,14 @@ link: $link
 align: center
 
 --- ftd.row:
-width: fill
+width: fill-container
 align: center
 
 --- ftd.text: $sign-in
 white-space: nowrap
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 text-align: center
-color: $fpm.color.main.background.step-1
+color: $inherited.colors.background.step-1
 margin-right: 4
 
 /--- ftd.image:
@@ -721,5 +721,5 @@ width: auto
 if: $github-cta is not null
 margin-left: 4
 white-space: nowrap
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 

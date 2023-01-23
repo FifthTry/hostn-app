@@ -121,10 +121,10 @@ sitelist: $sites
 
 -- ftd.column sites-component:
 site list sitelist:
-width: fill
+width: fill-container
 
 --- ftd.column:
-width: fill
+width: fill-container
 spacing: 15
 
 --- button.button: &#65291; New
@@ -152,8 +152,8 @@ $loop$: $sites as $obj
 
 
 -- ftd.column sites-loop:
-width: fill
-background-color: $fpm.color.main.background.step-1
+width: fill-container
+background.solid: $inherited.colors.background.step-1
 border-radius: 12
 caption package-name:
 string site-id:
@@ -165,37 +165,37 @@ padding-vertical: 24
 padding-horizontal: 24
 margin-bottom: 28
 spacing: 20
-border-color if $status == INITIALIZED: $fpm.color.main.cta-secondary.base
+border-color if $status == INITIALIZED: $inherited.colors.cta-secondary.base
 border-color if $status == PENDING: $dark-red
-border-color if $status == READY: $fpm.color.main.success.text
-border-color if $status == STOPPED: $fpm.color.main.error.border
-border-color if $status == TERMINATED: $fpm.color.main.warning.text
+border-color if $status == READY: $inherited.colors.success.text
+border-color if $status == STOPPED: $inherited.colors.error.border
+border-color if $status == TERMINATED: $inherited.colors.warning.text
 border-width: 2
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: first-column
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 12
 
 --- ftd.text: $package-name
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text-strong
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text-strong
 link: $package-url
 border-bottom if $MOUSE-IN: 1
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
+border-color if $MOUSE-IN: $inherited.colors.text-strong
 $on-click$: $external-link = $package-url
 $on-click$: message-host $external-redirect-api
 
 --- ftd.text: View
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color: $fpm.color.main.text-strong
-background-color: $fpm.color.main.cta-primary.base
+color: $inherited.colors.text-strong
+background.solid: $inherited.colors.cta-primary.base
 /link: $package-url
 border-radius: 8
 $on-click$: $selected-site-id = $site-id
@@ -205,10 +205,10 @@ $on-click$: message-host $redirect-to-site-info-api
 if: $status == READY
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color: $fpm.color.main.text-strong
-background-color: $fpm.color.main.error.border
+color: $inherited.colors.text-strong
+background.solid: $inherited.colors.error.border
 /link: $package-url
 border-radius: 8
 $on-click$: $selected-site-id = $site-id
@@ -219,43 +219,43 @@ $on-click$: message-host $delete-site-api
 
 
 --- ftd.row:
-color: $fpm.color.main.text
+color: $inherited.colors.text
 spacing: 12
 
 --- ftd.text: Status:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $status
-role: $fpm.type.copy-tight
-color if $status == INITIALIZED: $fpm.color.main.cta-secondary.base
+role: $inherited.types.copy-tight
+color if $status == INITIALIZED: $inherited.colors.cta-secondary.base
 color if $status == PENDING: $dark-red
-color if $status == READY: $fpm.color.main.success.text
-color if $status == STOPPED: $fpm.color.main.error.border
-color if $status == TERMINATED: $fpm.color.main.warning.text
+color if $status == READY: $inherited.colors.success.text
+color if $status == STOPPED: $inherited.colors.error.border
+color if $status == TERMINATED: $inherited.colors.warning.text
 
 --- container: ftd.main
 
 --- ftd.row:
-color: $fpm.color.main.text
+color: $inherited.colors.text
 spacing: 12
 
 --- ftd.text: Instance-Type:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $instance-type
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- container: ftd.main
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 12
 
 --- ftd.text: Updated-on:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $date
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 
 
@@ -263,7 +263,7 @@ role: $fpm.type.copy-tight
 -- ftd.column create-package-button:
 caption title:
 optional string button-link:
-width: fill
+width: fill-container
 link: $button-link
 min-width: 200
 

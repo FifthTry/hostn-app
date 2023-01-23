@@ -45,102 +45,102 @@ csrf_token: sometoken
 
 
 -- ftd.column page:
-width: fill
+width: fill-container
 string csrf_token:
 caption title:
 
 --- base.page:
 
 --- ftd.column:
-width: fill
+width: fill-container
 id: main-form
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-8
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 position: center
 
 --- ftd.column:
 align: center
 
 --- ftd.text: $title
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text
+role: $inherited.types.heading-medium
+color: $inherited.colors.text
 align: center
 margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
 --- ftd.column:
-width: fill
+width: fill-container
 align: center
 margin-top: $fpm.space.space-4
 
 --- ftd.text: Enter Site Name
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
 placeholder: Site name
 $on-change$: $package-name=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 
 --- ftd.text: $package-name-error
 if: $package-name-error is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.border
+role: $inherited.types.fine-print
+color: $inherited.colors.error.border
 padding-top: 5
 
 --- container: main-form
 --- ftd.column:
-width: fill
+width: fill-container
 align: center
 margin-top: $fpm.space.space-4
 
 --- ftd.text: Enter your Git Repository
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 margin-bottom: $fpm.space.space-2
 
 
 --- ftd.input:
 placeholder: git-username/repo
 $on-change$: $base-url=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 
 --- ftd.text: $base-url-error
 if: $base-url-error is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.border
+role: $inherited.types.fine-print
+color: $inherited.colors.error.border
 padding-top: 5
 
 --- container: main-form
 
 --- ftd.column: 
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-4
 margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
 --- ftd.column: 
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
@@ -176,26 +176,26 @@ string label:
 string placeholder:
 optional string error-msg:
 optional string field-type: text
-width: fill
+width: fill-container
 align: center
 margin-top: $fpm.space.space-4
 
 
 --- ftd.text: $label
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
-width: fill
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+width: fill-container
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 placeholder: $placeholder
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 explain: true
 type: $field-type
 
@@ -203,8 +203,8 @@ type: $field-type
 if: $error-msg is not null
 margin-top: $fpm.space.space-2
 margin-left: $fpm.space.space-3
-width: fill
+width: fill-container
 
 --- ftd.text: $error-msg
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
+role: $inherited.types.fine-print
+color: $inherited.colors.error.text

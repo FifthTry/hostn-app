@@ -31,9 +31,10 @@ if: { debug }
 -- ftd.text: $current-password
 if: { debug }
 
--- page: 
+-- page:
 
--- login: Login
+
+/-- login: Login
 email-label: Email*
 password-label: Password*
 
@@ -51,157 +52,149 @@ password-label: Password*
 -- component page:
 optional caption title:
 optional body body:
-optional string username: abc@fifthtry.com
-optional ftd.image-src user-avatar: $assets.files.avatar.jpg
+optional string username:
+ftd.image-src user-avatar: $assets.files.avatar.jpg
 boolean show-profile-menu: false
-width: fill
 
 -- ftd.column:
-width: fill
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
-background-color: $fpm.color.main.background.step-1
+width: fill-container-container
+padding-vertical.px: 16
+padding-horizontal.px: 16
+background.solid: $inherited.colors.background.step-1
 
 -- ftd.row:
-width: fill
-id: header-container
+width: fill-container-container
 
 -- ftd.row:
-width: fill
-align: left
-id: logo-container
+width: fill-container-container
+align-content: left
 
 -- ftd.text: $site-name
-if: $site-name is not null
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text-strong
+if: { site-name !=  NULL }
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
 
 -- ftd.image:
-if: $site-name is null
-src:  $site-logo
-width: 120
+if: { site-name == NULL }
+src: $site-logo
+width.fixed.px: 120
 height: auto
-id: logo
 link: index.html
 
 -- end: ftd.row
 
+
 -- ftd.row:
-align: right
-padding-top if $site-name is not null: $fpm.space.space-4
-padding-top if $site-name is null: $fpm.space.space-2
-spacing: 24
+align-content: right
+padding-top if { site-name != NULL }: 16
+padding-top if { site-name == NULL }: 8
+spacing.px: 24
 
 -- button.button: Deploy Controller UI
-if: $debug
+if: { debug }
 role: tertiary
 medium: true
-$on-click$: message-host $deploy-fpm-controller-ui-api
+$on-click$: $deploy-fpm-controller-ui-api()
 
 -- button.button: Deploy Controller Service
-if: $debug
+if: { debug }
 role: tertiary
 medium: true
-$on-click$: message-host $deploy-controller-service-api
+$on-click$: $deploy-controller-service-api()
 
 -- end: ftd.row
 
 -- ftd.column:
-if: $show-profile-menu
-width: 160	
-background-color: $fpm.color.main.background.base
-border-width: 1
-border-color: $fpm.color.main.border
-padding-horizontal: $fpm.space.space-3
-padding-vertical: $fpm.space.space-3
+if: { show-profile-menu }
+width.fixed.px: 160
+background.solid: $inherited.colors.background.base
+border-width.px: 1
+border-color: $inherited.colors.border
+padding-horizontal.px: 12
+padding-vertical.px: 12
 anchor: parent
-right: 0
-top: 25
-id: login-menu
-$on-mouse-enter$: $show-profile-menu = true
-$on-mouse-leave$: $show-profile-menu = false
+right.px: 0
+top.px: 25
+$on-mouse-enter$: $ftd.set-bool($a = $show-profile-menu, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $show-profile-menu, v = false)
 
 -- end: ftd.column
 
 -- ftd.column:
-width: fill
-border-bottom: 1
-border-color: $fpm.color.main.border
-padding-bottom: $fpm.space.space-3
+width: fill-container-container
+border-bottom.px: 1
+border-color: $inherited.colors.border
+padding-bottom.px: 12
 
 -- ftd.text: $username
-if: $username is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-top: $fpm.space.space-4
+if: { username != NULL }
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+margin-top.px: 16
 
 -- end: ftd.column
 
-/-- container: login-menu
 
 -- ftd.column:
-width: fill
-margin-top: $fpm.space.space-3
+width: fill-container-container
+margin-top.px: 12
 
 
 -- ftd.text: Logout
 link: index.html
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-margin-top: $fpm.space.space-2
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+role: $inherited.types.fine-print
+color: $inherited.colors.text
+margin-top.px: 8
+border-bottom.px: 1
+border-color: $inherited.colors.background.base
+/border-color if $MOUSE-IN: $inherited.colors.border-strong
+;; we don't have $MOUSE-IN for now
 
 -- end: ftd.column
 
-/--- container: ftd.main
 
 -- ftd.column:
-width: fill
-background-color: $fpm.color.main.background.base
+width: fill-container-container
+background.solid: $inherited.colors.background.base
 
 -- ftd.column:
-id: main-container
-align: center
-min-height: calc 100vh - 173px
-max-width: 800
-width: fill
+align-content: center
+min-height.fixed.calc: 100vh - 173px
+max-width.fixed.px: 800
+width: fill-container-container
 
 -- ftd.column:
-width: fill
-margin-top: $fpm.space.space-9
+width: fill-container-container
+margin-top.px: 48
 
 -- ftd.text: $title
-if: $title is not null
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
+if: { title != NULL }
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
 
 -- ftd.text:
-if: $body is not null
-role: $fpm.type.copy-large
-color: $fpm.color.main.text
+if: { body != NULL }
+role: $inherited.types.copy-large
+color: $inherited.colors.text
 text: $body
 
 -- end: ftd.column
 -- end: ftd.column
 -- end: ftd.column
 
-/--- container: ftd.main
+-- ftd.column:
+width: fill-container
+background.solid: $inherited.colors.background.step-1
+padding-vertical.px: 40
 
 -- ftd.column:
-width: fill
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-8
-
--- ftd.column:
-width: fill
-max-width: 1200
-align: center
+width: fill-container
+max-width.fixed.px: 1200
+align-content: center
 
 -- ftd.text: &copy; 2022 FifthTry Private Limited
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 
 -- end: ftd.column
 
@@ -228,130 +221,53 @@ string error-email: email error
 string error-password: password error
 string email-placeholder: username
 string password-placeholder: password
-padding-vertical: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-8
-background-color: $fpm.color.main.background.step-1
-border-width: 1
-border-color: $fpm.color.main.border
-width: percent 70
-position: center
 
 -- ftd.column:
-width: fill
-id: main-form
+padding-vertical: 24
+padding-horizontal: 40
+background.solid: $inherited.colors.background.step-1
+border-width.px: 1
+border-color: $inherited.colors.border
+width.fixed.percent: 70
+position: center
 
 -- ftd.column:
 align: center
 
 -- ftd.text: $title
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text
-align: center
-margin-bottom: $fpm.space.space-4
+role: $inherited.types.heading-medium
+color: $inherited.colors.text
+align-content: center
+margin-bottom.px: 16
 
 -- end: login
 
-/--- container: main-form
 
 -- ftd.column:
-align: center
+align-content: center
 
 -- github-button:
-if: not $ud.is-login
+if: { !ud.is-login }
 button-text: Login using GitHub
 link: /auth/login/?platform=github&next=/sites/?team=Personal
 
 -- github-button:
-if: $ud.is-login
+if: { ud.is-login }
 button-text: Logout from Github
 link: /auth/logout/
 
--- object login-api:
-function: http
-method: post
-url: /-/fpm-controller-ui.fly.dev/api/login/
-user: $current-user-name
-password: $current-password
-$username-error: $username-error
 
--- object deploy-fpm-controller-ui-api:
-function: http
-method: post
-url: /-/fpm-controller-ui.fly.dev/api/create-instance/
-package_name: fpm-controller-ui
-download_base_url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/latest-ui/
+-- void login-api():
 
--- object deploy-controller-service-api:
-function: http
-method: post
-url: /-/fpm-controller-ui.fly.dev/api/deploy-controller/
+http("/-/fpm-controller-ui.fly.dev/api/login/", "post", ("user", current-user-name), ("password", current-password))
+;; $username-error: $username-error
 
 
--- ftd.column form-field:
-string label:
-string placeholder:
-optional string error-msg:
-optional string field-type: text
-width: fill
-align: center
-margin-top: $fpm.space.space-4
+-- void deploy-fpm-controller-ui-api():
 
--- ftd.text: $label
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-margin-bottom: $fpm.space.space-2
+http("/-/fpm-controller-ui.fly.dev/api/create-instance/", "post", ("package_name", "fpm-controller-ui"), ("download_base_url", "https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/main/"))
 
--- ftd.input:
-width: fill
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-placeholder: $placeholder
-background-color: $fpm.color.main.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
-border-width: 1
-border-color: $fpm.color.main.border
-explain: true
-type: $field-type
 
--- ftd.column:
-if: $error-msg is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-3
-width: fill
+-- void deploy-controller-service-api():
 
--- ftd.text: $error-msg
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
-
--- ftd.row github-button:
-optional string button-text:
-optional string width:
-ftd.image-src github-icon: $assets.files.static.github-logo-dark.svg
-string link: https://github.com/apps/continuous-documentation
-border-radius: 4
-width: $width
-cursor: pointer
-background-color if $MOUSE-IN: $fpm.color.main.cta-primary.hover
-background-color: $fpm.color.main.cta-primary.base
-margin-top: -4
-link: $link
-spacing: 10
-padding: 10
-
--- ftd.image:
-src: $github-icon
-height: 30
-width: auto
-move-down: 3
-
--- ftd.text:
-if: $button-text is not null
-text: $button-text
-white-space: nowrap
-role: $fpm.type.heading-small
-align: center
-text-align: center
-color: $fpm.color.main.text-strong
-
--- end: form-field
+http("/-/fpm-controller-ui.fly.dev/api/deploy-controller/", "post")

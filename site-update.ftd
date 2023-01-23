@@ -35,7 +35,7 @@ siteupdatelist: $siteupdates
 
 -- ftd.column siteupdate-ss:
 siteupdate list siteupdatelist:
-width: fill
+width: fill-container
 spacing: 64
 
 
@@ -52,10 +52,10 @@ $loop$: $siteupdatelist as $obj
 
 
 -- ftd.row siteupdates-loop:
-width: fill
-background-color: $fpm.color.main.background.step-1
+width: fill-container
+background.solid: $inherited.colors.background.step-1
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 string package-name:
 string file-name: 
 string date:
@@ -66,21 +66,21 @@ padding-horizontal: 24
 
 
 --- ftd.text: $package-name
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 padding-horizontal: 20
 
 
 
 --- ftd.text: $file-name
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
 padding-horizontal: 20
-width: fill
+width: fill-container
 
 
 
 --- ftd.text: $date
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 padding-horizontal: 20
 
 

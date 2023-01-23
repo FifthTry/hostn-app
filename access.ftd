@@ -145,20 +145,20 @@ $on-click$: toggle $show-add-team-container
 --- ftd.row:
 if: $show-add-team-container
 spacing: 10
-width: fill
+width: fill-container
 
 --- ftd.input:
 placeholder: Enter Member email
 type: text
 $on-input$: $current-new-team-member-email=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 min-width: 200
 
 --- button.button: Add Team Member Access
@@ -174,60 +174,60 @@ $on-click$: toggle $show-add-team-container
 
 -- ftd.column access-component:
 access-data list acceslist:
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 border-radius: 12
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 border-width: 2
 margin-bottom: 28
-width: fill
+width: fill-container
 
 --- ftd.row:
-width: fill
+width: fill-container
 padding-vertical: 24
 /padding-horizontal: 24
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 
 --- ftd.text: Users
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 --- ftd.text: Manage Sites
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 --- ftd.text:  Billing
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 --- ftd.text: Manage Teams
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 --- ftd.text: Delete Member
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 --- ftd.text: Update Access
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 --- container: ftd.main
 
 --- ftd.column:
-width: fill
+width: fill-container
 
 --- access-loop: $obj.member-name
 billing: $obj.manage-billings
@@ -239,7 +239,7 @@ $loop$: $acceslist as $obj
 
 
 -- ftd.column access-loop:
-width: fill
+width: fill-container
 caption member-name:
 boolean sites:
 boolean team: 
@@ -250,12 +250,12 @@ boolean not-changed: true
 /padding-horizontal: 24
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: first-column
 
 --- ftd.row:
-width: fill
-border-color if $is-active: $fpm.color.main.cta-secondary.base
+width: fill-container
+border-color if $is-active: $inherited.colors.cta-secondary.base
 border-width if $is-active: 2
 border-radius: 10
 padding-vertical: 20
@@ -263,30 +263,30 @@ padding-vertical: 20
 /--- ftd.boolean: $not-changed
 
 --- ftd.text: $member-name
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 text-align: center
 
 ;; MANAGE SITES
 /--- ftd.input:
 type: checkbox
-width: fill
+width: fill-container
 
 --- ftd.text: ALLOWED
 if: $sites
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.success.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.success.text
+width: fill-container
 text-align: center
 $on-click$: toggle $sites
 $on-click$: $not-changed = false
 
 --- ftd.text: FORBIDDEN
 if: not $sites
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.error.border
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.error.border
+width: fill-container
 text-align: center
 $on-click$: toggle $sites
 $on-click$: $not-changed = false
@@ -294,22 +294,22 @@ $on-click$: $not-changed = false
 ;; MANAGE BILLINGS
 /--- ftd.input:
 type: checkbox
-width: fill
+width: fill-container
 
 --- ftd.text: ALLOWED
 if: $billing
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.success.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.success.text
+width: fill-container
 text-align: center
 $on-click$: toggle $billing
 $on-click$: $not-changed = false
 
 --- ftd.text: FORBIDDEN
 if: not $billing
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.error.border
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.error.border
+width: fill-container
 text-align: center
 $on-click$: toggle $billing
 $on-click$: $not-changed = false
@@ -318,22 +318,22 @@ $on-click$: $not-changed = false
 ;; MANAGE TEAMS
 /--- ftd.input:
 type: checkbox
-width: fill
+width: fill-container
 
 --- ftd.text: ALLOWED
 if: $team
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.success.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.success.text
+width: fill-container
 text-align: center
 $on-click$: toggle $team
 $on-click$: $not-changed = false
 
 --- ftd.text: FORBIDDEN
 if: not $team
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.error.border
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.error.border
+width: fill-container
 text-align: center
 $on-click$: toggle $team
 $on-click$: $not-changed = false

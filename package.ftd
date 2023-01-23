@@ -19,7 +19,7 @@ csrf_token: some
 
 
 -- ftd.column page:
-width: fill
+width: fill-container
 string csrf_token:
 caption title:
 
@@ -45,7 +45,7 @@ package-name: $package-to-delete
 
 -- ftd.column remove-package:
 string package-name:
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
@@ -70,7 +70,7 @@ $on-click-outside$: $show-delete-dialog = false
 caption title:
 optional string button-link:
 boolean plus-sign: false
-width: fill
+width: fill-container
 margin-bottom: $fpm.space.space-4
 link: $button-link
 
@@ -78,26 +78,26 @@ link: $button-link
 align: right
 padding-horizontal: $fpm.space.space-6
 padding-vertical: $fpm.space.space-2
-background-color: $fpm.color.main.error.base
-background-color if $MOUSE-IN: $fpm.color.main.cta-tertiary.hover
-color: $fpm.color.main.error.text
+background.solid: $inherited.colors.error.base
+background-color if $MOUSE-IN: $inherited.colors.cta-tertiary.hover
+color: $inherited.colors.error.text
 border-radius: 4
 
 --- ftd.text:
 if: $plus-sign
 text: &#65291; 
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 padding-right: $fpm.space.space-2
 
 --- ftd.text: $title 
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 
 
 
 -- ftd.column packages-list:
 packages list package-list:
-width: fill
+width: fill-container
 
 --- package-loop: $obj.title
 $loop$: $package-list as $obj
@@ -115,33 +115,33 @@ description: $obj.description
 caption title:
 string description: 
 string package-url:
-width: fill
+width: fill-container
 padding-vertical: $fpm.space.space-2
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
 spacing: 24
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 border-radius: 10
-color: $fpm.color.main.text
+color: $inherited.colors.text
 id: row-inner
 
 --- ftd.column:
-width: fill
+width: fill-container
 spacing: 12
 
 --- ftd.text: $title
-role: $fpm.type.heading-small
-color if $MOUSE-IN: $fpm.color.main.text-strong
+role: $inherited.types.heading-small
+color if $MOUSE-IN: $inherited.colors.text-strong
 border-bottom: 1
-border-color: $fpm.color.main.background.step-1
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
+border-color: $inherited.colors.background.step-1
+border-color if $MOUSE-IN: $inherited.colors.text-strong
 
 --- ftd.text: $description
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- container: row-inner
 
@@ -163,8 +163,8 @@ link: package/
 
 
 -- ftd.column overlay:
-background-color: $overlay-bg
-width: fill
+background.solid: $overlay-bg
+width: fill-container
 height: fill
 anchor: window
 top: 0
@@ -183,7 +183,7 @@ z-index: 9999
 -- ftd.column delete-dialog:
 string package-name:
 width: percent 30
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
 anchor: window
@@ -194,7 +194,7 @@ border-radius: 8
 
 
 --- ftd.column:
-width: fill
+width: fill-container
 id: parent-container
 align: center
 
@@ -202,28 +202,28 @@ align: center
 align: center
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 6
 
 --- ftd.text: Are you sure? you want to delete
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
+role: $inherited.types.copy-tight
+color: $inherited.colors.text-strong
 
 --- ftd.row:
 align: left
 
 --- ftd.text: $package-name
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
+role: $inherited.types.copy-tight
+color: $inherited.colors.text-strong
 
 --- ftd.text: ?
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
+role: $inherited.types.copy-tight
+color: $inherited.colors.text-strong
 
 --- container: parent-container
 
 --- ftd.column:
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-10
 
 --- ftd.row:
@@ -234,9 +234,9 @@ $on-click$: $show-delete-dialog = false
 $on-click$: $package-to-delete = $package-name
 
 --- ftd.text: Cancel
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-color if $MOUSE-IN: $fpm.color.main.text-strong
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+color if $MOUSE-IN: $inherited.colors.text-strong
 padding-horizontal: $fpm.space.space-5
 padding-vertical: $fpm.space.space-2
 margin-left: $fpm.space.space-10
