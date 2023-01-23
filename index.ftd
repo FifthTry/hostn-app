@@ -6,20 +6,16 @@
 
 -- record user-details:
 boolean is-login:
-$always-include$: true
 
 -- user-details ud:
 $processor$: user-details
 is-login: false
 
 -- optional string current-user-name:
-$always-include$: true
 
 -- optional string username-error:
-$always-include$: true
 
 -- optional string current-password:
-$always-include$: true
 
 -- optional string site-name:
 
@@ -30,10 +26,10 @@ light: $assets.files.static.logo-fifthtry.svg.light
 dark: $assets.files.static.logo-fifthtry.svg.dark
 
 -- ftd.text: $current-user-name
-if: $debug
+if: { debug }
 
 -- ftd.text: $current-password
-if: $debug
+if: { debug }
 
 -- page: 
 
@@ -62,27 +58,27 @@ append-at: main-container
 open: true
 width: fill
 
---- ftd.column:
+-- ftd.column:
 width: fill
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
 background-color: $fpm.color.main.background.step-1
 
---- ftd.row:
+-- ftd.row:
 width: fill
 id: header-container
 
---- ftd.row:
+-- ftd.row:
 width: fill
 align: left
 id: logo-container
 
---- ftd.text: $site-name
+-- ftd.text: $site-name
 if: $site-name is not null
 role: $fpm.type.heading-medium
 color: $fpm.color.main.text-strong
 
---- ftd.image: 
+-- ftd.image:
 if: $site-name is null
 src:  $site-logo
 width: 120
@@ -90,21 +86,19 @@ height: auto
 id: logo
 link: index.html
 
---- container: header-container
-
---- ftd.row:
+-- ftd.row:
 align: right
 padding-top if $site-name is not null: $fpm.space.space-4
 padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
---- button.button: Deploy Controller UI
+-- button.button: Deploy Controller UI
 if: $debug
 role: tertiary
 medium: true
 $on-click$: message-host $deploy-fpm-controller-ui-api
 
---- button.button: Deploy Controller Service
+-- button.button: Deploy Controller Service
 if: $debug
 role: tertiary
 medium: true
@@ -145,7 +139,7 @@ height: 24
 $on-mouse-enter$: $show-profile-menu = true
 border-radius: 100
 
---- ftd.column:
+-- ftd.column:
 if: $show-profile-menu
 width: 160	
 background-color: $fpm.color.main.background.base
@@ -176,27 +170,26 @@ border-radius: 100
 
 /--- container: login-menu
 
---- ftd.column:
+-- ftd.column:
 width: fill
 border-bottom: 1
 border-color: $fpm.color.main.border
 padding-bottom: $fpm.space.space-3
 
---- ftd.text: $username
+-- ftd.text: $username
 if: $username is not null
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 margin-top: $fpm.space.space-4
 
---- container: login-menu
+/-- container: login-menu
 
-
---- ftd.column:
+-- ftd.column:
 width: fill
 margin-top: $fpm.space.space-3
 
 
---- ftd.text: Logout
+-- ftd.text: Logout
 link: index.html
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
@@ -205,51 +198,51 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- container: ftd.main
+/--- container: ftd.main
 
---- ftd.column:
+-- ftd.column:
 width: fill
 background-color: $fpm.color.main.background.base
 
---- ftd.column:
+-- ftd.column:
 id: main-container
 align: center
 min-height: calc 100vh - 173px
 max-width: 800
 width: fill
 
---- ftd.column:
+-- ftd.column:
 width: fill
 margin-top: $fpm.space.space-9
 
---- ftd.text: $title
+-- ftd.text: $title
 if: $title is not null
 role: $fpm.type.heading-small
 color: $fpm.color.main.text-strong
 
---- ftd.text:
+-- ftd.text:
 if: $body is not null
 role: $fpm.type.copy-large
 color: $fpm.color.main.text
 text: $body
 
---- container: ftd.main
+/--- container: ftd.main
 
---- ftd.column:
+-- ftd.column:
 width: fill
 background-color: $fpm.color.main.background.step-1
 padding-vertical: $fpm.space.space-8
 
---- ftd.column:
+-- ftd.column:
 width: fill
 max-width: 1200
 align: center
 
---- ftd.text: &copy; 2022 FifthTry Private Limited
+-- ftd.text: &copy; 2022 FifthTry Private Limited
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 
-
+-- end: page
 
 
 
@@ -276,30 +269,32 @@ border-color: $fpm.color.main.border
 width: percent 70
 position: center
 
---- ftd.column:
+-- ftd.column:
 width: fill
 id: main-form
 
---- ftd.column:
+-- ftd.column:
 align: center
 
---- ftd.text: $title
+-- ftd.text: $title
 role: $fpm.type.heading-medium
 color: $fpm.color.main.text
 align: center
 margin-bottom: $fpm.space.space-4
 
---- container: main-form
+-- end: login
 
---- ftd.column:
+/--- container: main-form
+
+-- ftd.column:
 align: center
 
---- github-button:
+-- github-button:
 if: not $ud.is-login
 button-text: Login using GitHub
 link: /auth/login/?platform=github&next=/sites/?team=Personal
 
---- github-button:
+-- github-button:
 if: $ud.is-login
 button-text: Logout from Github
 link: /auth/logout/
@@ -334,12 +329,12 @@ width: fill
 align: center
 margin-top: $fpm.space.space-4
 
---- ftd.text: $label
+-- ftd.text: $label
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
---- ftd.input:
+-- ftd.input:
 width: fill
 role: $fpm.type.copy-tight
 color: $fpm.color.main.text
@@ -352,13 +347,13 @@ border-color: $fpm.color.main.border
 explain: true
 type: $field-type
 
---- ftd.column:
+-- ftd.column:
 if: $error-msg is not null
 margin-top: $fpm.space.space-2
 margin-left: $fpm.space.space-3
 width: fill
 
---- ftd.text: $error-msg
+-- ftd.text: $error-msg
 role: $fpm.type.fine-print
 color: $fpm.color.main.error.text
 
@@ -377,13 +372,13 @@ link: $link
 spacing: 10
 padding: 10
 
---- ftd.image:
+-- ftd.image:
 src: $github-icon
 height: 30
 width: auto
 move-down: 3
 
---- ftd.text:
+-- ftd.text:
 if: $button-text is not null
 text: $button-text
 white-space: nowrap
@@ -391,3 +386,5 @@ role: $fpm.type.heading-small
 align: center
 text-align: center
 color: $fpm.color.main.text-strong
+
+-- end: form-field
