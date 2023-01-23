@@ -299,6 +299,10 @@ if: not $ud.is-login
 button-text: Login using GitHub
 link: /auth/login/?platform=github&next=/sites/?team=Personal
 
+--- github-button:
+if: $ud.is-login
+button-text: Logout from Github
+link: /auth/logout/
 
 -- object login-api:
 function: http
