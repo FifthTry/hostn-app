@@ -1,10 +1,11 @@
 -- import: fpm
+-- import: fpm/processors
 -- import: fpm-controller-ui.fly.dev/page-1
 -- import: fifthtry.github.io/inter/assets as font-assets
 -- boolean is-mobile: false
 
 -- is-mobile: true
-if: $ftd.device == mobile
+if: { ftd.device == mobile }
 
 -- fpm.font-display: $font-assets.fonts.Inter
 
@@ -13,16 +14,9 @@ if: $ftd.device == mobile
 -- boolean global-not-selected: true
 
 -- optional string selected-plan:
-$always-include$: true
-
-/-- ftd.text: $selected-plan
-if: $selected-plan is not null
 
 -- ftd.boolean: $global-not-selected
 if: $debug
-
-/-- ftd.text: $selected-plan
-if: $selected-plan is not null
 
 -- record query-data:
 string user:
@@ -32,7 +26,7 @@ string base-url:
 
 ;; <<-- Query Parameters -->>
 -- query-data query:
-$processor$: request-data
+$processor$: processors.request-data
 
 -- ftd.text: Query params
 if: $debug
