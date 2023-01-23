@@ -18,27 +18,27 @@ optional ftd.image-src user-avatar: $assets.files.avatar.jpg
 boolean show-profile-menu: false
 append-at: main-container
 open: true
-width: fill
+width: fill-container
 
 --- ftd.column:
-width: fill
+width: fill-container
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: header-container
 
 --- ftd.row:
-width: fill
+width: fill-container
 align: left
 id: logo-container
 
 --- ftd.text: $site-name
 if: $site-name is not null
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
 
 --- ftd.image: 
 if: $site-name is null
@@ -58,26 +58,26 @@ spacing: 24
 
 /--- ftd.text: Dashboard
 link: dashboard/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
+role: $inherited.types.fine-print
+color: $inherited.colors.text-strong
 white-space: nowrap
 align: center
 border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+border-color: $inherited.colors.background.base
+border-color if $MOUSE-IN: $inherited.colors.border-strong
 
 /--- ftd.text: Sign in
 link: sign-in/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
+role: $inherited.types.fine-print
+color: $inherited.colors.text-strong
 white-space: nowrap
 align: center
 border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+border-color: $inherited.colors.background.base
+border-color if $MOUSE-IN: $inherited.colors.border-strong
 
 --- ftd.row: 
-background-color: $fpm.color.main.background.step-2
+background.solid: $inherited.colors.background.step-2
 width: 24
 height: 24
 border-radius: 100
@@ -94,9 +94,9 @@ border-radius: 100
 --- ftd.column:
 if: $show-profile-menu
 width: 160	
-background-color: $fpm.color.main.background.base
+background.solid: $inherited.colors.background.base
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 padding-horizontal: $fpm.space.space-3
 padding-vertical: $fpm.space.space-3
 anchor: parent
@@ -109,7 +109,7 @@ $on-mouse-leave$: $show-profile-menu = false
 --- ftd.column:
 width: 42
 height: 42
-background-color: $fpm.color.main.background.step-2
+background.solid: $inherited.colors.background.step-2
 align: center
 border-radius: 100
 
@@ -123,72 +123,72 @@ border-radius: 100
 --- container: login-menu
 
 --- ftd.column:
-width: fill
+width: fill-container
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 padding-bottom: $fpm.space.space-3
 
 --- ftd.text: $username
 if: $username is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 margin-top: $fpm.space.space-4
 
 --- container: login-menu
 
 --- ftd.column:
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-3
 
 --- ftd.text: Logout
 link: index.html
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 margin-top: $fpm.space.space-2
 border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+border-color: $inherited.colors.background.base
+border-color if $MOUSE-IN: $inherited.colors.border-strong
 
 --- container: ftd.main
 
 --- ftd.column:
-width: fill
-background-color: $fpm.color.main.background.base
+width: fill-container
+background.solid: $inherited.colors.background.base
 
 --- ftd.column:
 id: main-container
 align: center
 min-height: calc 100vh - 173px
 max-width: 800
-width: fill
+width: fill-container
 
 --- ftd.column:
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-9
 
 --- ftd.text: $title
 if: $title is not null
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
 
 --- ftd.text:
 if: $body is not null
-role: $fpm.type.copy-large
-color: $fpm.color.main.text
+role: $inherited.types.copy-large
+color: $inherited.colors.text
 text: $body
 
 --- container: ftd.main
 
 --- ftd.column:
-width: fill
-background-color: $fpm.color.main.background.step-1
+width: fill-container
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-8
 
 --- ftd.column:
-width: fill
+width: fill-container
 max-width: 1200
 align: center
 
 --- ftd.text: &copy; 2022 FifthTry Private Limited
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text

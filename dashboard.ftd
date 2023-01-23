@@ -19,7 +19,7 @@ package-list: $package-list
 -- ftd.column create-package-button:
 caption title:
 optional string button-link:
-width: fill
+width: fill-container
 link: $button-link
 min-width: 200
 
@@ -35,7 +35,7 @@ link: $button-link
 
 
 -- ftd.column page:
-width: fill
+width: fill-container
 caption title:
 package list package-list:
 
@@ -55,7 +55,7 @@ package-list: $package-list
 /-- ftd.column create-package-button:
 caption title:
 optional string button-link:
-width: fill
+width: fill-container
 link: $button-link
 min-width: 200
 
@@ -74,7 +74,7 @@ link: $button-link
 
 -- ftd.column packages-list:
 package list package-list:
-width: fill
+width: fill-container
 margin-bottom: $fpm.space.space-10
 
 --- show-package: $obj.title
@@ -95,29 +95,29 @@ description: $obj.description
 caption title:
 string description: 
 string package-url:
-width: fill
+width: fill-container
 padding-vertical: $fpm.space.space-2
 
 --- ftd.column:
-width: fill
+width: fill-container
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-6
 spacing: 12
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 border-radius: 10
 
 --- ftd.text: $title
-role: $fpm.type.heading-small
-color: $fpm.color.main.text
-color if $MOUSE-IN: $fpm.color.main.text-strong
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+color if $MOUSE-IN: $inherited.colors.text-strong
 border-bottom: 1
-border-color: $fpm.color.main.background.step-1
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
+border-color: $inherited.colors.background.step-1
+border-color if $MOUSE-IN: $inherited.colors.text-strong
 link: $package-url
 
 --- ftd.text: $description
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 
 
 

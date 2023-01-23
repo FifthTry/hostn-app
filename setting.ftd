@@ -90,8 +90,8 @@ string edit-url: /
 string package-name: Personal
 string team-name: Team Name
 string team-plan-label: Current Team Plan
-width: fill
-background-color: $fpm.color.main.background.step-1
+width: fill-container
+background.solid: $inherited.colors.background.step-1
 border-radius: 12
 padding-vertical: 24
 boolean open: false
@@ -100,34 +100,34 @@ margin-bottom: 28
 spacing: 32
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: first-column
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 12
 
 --- ftd.text: $team-name
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-width: fill
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+width: fill-container
 
 --- ftd.text: $title
-role: $fpm.type.heading-small
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+width: fill-container
 
 --- ftd.text: CHANGE
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color if $MOUSE-IN: $fpm.color.main.error.text
-background-color if $MOUSE-IN: $fpm.color.main.error.base
-color: $fpm.color.main.error.text
-background-color: $fpm.color.main.text-strong
-border-color if $MOUSE-IN: $fpm.color.main.error.base
-border-color: $fpm.color.main.error.text
+color if $MOUSE-IN: $inherited.colors.error.text
+background-color if $MOUSE-IN: $inherited.colors.error.base
+color: $inherited.colors.error.text
+background.solid: $inherited.colors.text-strong
+border-color if $MOUSE-IN: $inherited.colors.error.base
+border-color: $inherited.colors.error.text
 border-radius: 8
 $on-click$: toggle $show-edit-bar
 
@@ -137,30 +137,30 @@ $on-click$: toggle $show-edit-bar
 if: $show-edit-bar
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 12
 
 --- ftd.text: $team-plan-label
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
-width: fill
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+width: fill-container
 
 --- ftd.text: $active-team-plan
-role: $fpm.type.heading-small
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+width: fill-container
 
 --- ftd.text: CHANGE PLAN
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color if $MOUSE-IN: $fpm.color.main.error.text
-background-color if $MOUSE-IN: $fpm.color.main.error.base
-color: $fpm.color.main.error.text
-background-color: $fpm.color.main.text-strong
-border-color if $MOUSE-IN: $fpm.color.main.error.base
-border-color: $fpm.color.main.error.text
+color if $MOUSE-IN: $inherited.colors.error.text
+background-color if $MOUSE-IN: $inherited.colors.error.base
+color: $inherited.colors.error.text
+background.solid: $inherited.colors.text-strong
+border-color if $MOUSE-IN: $inherited.colors.error.base
+border-color: $inherited.colors.error.text
 border-radius: 8
 /$on-click$: toggle $show-edit-bar
 
@@ -169,14 +169,14 @@ border-radius: 8
 --- ftd.text: DELETE TEAM
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color if $MOUSE-IN: $fpm.color.main.error.text
-background-color  if $MOUSE-IN: $fpm.color.main.error.base
-color : $fpm.color.main.error.text
-background-color : $fpm.color.main.text-strong
-border-color  if $MOUSE-IN: $fpm.color.main.error.base
-border-color: $fpm.color.main.error.text
+color if $MOUSE-IN: $inherited.colors.error.text
+background-color  if $MOUSE-IN: $inherited.colors.error.base
+color : $inherited.colors.error.text
+background-color : $inherited.colors.text-strong
+border-color  if $MOUSE-IN: $inherited.colors.error.base
+border-color: $inherited.colors.error.text
 border-radius: 8
 $on-click$: toggle $open
 
@@ -192,14 +192,14 @@ placeholder: New Team Name
 value: $query.team
 type: text
 $on-input$: $current-new-team-name=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 min-width: 200
 
 --- button.button: Save
@@ -216,55 +216,55 @@ $on-click$: toggle $show-edit-bar
 -- ftd.column delete-card:
 caption package-name:
 boolean $open:
-width: fill
+width: fill-container
 padding-vertical: 24
 padding-horizontal: 24
-color: $fpm.color.main.text-strong
-border-color: $fpm.color.main.border
+color: $inherited.colors.text-strong
+border-color: $inherited.colors.border
 border-width: 1
 spacing: 24
 border-radius: 8
 
 
 --- ftd.text: ARE YOU SURE ?
-role: $fpm.type.copy-relaxed
+role: $inherited.types.copy-relaxed
 
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 8
 
 
 --- ftd.text: If yes, type in your team name
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
 
 
 --- ftd.text: $query.team
-role: $fpm.type.copy-relaxed
+role: $inherited.types.copy-relaxed
 
 
 --- ftd.text: below
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
 
 --- container: ftd.main
 
 --- ftd.row:
-width: fill
+width: fill-container
 
 --- ftd.input:
 placeholder: Re-Type in your current team name
 $on-input$: $verification-team-name-text=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
-border-color: $fpm.color.main.border
+role: $inherited.types.copy-tight
+color: $inherited.colors.text-strong
+border-color: $inherited.colors.border
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-width: fill
-background-color: $fpm.color.main.border
+width: fill-container
+background.solid: $inherited.colors.border
 margin-right: 32
 
 
@@ -276,14 +276,14 @@ $on-click$: message-host $delete-team-api
 --- ftd.text: CONFIRM
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color if $MOUSE-IN: $fpm.color.main.error.text
-background-color  if $MOUSE-IN: $fpm.color.main.error.base
-color : $fpm.color.main.error.text
-background-color : $fpm.color.main.text-strong
-border-color  if $MOUSE-IN: $fpm.color.main.error.base
-border-color: $fpm.color.main.error.text
+color if $MOUSE-IN: $inherited.colors.error.text
+background-color  if $MOUSE-IN: $inherited.colors.error.base
+color : $inherited.colors.error.text
+background-color : $inherited.colors.text-strong
+border-color  if $MOUSE-IN: $inherited.colors.error.base
+border-color: $inherited.colors.error.text
 border-radius: 8
 $on-click$: message-host $delete-team-api
 margin-right: 24
@@ -296,14 +296,14 @@ $on-click$: $open= false
 --- ftd.text: CANCEL
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color  if $MOUSE-IN: $fpm.color.main.error.text
-background-color  if $MOUSE-IN: $fpm.color.main.error.base
-color : $fpm.color.main.error.text
-background-color : $fpm.color.main.text-strong
-border-color  if $MOUSE-IN: $fpm.color.main.error.base
-border-color: $fpm.color.main.error.text
+color  if $MOUSE-IN: $inherited.colors.error.text
+background-color  if $MOUSE-IN: $inherited.colors.error.base
+color : $inherited.colors.error.text
+background-color : $inherited.colors.text-strong
+border-color  if $MOUSE-IN: $inherited.colors.error.base
+border-color: $inherited.colors.error.text
 border-radius: 8
 $on-click$: $open= false
 
@@ -313,8 +313,8 @@ $on-click$: $open= false
 if: $verification-text-error is not null
 
 --- ftd.text: $verification-text-error
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.border
+role: $inherited.types.fine-print
+color: $inherited.colors.error.border
 
 
 -- object edit-team-name-api:

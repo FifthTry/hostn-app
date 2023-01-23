@@ -29,7 +29,7 @@ $processor$: toc
 -- ftd.column create-package-button:
 caption title:
 optional string button-link:
-width: fill
+width: fill-container
 link: $button-link
 min-width: 200
 
@@ -113,35 +113,35 @@ team list teams: $teams
 optional ftd.image-src user-avatar: $assets.files.avatar.jpg
 boolean show-profile-menu: false
 string team-name:
-width: fill
+width: fill-container
 boolean widthfill: false
 open: true
 id: main-container
 append-at: main-container
-background-color: $fpm.color.main.background.base
-color: $fpm.color.main.text
+background.solid: $inherited.colors.background.base
+color: $inherited.colors.text
 height: calc 100vh - 0px
 overflow-y: auto
 
 --- ftd.column:
-width: fill
+width: fill-container
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: header-container
 
 --- ftd.row:
-width: fill
+width: fill-container
 align: left
 id: logo-container
 
 --- ftd.text: $site-name
 if: $site-name is not null
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
 
 --- ftd.image: 
 if: $site-name is null
@@ -161,23 +161,23 @@ spacing: 24
 
 /--- ftd.text: Dashboard
 link: dashboard/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
+role: $inherited.types.fine-print
+color: $inherited.colors.text-strong
 white-space: nowrap
 align: center
 border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+border-color: $inherited.colors.background.base
+border-color if $MOUSE-IN: $inherited.colors.border-strong
 
 /--- ftd.text: Sign in
 link: sign-in/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
+role: $inherited.types.fine-print
+color: $inherited.colors.text-strong
 white-space: nowrap
 align: center
 border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+border-color: $inherited.colors.background.base
+border-color if $MOUSE-IN: $inherited.colors.border-strong
 
 --- team-selection-bar:
 team-name: $team-name
@@ -186,7 +186,7 @@ query-user: $query-user
 query-team: $query-team
 
 --- ftd.row: 
-background-color: $fpm.color.main.background.step-2
+background.solid: $inherited.colors.background.step-2
 width: 24
 height: 24
 border-radius: 100
@@ -203,9 +203,9 @@ border-radius: 100
 --- ftd.column:
 if: $show-profile-menu
 width: 160	
-background-color: $fpm.color.main.background.base
+background.solid: $inherited.colors.background.base
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 padding-horizontal: $fpm.space.space-3
 padding-vertical: $fpm.space.space-3
 anchor: parent
@@ -218,7 +218,7 @@ $on-mouse-leave$: $show-profile-menu = false
 --- ftd.column:
 width: 42
 height: 42
-background-color: $fpm.color.main.background.step-2
+background.solid: $inherited.colors.background.step-2
 align: center
 border-radius: 100
 
@@ -232,33 +232,33 @@ border-radius: 100
 --- container: login-menu
 
 --- ftd.column:
-width: fill
+width: fill-container
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 padding-bottom: $fpm.space.space-3
 
 --- ftd.text: $query-user
 if: $username is not null
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 margin-top: $fpm.space.space-4
 
 --- container: login-menu
 
 
 --- ftd.column:
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-3
 
 
 --- ftd.text: Logout
 link: /auth/logout/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 margin-top: $fpm.space.space-2
 border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
+border-color: $inherited.colors.background.base
+border-color if $MOUSE-IN: $inherited.colors.border-strong
 
 --- container: ftd.main
 
@@ -266,7 +266,7 @@ border-color if $MOUSE-IN: $fpm.color.main.border-strong
 --- container: ftd.main
 
 --- ftd.column:
-width: fill
+width: fill-container
 padding-horizontal: 24
 padding-vertical: 24
 id: page-content
@@ -275,9 +275,9 @@ id: page-content
 --- container: page-content
 
 --- ftd.column: 
-width: fill
+width: fill-container
 id: hhhh
-background-color if $show-section-header: $fpm.color.main.background.step-2
+background-color if $show-section-header: $inherited.colors.background.step-2
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
 border-radius: 4
@@ -300,16 +300,16 @@ $loop$: $sections as $obj
 
 
 --- ftd.column: 
-width: fill
+width: fill-container
 id: llll
 
 --- ftd.column:
 if: $show
-width: fill
+width: fill-container
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: jjjj
 spacing: 64
 /padding-vertical: 64
@@ -326,17 +326,17 @@ toc-obj: $toc-one
 --- container: jjjj
 
 --- ftd.column:
-width: fill
+width: fill-container
 padding-vertical: 24
 padding-horizontal: 24
 id: kkk
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 margin-top: 25
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 
 --- sub-section-component:
 sub-sections: $sub-sections
@@ -348,7 +348,7 @@ site-access-link: $site-access-link
 --- container: kkk
 
 --- ftd.column:
-width: fill
+width: fill-container
 id: main-container
 max-width if not $widthfill: 1200
 max-width if $widthfill: fill
@@ -361,10 +361,10 @@ padding-vertical: 24
 
 --- ftd.column:
 if: not $show
-width: fill
+width: fill-container
 
 --- ftd.column:
-width: fill
+width: fill-container
 id: main-container
 max-width if not $widthfill: 1200
 max-width if $widthfill: fill
@@ -382,8 +382,8 @@ margin-bottom: 15
 spacing: 12
 
 --- ftd.text: Team:
-role: $fpm.type.heading-small
-color: $fpm.color.main.text
+role: $inherited.types.heading-small
+color: $inherited.colors.text
 align: center
 
 --- ftd.row:
@@ -392,13 +392,13 @@ min-width: 250
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-2
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 border-radius: 4
 /$on-click$: toggle $dropdown-open
 
 --- ftd.text: $team-name
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
 
 --- ftd.image:
 if: not $dropdown-open
@@ -439,71 +439,71 @@ caption title:
 boolean is-active:
 
 --- ftd.text: Not empty
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 
 --- ftd.text: $title
 if: $title == Info
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: $site-info-link
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Access
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: $site-access-link
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Metrics
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: /site-metrics/
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Activity
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: /site-update/
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Settings
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: /site-settings/
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 ;## Metrics: /site-metrics/
@@ -521,54 +521,54 @@ boolean is-active:
 
 --- ftd.text: $title
 if: $title == Sites
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: $sites-link
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Access
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: $team-access-link
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Billing
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: $team-billings-link
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Settings
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: $team-settings-link
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 -- ftd.row toc-loop:
@@ -586,41 +586,41 @@ boolean is-active:
 
 --- ftd.text: $title
 if: $title == Site Updates
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: /site-update/
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Analytics
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: /site-analytics/
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 --- ftd.text: $title
 if: $title == Logs
-color: $fpm.color.main.text-strong
+color: $inherited.colors.text-strong
 style: medium
 link: /site-logs/
-role: $fpm.type.copy-tight
-color if $is-active: $fpm.color.main.cta-primary.base
+role: $inherited.types.copy-tight
+color if $is-active: $inherited.colors.cta-primary.base
 border-bottom: 1
 padding-bottom: 4
-border-color: $fpm.color.main.background.step-2
-border-color if $is-active: $fpm.color.main.cta-primary.base
+border-color: $inherited.colors.background.step-2
+border-color if $is-active: $inherited.colors.cta-primary.base
 margin-right: 64
 
 
@@ -640,7 +640,7 @@ height: fill
 overflow-y: auto
 width: 350
 align: top-left
-background-color: $fpm.color.main.background.overlay
+background.solid: $inherited.colors.background.overlay
 border-radius: 8
 padding-left: 24
 padding-top: 16
@@ -659,17 +659,17 @@ toc: $obj
 -- ftd.column toc-instance:
 side-site-data toc:
 id: toc-instance
-width: fill
+width: fill-container
 
 
 --- ftd.text:
 if: $toc.url is not null
 link: $toc.url
 text: $toc.site-name
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 min-width: fit-content
-color: $fpm.color.main.text
-color if $toc.is-active: $fpm.color.main.cta-primary.base
+color: $inherited.colors.text
+color if $toc.is-active: $inherited.colors.cta-primary.base
 style: medium
 padding-bottom: 4
 padding-horizontal: 14
@@ -682,15 +682,15 @@ optional string site-info-link:
 optional string site-access-link:
 fpm.toc-item list sub-sections:
 fpm.toc-item list toc:
-width: fill
+width: fill-container
 border-radius: 8
 padding-left: 24
 padding-vertical: 16
 spacing: 32
-background-color: $fpm.color.main.background.step-2
+background.solid: $inherited.colors.background.step-2
 
 --- ftd.row:
-width: fill
+width: fill-container
 if: $sub-sections is not empty
 
 --- sub-section-loop: $sub.title
@@ -723,11 +723,11 @@ $loop$: $toc as $obj
 optional string query-user:
 optional string query-team:
 boolean show-create-team-component: false
-width: fill
+width: fill-container
 min-width: 250
-background-color: $fpm.color.main.background.base
+background.solid: $inherited.colors.background.base
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 team list options:
 anchor: parent
 left: 0
@@ -740,7 +740,7 @@ border-bottom-radius: 4
 z-index: 9999999
 
 --- ftd.column:
-width: fill
+width: fill-container
 spacing: 10
 padding-horizontal: 5
 
@@ -764,20 +764,20 @@ item-link: $obj.item-link
 optional string query-user:
 optional string query-team:
 spacing: 20
-width: fill
+width: fill-container
 
 --- ftd.input:
 placeholder: New Team Name
 type: text
 $on-input$: $current-new-team-member-name=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 min-width: 150
 
 --- button.button: Create
@@ -791,18 +791,18 @@ $on-click$: message-host $create-team-api
 -- ftd.column options-list:
 optional string item-title:
 optional string item-link: 
-width: fill
+width: fill-container
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 padding-bottom: $fpm.space.space-3
-background-color if $MOUSE-IN: $fpm.color.main.background.step-1
+background-color if $MOUSE-IN: $inherited.colors.background.step-1
 padding-horizontal: $fpm.space.space-2
 padding-vertical: $fpm.space.space-2
 
 --- ftd.text: $item-title
 if: $item-title is not null
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 margin-bottom: $fpm.space.space-2
 link: $item-link
 

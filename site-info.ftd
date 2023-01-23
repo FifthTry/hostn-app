@@ -73,8 +73,8 @@ data: $info.current-site
 
 -- ftd.row current-site-info:
 site-info data:
-width: fill
-background-color: $fpm.color.main.background.step-1
+width: fill-container
+background.solid: $inherited.colors.background.step-1
 border-radius: 12
 string status: Online
 string date: $info.current-site.updated-on
@@ -82,16 +82,16 @@ padding-vertical: 24
 padding-horizontal: 24
 margin-bottom: 28
 spacing: 32
-border-color if $data.status == INITIALIZED: $fpm.color.main.cta-secondary.base
+border-color if $data.status == INITIALIZED: $inherited.colors.cta-secondary.base
 border-color if $data.status == PENDING: $dark-red
-border-color if $data.status == READY: $fpm.color.main.success.text
-border-color if $data.status == STOPPED: $fpm.color.main.error.border
-border-color if $data.status == TERMINATED: $fpm.color.main.warning.text
+border-color if $data.status == READY: $inherited.colors.success.text
+border-color if $data.status == STOPPED: $inherited.colors.error.border
+border-color if $data.status == TERMINATED: $inherited.colors.warning.text
 border-width: 2
 
 --- ftd.text: $data.site-name
-role: $fpm.type.heading-small
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
 border-bottom if $MOUSE-IN: 1
 min-width: 150
 link: $data.domain
@@ -99,10 +99,10 @@ link: $data.domain
 /--- ftd.text: View
 padding-vertical: 8
 padding-horizontal: 12
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 style: bold
-color: $fpm.color.main.text-strong
-background-color: $fpm.color.main.cta-primary.base
+color: $inherited.colors.text-strong
+background.solid: $inherited.colors.cta-primary.base
 border-radius: 8
 link: $data.domain
 
@@ -110,25 +110,25 @@ link: $data.domain
 
 
 --- ftd.column:
-width: fill
+width: fill-container
 spacing: 10
 id: jjj
 
 --- ftd.row:
 align: right
-color: $fpm.color.main.text
+color: $inherited.colors.text
 spacing: 12
 
 --- ftd.text: Status:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $data.status
-role: $fpm.type.copy-tight
-color if $data.status == INITIALIZED: $fpm.color.main.cta-secondary.base
+role: $inherited.types.copy-tight
+color if $data.status == INITIALIZED: $inherited.colors.cta-secondary.base
 color if $data.status == PENDING: $dark-red
-color if $data.status == READY: $fpm.color.main.success.text
-color if $data.status == STOPPED: $fpm.color.main.error.border
-color if $data.status == TERMINATED: $fpm.color.main.warning.text
+color if $data.status == READY: $inherited.colors.success.text
+color if $data.status == STOPPED: $inherited.colors.error.border
+color if $data.status == TERMINATED: $inherited.colors.warning.text
 
 --- container: jjj
 
@@ -137,10 +137,10 @@ align: right
 spacing: 12
 
 --- ftd.text: Instance-Type:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $data.instance-type
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- container: jjj
 
@@ -149,14 +149,14 @@ align: right
 spacing: 12
 
 --- ftd.text: Public IP:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $data.ip
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text-strong
+role: $inherited.types.copy-tight
+color: $inherited.colors.text-strong
 link: $data.domain
 border-bottom if $MOUSE-IN: 1
-border-color: $fpm.color.main.text-strong
+border-color: $inherited.colors.text-strong
 
 --- container: jjj
 
@@ -166,8 +166,8 @@ spacing: 12
 
 
 --- ftd.text: Updated-on:
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $date
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 

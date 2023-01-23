@@ -32,7 +32,7 @@ csrf_token: some
 
 
 -- ftd.column page:
-width: fill
+width: fill-container
 string csrf_token:
 caption title:
 
@@ -40,13 +40,13 @@ caption title:
 
 
 --- ftd.column:
-width: fill
+width: fill-container
 id: main-form
 padding-vertical: $fpm.space.space-6
 padding-horizontal: $fpm.space.space-8
-background-color: $fpm.color.main.background.step-1
+background.solid: $inherited.colors.background.step-1
 border-width: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 position: center
 margin-bottom: $fpm.space.space-10
 
@@ -54,8 +54,8 @@ margin-bottom: $fpm.space.space-10
 align: center
 
 --- ftd.text: $title
-role: $fpm.type.heading-medium
-color: $fpm.color.main.text
+role: $inherited.types.heading-medium
+color: $inherited.colors.text
 align: center
 margin-bottom: $fpm.space.space-4
 
@@ -65,90 +65,90 @@ margin-bottom: $fpm.space.space-4
 if: $error-form is not null
 margin-top: $fpm.space.space-2
 margin-left: $fpm.space.space-0
-width: fill
+width: fill-container
 
 --- ftd.text: $error-form
-role: $fpm.type.copy-tight
-color: $fpm.color.main.error.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.error.text
 
 --- container: main-form
 
 --- ftd.column:
-width: fill
+width: fill-container
 align: center
 margin-top: $fpm.space.space-4
 
 --- ftd.text: Enter email address
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
 placeholder: Enter Email
 $on-change$: $username=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 
 --- ftd.column:
 if: $error-email is not null
 margin-top: $fpm.space.space-2
 margin-left: $fpm.space.space-3
-width: fill
+width: fill-container
 
 --- ftd.text: $error-email
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
+role: $inherited.types.fine-print
+color: $inherited.colors.error.text
 
 --- container: main-form
 
 --- ftd.column:
-width: fill
+width: fill-container
 align: center
 margin-top: $fpm.space.space-4
 
 --- ftd.text: Enter your password
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
 placeholder: Enter passsword
 type: password
 $on-change$: $password=$VALUE
-role: $fpm.type.copy-tight
-color: $fpm.color.main.text
-background-color: $fpm.color.main.background.step-1
+role: $inherited.types.copy-tight
+color: $inherited.colors.text
+background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
 border-width: 1
-border-color: $fpm.color.main.border
-width: fill
+border-color: $inherited.colors.border
+width: fill-container
 
 --- ftd.column:
 if: $error-password is not null
 margin-top: $fpm.space.space-2
 margin-left: $fpm.space.space-3
-width: fill
+width: fill-container
 
 --- ftd.text: $error-password
-role: $fpm.type.fine-print
-color: $fpm.color.main.error.text
+role: $inherited.types.fine-print
+color: $inherited.colors.error.text
 
 --- container: main-form
 
 --- ftd.column: 
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-4
 margin-bottom: $fpm.space.space-4
 
 --- ftd.row:
-width: fill
+width: fill-container
 
 --- ftd.input:
 type: checkbox
@@ -156,19 +156,19 @@ width: 16
 height: 16
 
 --- ftd.text: I accept
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 white-space: nowrap
 align: center
 margin-left: $fpm.space.space-3
 
 --- ftd.text: Terms &amp; conditions
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
+border-color: $inherited.colors.text
+border-color if $MOUSE-IN: $inherited.colors.text-strong
+color: $inherited.colors.text
+color  if $MOUSE-IN:  $inherited.colors.text-strong
 link: https://www.fifthtry.com/terms/
 open-in-new-tab: true
 white-space: nowrap
@@ -176,19 +176,19 @@ align: center
 margin-left: $fpm.space.space-1
 
 --- ftd.text: and
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
+role: $inherited.types.fine-print
+color: $inherited.colors.text
 white-space: nowrap
 align: center
 margin-left: $fpm.space.space-1
 
 --- ftd.text: Privacy policy
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
+border-color: $inherited.colors.text
+border-color if $MOUSE-IN: $inherited.colors.text-strong
+color: $inherited.colors.text
+color  if $MOUSE-IN:  $inherited.colors.text-strong
 link: https://www.fifthtry.com/privacy/
 open-in-new-tab: true
 white-space: nowrap
@@ -198,7 +198,7 @@ margin-left: $fpm.space.space-1
 --- container: main-form
 
 --- ftd.column: 
-width: fill
+width: fill-container
 margin-top: $fpm.space.space-6
 
 --- ftd.row:
@@ -210,18 +210,18 @@ align: right
 align: center
 
 --- ftd.text: Forgot Password?
-role: $fpm.type.fine-print
+role: $inherited.types.fine-print
 border-bottom: 1
-border-color: $fpm.color.main.background.step-1
-border-color if $MOUSE-IN: $fpm.color.main.text
-color: $fpm.color.main.text
+border-color: $inherited.colors.background.step-1
+border-color if $MOUSE-IN: $inherited.colors.text
+color: $inherited.colors.text
 link: forgot-password/
 white-space: nowrap
 
 --- container: button-row
 
 --- ftd.column:
-width: fill
+width: fill-container
 
 --- ftd.row:
 align: right

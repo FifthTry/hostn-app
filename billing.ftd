@@ -96,7 +96,7 @@ bilinglist: $bilings
 
 -- ftd.column billing-component:
 biling list bilinglist:
-width: fill
+width: fill-container
 spacing: 64
 
 
@@ -105,15 +105,15 @@ spacing: 64
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 id: kkkk
 
 --- ftd.column:
 width: percent 40
 
 --- ftd.text: Invoices
-role: $fpm.type.heading-large
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
 
 --- container: kkkk
 
@@ -122,7 +122,7 @@ width: percent 60
 
 
 /--- ftd.text: INVOICES
-role: $fpm.type.copy-large
+role: $inherited.types.copy-large
 margin-bottom: 26
 
 --- bilings-loop: 
@@ -137,44 +137,44 @@ $loop$: $bilinglist as $obj
 
 
 -- ftd.row bilings-loop:
-width: fill
-background-color: $fpm.color.main.background.step-1
+width: fill-container
+background.solid: $inherited.colors.background.step-1
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 string status:
 string date: 
 string amount:
 padding-vertical: 24
 padding-horizontal: 24
-border-color if $status == PENDING: $fpm.color.main.error.border
+border-color if $status == PENDING: $inherited.colors.error.border
 
 
 
 
 
 --- ftd.text: $date
-role: $fpm.type.copy-relaxed
-color: $fpm.color.main.text
-width: fill
+role: $inherited.types.copy-relaxed
+color: $inherited.colors.text
+width: fill-container
 
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 spacing: 12
 
 --- ftd.text: \$
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 --- ftd.text: $amount
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 
 --- container: ftd.main
 
 
 --- ftd.text: $status
-role: $fpm.type.copy-tight
+role: $inherited.types.copy-tight
 
 
 
@@ -187,7 +187,7 @@ string amount: 31.25
 string url: /
 spacing: 64
 border-bottom: 1
-border-color: $fpm.color.main.border
+border-color: $inherited.colors.border
 padding-bottom: 24
 
 
@@ -196,12 +196,12 @@ width: percent 40
 spacing: 10
 
 --- ftd.text: $title
-role: $fpm.type.heading-large
-color: $fpm.color.main.text-strong
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
 
 --- ftd.text:
-color: $fpm.color.main.text
-role: $fpm.type.copy-relaxed
+color: $inherited.colors.text
+role: $inherited.types.copy-relaxed
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
@@ -216,27 +216,27 @@ align: center
 id: iii
 
 --- ftd.text: Card details here
-color: $fpm.color.main.text
-role: $fpm.type.copy-relaxed
-width: fill
+color: $inherited.colors.text
+role: $inherited.types.copy-relaxed
+width: fill-container
 
 
 --- ftd.row:
-width: fill
+width: fill-container
 
 --- ftd.text: \$
-color: $fpm.color.main.text
-role: $fpm.type.copy-relaxed
+color: $inherited.colors.text
+role: $inherited.types.copy-relaxed
 
 --- ftd.text: 100
-color: $fpm.color.main.text
-role: $fpm.type.copy-relaxed
+color: $inherited.colors.text
+role: $inherited.types.copy-relaxed
 
 --- container: iii
 
 
 --- ftd.text: View details
 link: $url
-color: $fpm.color.main.text
-role: $fpm.type.copy-relaxed
-width: fill
+color: $inherited.colors.text
+role: $inherited.types.copy-relaxed
+width: fill-container
