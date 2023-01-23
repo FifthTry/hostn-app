@@ -19,7 +19,7 @@ is-login: false
 
 -- optional string current-password:
 
--- optional string site-name:
+-- string site-name: Hello
 
 -- boolean debug: false
 
@@ -33,8 +33,7 @@ if: { debug }
 -- ftd.text: $current-password
 if: { debug }
 
--- page:
-
+-- new_page:
 
 /-- login: Login
 email-label: Email*
@@ -50,13 +49,13 @@ password-label: Password*
 
 
 
-
--- component page:
+-- component new_page:
 optional caption title:
 optional body body:
 optional string username:
 ftd.image-src user-avatar: $assets.files.avatar.jpg
 boolean $show-profile-menu: false
+
 
 -- ftd.column:
 width: fill-container
@@ -64,138 +63,27 @@ padding-vertical.px: 16
 padding-horizontal.px: 16
 background.solid: $inherited.colors.background.step-1
 
+;; LOGO ROW
 -- ftd.row:
-width: fill-container
-
--- ftd.row:
-width: fill-container
-align-content: left
-
--- ftd.text: $site-name
-if: { site-name !=  NULL }
-role: $inherited.types.heading-medium
-color: $inherited.colors.text-strong
 
 -- ftd.image:
-if: { site-name == NULL }
 src: $site-logo
 width.fixed.px: 120
 height: auto
-link: index.html
+link: /
 
 -- end: ftd.row
 
 
--- ftd.row:
-align-content: right
-padding-top.px if { site-name != NULL }: 16
-padding-top.px if { site-name == NULL }: 8
-spacing.px: 24
-
-
-
+;; Login and Logout
 -- ftd.column:
-$on-click$: $deploy-fpm-controller-ui-api()
 
--- button.button: Deploy Controller UI
+-- login: Login
 
 -- end: ftd.column
 
 
--- ftd.column:
-$on-click$: $deploy-controller-service-api()
-
--- button.button: Deploy Controller Service
-
--- end: ftd.column
-
--- end: ftd.row
-
-
-
--- ftd.column:
-if: { page.show-profile-menu }
-width.fixed.px: 160
-background.solid: $inherited.colors.background.base
-border-width.px: 1
-border-color: $inherited.colors.border
-padding-horizontal.px: 12
-padding-vertical.px: 12
-anchor: parent
-right.px: 0
-top.px: 25
-$on-mouse-enter$: $ftd.set-bool($a = $page.show-profile-menu, v = true)
-$on-mouse-leave$: $ftd.set-bool($a = $page.show-profile-menu, v = false)
-
--- end: ftd.column
-
--- ftd.column:
-width: fill-container
-border-bottom-width.px: 1
-border-color: $inherited.colors.border
-padding-bottom.px: 12
-
--- ftd.text: $page.username
-if: { page.username != NULL }
-role: $inherited.types.fine-print
-color: $inherited.colors.text
-margin-top.px: 16
-
--- end: ftd.column
-
-
--- ftd.column:
-width: fill-container
-margin-top.px: 12
-
-
--- ftd.text: Logout
-link: index.html
-role: $inherited.types.fine-print
-color: $inherited.colors.text
-margin-top.px: 8
-border-bottom-width.px: 1
-border-color: $inherited.colors.background.base
-/border-color if $MOUSE-IN: $inherited.colors.border-strong
-;; we don't have $MOUSE-IN for now
-
--- end: ftd.column
-
-
--- ftd.column:
-width: fill-container
-background.solid: $inherited.colors.background.base
-
--- ftd.column:
-align-content: center
-min-height.fixed.calc: 100vh - 173px
-max-width.fixed.px: 800
-width: fill-container
-
--- ftd.column:
-width: fill-container
-margin-top.px: 48
-
--- ftd.text: $page.title
-if: { page.title != NULL }
-role: $inherited.types.heading-small
-color: $inherited.colors.text-strong
-
--- ftd.text:
-if: { page.body != NULL }
-role: $inherited.types.copy-large
-color: $inherited.colors.text
-text: $page.body
-
--- end: ftd.column
--- end: ftd.column
--- end: ftd.column
-
--- ftd.column:
-width: fill-container
-background.solid: $inherited.colors.background.step-1
-padding-vertical.px: 40
-
+;; Footer
 -- ftd.column:
 width: fill-container
 max-width.fixed.px: 1200
@@ -207,23 +95,16 @@ color: $inherited.colors.text
 
 -- end: ftd.column
 
+;; Base Column End
 -- end: ftd.column
-
--- end: ftd.column
-
--- end: page
+-- end: new_page
 
 
 
 
 
-
-
-
--- ftd.column login:
+-- component login:
 caption title:
-string email-label:
-string password-label:
 string cta-primary: Sign In
 string cta-secondary: Sign Up
 string error-email: email error
@@ -232,64 +113,41 @@ string email-placeholder: username
 string password-placeholder: password
 
 -- ftd.column:
-padding-vertical: 24
-padding-horizontal: 40
+padding-vertical.px: 24
+padding-horizontal.px: 40
 background.solid: $inherited.colors.background.step-1
 border-width.px: 1
 border-color: $inherited.colors.border
 width.fixed.percent: 70
-position: center
+align-content: center
 
--- ftd.column:
-align: center
-
--- ftd.text: $title
+-- ftd.text: $login.title
 role: $inherited.types.heading-medium
 color: $inherited.colors.text
-align-content: center
 margin-bottom.px: 16
-
--- end: login
-
-
--- ftd.column:
-align-content: center
 
 -- github-button:
 if: { !ud.is-login }
 button-text: Login using GitHub
 link: /auth/login/?platform=github&next=/sites/?team=Personal
+icon: $assets.files.static.github-logo.svg
 
 -- github-button:
 if: { ud.is-login }
 button-text: Logout from Github
 link: /auth/logout/
+icon: $assets.files.static.github-logo.svg
 
+-- end: ftd.column
 
--- void login-api():
-
-http("/-/fpm-controller-ui.fly.dev/api/login/", "post", ("user", current-user-name), ("password", current-password))
-;; $username-error: $username-error
-
-
--- void deploy-fpm-controller-ui-api():
-
-http("/-/fpm-controller-ui.fly.dev/api/create-instance/", "post", ("package_name", "fpm-controller-ui"), ("download_base_url", "https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/main/"))
-
-
--- void deploy-controller-service-api():
-
-http("/-/fpm-controller-ui.fly.dev/api/deploy-controller/", "post")
-
-
+-- end: login
 
 
 -- component github-button:
-optional string sign-in:
-optional string button-text:
-optional ftd.resizing width:
-optional ftd.image-src icon-github: $assets.files.assets.images.icon-github.svg
-optional string link: https://github.com/apps/continuous-documentation
+string button-text:
+string link:
+optional ftd.image-src icon:
+
 
 -- ftd.row:
 align-content: center
@@ -298,18 +156,16 @@ padding-vertical.px: 8
 color: $inherited.colors.background.step-1
 background.solid: $inherited.colors.cta-primary.base
 border-radius.px: 4
-width: $github-button.width
+width.fixed.px: 180
 cursor: pointer
-link: $github-button.link
 
 
--- ftd.text: $github-button.sign-in
-if: { github-button.sign-in != NULL }
-white-space: nowrap
-role: $inherited.types.fine-print
-text-align: center
-color: $inherited.colors.background.step-1
-margin-right.px: 4
+-- ftd.image:
+if: { github-button.icon != NULL }
+src: $github-button.icon
+width.fixed.px: 20
+height.fixed.px: 20
+
 
 -- ftd.text: $github-button.button-text
 if: { github-button.button-text != NULL }
