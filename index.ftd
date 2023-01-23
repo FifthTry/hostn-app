@@ -33,23 +33,11 @@ if: { debug }
 -- ftd.text: $current-password
 if: { debug }
 
--- new_page:
-
-/-- login: Login
-email-label: Email*
-password-label: Password*
+-- page:
 
 
 
-
-
-
-
-
-
-
-
--- component new_page:
+-- component page:
 optional caption title:
 optional body body:
 optional string username:
@@ -97,7 +85,7 @@ color: $inherited.colors.text
 
 ;; Base Column End
 -- end: ftd.column
--- end: new_page
+-- end: page
 
 
 
