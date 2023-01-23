@@ -1,12 +1,11 @@
--- import: fifthtry.github.io/fpm-controller-ui/assets
+-- import: fpm-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/button as button
 
 -- optional string site-name:
 
 -- ftd.image-src site-logo: 
-light: $assets.files.logo-fifthtry.svg.light
-dark: $assets.files.logo-fifthtry.svg.dark
-
+light: $assets.files.static.logo-fifthtry.svg.light
+dark: $assets.files.static.logo-fifthtry.svg.dark
 
 
 
@@ -57,7 +56,7 @@ padding-top if $site-name is not null: $fpm.space.space-4
 padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
---- ftd.text: Dashboard
+/--- ftd.text: Dashboard
 link: dashboard/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -67,7 +66,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.text: Sign in
+/--- ftd.text: Sign in
 link: sign-in/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong

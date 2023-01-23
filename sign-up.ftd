@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/base
+-- import: fpm-controller-ui.fly.dev/base
 
 -- optional string username:
 $always-include$: true
@@ -112,7 +112,7 @@ color: $fpm.color.main.text
 margin-bottom: $fpm.space.space-2
 
 --- ftd.input:
-placeholder: Enter passsword
+placeholder: Enter password
 type: password
 $on-change$: $password=$VALUE
 role: $fpm.type.copy-tight

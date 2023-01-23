@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui as base
+-- import: fpm-controller-ui.fly.dev as base
 
 -- record package:
 caption title:
@@ -11,6 +11,26 @@ string package-url:
 package-list: $package-list
 
 
+
+
+
+
+
+-- ftd.column create-package-button:
+caption title:
+optional string button-link:
+width: fill
+link: $button-link
+min-width: 200
+
+--- ftd.row:
+align: right
+padding-bottom: $fpm.space.space-4
+
+--- button.button: $title
+role: primary
+medium: true
+link: $button-link
 
 
 
@@ -32,7 +52,7 @@ package-list: $package-list
 
 
 
--- ftd.column create-package-button:
+/-- ftd.column create-package-button:
 caption title:
 optional string button-link:
 width: fill

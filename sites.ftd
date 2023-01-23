@@ -1,0 +1,302 @@
+-- import: fpm-controller-ui.fly.dev/page-1
+
+-- ftd.color light-red:
+light: #ffc297
+dark: #ffc297
+
+-- ftd.color dark-red:
+light: #bb5c2d
+dark: #bb5c2d
+
+-- boolean debug: false
+
+-- optional string selected-site-id:
+$always-include$: true
+
+-- optional string selected-site-package:
+$always-include$: true
+
+
+-- optional string external-link:
+$always-include$: true
+
+-- record query-data:
+string team:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- ftd.text: Query params
+if: $debug
+
+-- ftd.text: $query.team
+if: $debug
+
+;; <<-- Site details record -->>
+-- record site:
+caption package-name:
+string site-id:
+string status:
+string date:
+string package-url:
+string instance-type:
+
+
+-- record dashboard-data:
+page-1.team list teams:
+site list sites:
+string current-user:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billing-link:
+optional string team-settings-link:
+optional string site-info-link:
+optional string site-access-link:
+
+-- dashboard-data dashboard:
+$processor$: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/api/dashboard/
+team: $query.team
+
+
+;; <<-- Teams drop-down list -->>
+-- page-1.team list team-list: $dashboard.teams
+
+/-- team-list:
+item-title: Personal
+item-link: billing/
+
+/-- team-list:
+item-title: Commercial
+item-link: billing/
+
+/-- team-list:
+item-title: My Friends
+item-link: billing/
+
+/-- team-list:
+item-title: My Company
+item-link: billing/
+
+
+-- site list sites: $dashboard.sites
+
+/-- sites: amitu.com
+package-url: /site-info/
+date: 23 Sept 2022
+status: online
+
+/-- sites: abrark.com
+package-url: /site-info/
+date: 23 Sept 2022
+status: online
+
+
+
+
+
+-- page-1.page-one: AmitU
+team-name: $query.team
+teams: $team-list
+query-user: $dashboard.current-user
+query-team: $query.team
+sites-link: $dashboard.sites-link
+team-access-link: $dashboard.team-access-link
+team-billings-link: $dashboard.team-billing-link
+team-settings-link: $dashboard.team-settings-link
+site-info-link: $dashboard.site-info-link
+site-access-link: $dashboard.site-access-link
+
+-- sites-component:
+sitelist: $sites
+
+
+
+
+
+
+
+
+-- ftd.column sites-component:
+site list sitelist:
+width: fill
+
+--- ftd.column:
+width: fill
+spacing: 15
+
+--- button.button: &#65291; New
+role: primary
+medium: true
+$on-click$: message-host $redirect-to-create-instance-api
+
+/--- create-package-button: &#65291; New
+button-link: /create-package/
+
+--- sites-loop: $obj.package-name
+status: $obj.status
+date: $obj. date
+package-url: $obj.package-url
+site-id: $obj.site-id
+instance-type: $obj.instance-type
+$loop$: $sites as $obj
+
+
+
+
+
+
+
+
+
+-- ftd.column sites-loop:
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+caption package-name:
+string site-id:
+string status:
+string date: 
+string package-url:
+string instance-type:
+padding-vertical: 24
+padding-horizontal: 24
+margin-bottom: 28
+spacing: 20
+border-color if $status == INITIALIZED: $fpm.color.main.cta-secondary.base
+border-color if $status == PENDING: $dark-red
+border-color if $status == READY: $fpm.color.main.success.text
+border-color if $status == STOPPED: $fpm.color.main.error.border
+border-color if $status == TERMINATED: $fpm.color.main.warning.text
+border-width: 2
+
+--- ftd.row:
+width: fill
+id: first-column
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: $package-name
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text-strong
+link: $package-url
+border-bottom if $MOUSE-IN: 1
+border-color if $MOUSE-IN: $fpm.color.main.text-strong
+$on-click$: $external-link = $package-url
+$on-click$: message-host $external-redirect-api
+
+--- ftd.text: View
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.cta-primary.base
+/link: $package-url
+border-radius: 8
+$on-click$: $selected-site-id = $site-id
+$on-click$: message-host $redirect-to-site-info-api
+
+--- ftd.text: Terminate
+if: $status == READY
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.error.border
+/link: $package-url
+border-radius: 8
+$on-click$: $selected-site-id = $site-id
+$on-click$: $selected-site-package = $package-name
+$on-click$: message-host $delete-site-api
+
+--- container: first-column
+
+
+--- ftd.row:
+color: $fpm.color.main.text
+spacing: 12
+
+--- ftd.text: Status:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $status
+role: $fpm.type.copy-tight
+color if $status == INITIALIZED: $fpm.color.main.cta-secondary.base
+color if $status == PENDING: $dark-red
+color if $status == READY: $fpm.color.main.success.text
+color if $status == STOPPED: $fpm.color.main.error.border
+color if $status == TERMINATED: $fpm.color.main.warning.text
+
+--- container: ftd.main
+
+--- ftd.row:
+color: $fpm.color.main.text
+spacing: 12
+
+--- ftd.text: Instance-Type:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $instance-type
+role: $fpm.type.copy-tight
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: Updated-on:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $date
+role: $fpm.type.copy-tight
+
+
+
+
+-- ftd.column create-package-button:
+caption title:
+optional string button-link:
+width: fill
+link: $button-link
+min-width: 200
+
+--- ftd.row:
+align: right
+padding-bottom: $fpm.space.space-4
+
+--- button.button: $title
+role: primary
+medium: true
+link: $button-link
+
+-- object external-redirect-api:
+function: http
+method: get
+url: $external-link
+
+-- object redirect-to-site-info-api:
+function: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/site-info/
+team: $query.team
+site-id: $selected-site-id
+
+-- object redirect-to-create-instance-api:
+function: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/create-package/
+team: $query.team
+
+-- object delete-site-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/delete-instance/
+site-id: $selected-site-id
+package-name: $selected-site-package

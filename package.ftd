@@ -1,4 +1,4 @@
--- import: fifthtry.github.io/fpm-controller-ui/base
+-- import: fpm-controller-ui.fly.dev/base
 -- import: fifthtry.github.io/button as button
 
 

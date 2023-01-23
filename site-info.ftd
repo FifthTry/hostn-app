@@ -1,0 +1,173 @@
+-- import: fpm-controller-ui.fly.dev/page-1
+
+-- ftd.color light-red:
+light: #ffc297
+dark: #ffc297
+
+-- ftd.color dark-red:
+light: #bb5c2d
+dark: #bb5c2d
+
+-- record query-data:
+string team:
+string site-id:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- record side-site-data:
+string site-name:
+string url:
+boolean is-active:
+
+-- record site-info:
+string site-name:
+string domain:
+string ip:
+string status:
+string instance-type:
+string config:
+string updated-on:
+
+-- record site-info-data:
+page-1.team list teams:
+page-1.side-site-data list sites-list:
+site-info current-site:
+string current-user:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billing-link:
+optional string team-settings-link:
+optional string site-info-link:
+optional string site-access-link:
+
+-- site-info-data info:
+$processor$: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/api/site-info/
+team: $query.team
+site-id: $query.site-id
+
+;; <<-- Teams drop-down list -->>
+-- page-1.team list team-list: $info.teams
+
+-- page-1.page-one: AmitU
+team-name: $query.team
+teams: $team-list
+left-sites-toc: $info.sites-list
+query-user: $info.current-user
+query-team: $query.team
+$show: true
+sites-link: $info.sites-link
+team-access-link: $info.team-access-link
+team-billings-link: $info.team-billing-link
+team-settings-link: $info.team-settings-link
+site-info-link: $info.site-info-link
+site-access-link: $info.site-access-link
+
+
+--- current-site-info:
+data: $info.current-site
+
+
+-- ftd.row current-site-info:
+site-info data:
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+string status: Online
+string date: $info.current-site.updated-on
+padding-vertical: 24
+padding-horizontal: 24
+margin-bottom: 28
+spacing: 32
+border-color if $data.status == INITIALIZED: $fpm.color.main.cta-secondary.base
+border-color if $data.status == PENDING: $dark-red
+border-color if $data.status == READY: $fpm.color.main.success.text
+border-color if $data.status == STOPPED: $fpm.color.main.error.border
+border-color if $data.status == TERMINATED: $fpm.color.main.warning.text
+border-width: 2
+
+--- ftd.text: $data.site-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+border-bottom if $MOUSE-IN: 1
+min-width: 150
+link: $data.domain
+
+/--- ftd.text: View
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color: $fpm.color.main.text-strong
+background-color: $fpm.color.main.cta-primary.base
+border-radius: 8
+link: $data.domain
+
+--- container: ftd.main
+
+
+--- ftd.column:
+width: fill
+spacing: 10
+id: jjj
+
+--- ftd.row:
+align: right
+color: $fpm.color.main.text
+spacing: 12
+
+--- ftd.text: Status:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $data.status
+role: $fpm.type.copy-tight
+color if $data.status == INITIALIZED: $fpm.color.main.cta-secondary.base
+color if $data.status == PENDING: $dark-red
+color if $data.status == READY: $fpm.color.main.success.text
+color if $data.status == STOPPED: $fpm.color.main.error.border
+color if $data.status == TERMINATED: $fpm.color.main.warning.text
+
+--- container: jjj
+
+--- ftd.row:
+align: right
+spacing: 12
+
+--- ftd.text: Instance-Type:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $data.instance-type
+role: $fpm.type.copy-tight
+
+--- container: jjj
+
+--- ftd.row:
+align: right
+spacing: 12
+
+--- ftd.text: Public IP:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $data.ip
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+link: $data.domain
+border-bottom if $MOUSE-IN: 1
+border-color: $fpm.color.main.text-strong
+
+--- container: jjj
+
+--- ftd.row:
+align: right
+spacing: 12
+
+
+--- ftd.text: Updated-on:
+role: $fpm.type.copy-tight
+
+--- ftd.text: $date
+role: $fpm.type.copy-tight
+

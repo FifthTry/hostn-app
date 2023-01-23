@@ -1,0 +1,427 @@
+-- import: fpm-controller-ui.fly.dev/base
+
+-- boolean dropdown-open: false
+
+-- optional string selected-team: Personal
+$always-include$: true
+
+-- optional string current-new-team-member-name:
+$always-include$: true
+
+-- optional string queried-user:
+$always-include$: true
+
+-- optional string queried-team:
+$always-include$: true
+
+-- optional string package-name-error:
+$always-include$: true
+
+-- optional string base-url-error:
+$always-include$: true
+
+-- boolean debug: false
+
+-- record team:
+string item-title:
+string item-link:
+
+-- record query-data:
+string git-repo:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- record deploy-data:
+team list teams:
+string repo:
+string git-user:
+optional string info:
+
+-- deploy-data deploy:
+$processor$: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/api/deploy/
+git-repo: $query.git-repo
+team: $selected-team
+
+-- optional string package-name: $deploy.repo
+$always-include$: true
+
+-- optional string base-url: $query.git-repo
+$always-include$: true
+
+-- optional string account-info: $deploy.info
+$always-include$: true
+
+-- ftd.text: Query params
+if: $debug
+
+/-- ftd.text: $query.user
+if: $debug
+
+/-- ftd.text: $query.team
+if: $debug
+
+/-- ftd.text: $query.git-user
+if: $debug
+
+-- ftd.text: GIT REPO
+if: $debug
+
+-- ftd.text: $query.git-repo
+if: $debug
+
+-- ftd.text: PACKAGE NAME
+if: $debug
+
+-- ftd.text: $package-name
+if: $debug
+
+-- ftd.text: BASE URL
+if: $debug
+
+-- ftd.text: $base-url
+if: $debug
+
+-- ftd.text: SELECTED TEAM
+if: $debug
+
+-- ftd.text: $selected-team
+if: $debug
+
+-- ftd.text: GIT user
+if: $debug
+
+-- ftd.text: $deploy.git-user
+if: $debug
+
+-- ftd.text: GIT repo
+if: $debug
+
+-- ftd.text: $deploy.repo
+if: $debug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- page: Quick Deploy
+csrf_token: sometoken
+
+
+
+
+
+
+
+
+-- ftd.column page:
+width: fill
+string csrf_token:
+caption title:
+
+--- base.page:
+
+--- ftd.column:
+width: fill
+id: main-form
+padding-vertical: $fpm.space.space-6
+padding-horizontal: $fpm.space.space-8
+background-color: $fpm.color.main.background.step-1
+border-width: 1
+border-color: $fpm.color.main.border
+position: center
+
+--- ftd.column:
+align: center
+
+--- ftd.text: $title
+role: $fpm.type.heading-medium
+color: $fpm.color.main.text
+align: center
+margin-bottom: $fpm.space.space-4
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Enter Site Name
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.input:
+placeholder: Site name
+default-value: $deploy.repo
+$on-input$: $package-name=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+
+--- ftd.text: $package-name-error
+if: $package-name-error is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.border
+padding-top: 5
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- ftd.text: Enter your Git Repository
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+
+--- ftd.input:
+placeholder: GIT-USERNAME/REPO
+default-value: $query.git-repo
+$on-input$: $base-url=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+
+--- ftd.text: $base-url-error
+if: $base-url-error is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.border
+padding-top: 5
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+--- team-selection-bar:
+team-name: $selected-team
+teams: $deploy.teams
+query-user: $deploy.git-user
+query-team: $selected-team
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+;; ADD HERE
+--- ftd.text: $account-info
+if: $account-info is not null
+role: $fpm.type.fine-print
+color: $fpm.color.main.success.text
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-4
+margin-bottom: $fpm.space.space-4
+
+--- container: main-form
+
+--- ftd.column:
+width: fill
+margin-top: $fpm.space.space-6
+
+--- ftd.row:
+spacing: 34
+id: button-row
+align: right
+
+--- button.button: Next
+role: primary
+medium: true
+$on-click$: message-host $pre-deployment-check-api
+
+-- object pre-deployment-check-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/pre-deployment-check/
+user: $deploy.git-user
+team: $selected-team
+package-name: $package-name
+base-url: $base-url
+$package-name-error: $package-name-error
+$base-url-error: $base-url-error
+
+;; TEAM DROP-DOWN COMPONENTS -----------------------------------------
+
+-- ftd.column dropdown-menu:
+optional string query-user:
+optional string query-team:
+boolean show-create-team-component: false
+width: fill
+min-width: 250
+background-color: $fpm.color.main.background.base
+border-width: 1
+border-color: $fpm.color.main.border
+team list options:
+anchor: parent
+left: 0
+top: 52
+id: login-menu
+border-top: 0
+border-bottom-radius: 4
+z-index: 9999999
+
+--- ftd.column:
+width: fill
+spacing: 10
+padding-horizontal: 5
+
+--- options-list:
+$loop$: $options as $obj
+item-title: $obj.item-title
+item-link: $obj.item-link
+
+
+-- ftd.column options-list:
+optional string item-title:
+optional string item-link:
+width: fill
+border-bottom: 1
+border-color: $fpm.color.main.border
+padding-bottom: $fpm.space.space-3
+background-color if $MOUSE-IN: $fpm.color.main.background.step-1
+padding-horizontal: $fpm.space.space-2
+padding-vertical: $fpm.space.space-2
+
+--- ftd.text: $item-title
+if: $item-title is not null
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+$on-click$: $selected-team = $item-title
+$on-click$: toggle $dropdown-open
+
+
+-- ftd.row team-selection-bar:
+optional string query-user:
+optional string query-team:
+team list teams:
+string team-name:
+margin-bottom: 15
+spacing: 12
+
+--- ftd.text: Team:
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+align: center
+
+--- ftd.row:
+id: team-dd
+min-width: 250
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-2
+border-width: 1
+border-color: $fpm.color.main.border
+border-radius: 4
+/$on-click$: toggle $dropdown-open
+
+--- ftd.text: $selected-team
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+
+--- ftd.image:
+if: not $dropdown-open
+src: $assets.files.dd-down.svg
+margin-left: 110
+width: 24
+height: 24
+align: center
+$on-click$: toggle $dropdown-open
+
+--- ftd.image:
+if: $dropdown-open
+src: $assets.files.static.dd-up.svg
+margin-left: 110
+width: 24
+height: 24
+align: center
+$on-click$: toggle $dropdown-open
+
+--- container: team-dd
+
+--- dropdown-menu:
+if: $dropdown-open
+options: $teams
+query-user: $query-user
+query-team: $query-team
+
+
+
+
+
+
+
+-- ftd.column form-field:
+string label:
+string placeholder:
+optional string error-msg:
+optional string field-type: text
+width: fill
+align: center
+margin-top: $fpm.space.space-4
+
+
+--- ftd.text: $label
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+margin-bottom: $fpm.space.space-2
+
+--- ftd.input:
+width: fill
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+placeholder: $placeholder
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+explain: true
+type: $field-type
+
+--- ftd.column:
+if: $error-msg is not null
+margin-top: $fpm.space.space-2
+margin-left: $fpm.space.space-3
+width: fill
+
+--- ftd.text: $error-msg
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.text

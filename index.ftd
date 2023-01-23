@@ -1,11 +1,39 @@
--- import: fifthtry.github.io/fpm-controller-ui/assets
+-- import: fpm-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/button as button
+
+;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
+;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
+
+-- record user-details:
+boolean is-login:
+$always-include$: true
+
+-- user-details ud:
+$processor$: user-details
+is-login: false
+
+-- optional string current-user-name:
+$always-include$: true
+
+-- optional string username-error:
+$always-include$: true
+
+-- optional string current-password:
+$always-include$: true
 
 -- optional string site-name:
 
+-- boolean debug: false
+
 -- ftd.image-src site-logo: 
-light: $assets.files.logo-fifthtry.svg.light
-dark: $assets.files.logo-fifthtry.svg.dark
+light: $assets.files.static.logo-fifthtry.svg.light
+dark: $assets.files.static.logo-fifthtry.svg.dark
+
+-- ftd.text: $current-user-name
+if: $debug
+
+-- ftd.text: $current-password
+if: $debug
 
 -- page: 
 
@@ -70,7 +98,19 @@ padding-top if $site-name is not null: $fpm.space.space-4
 padding-top if $site-name is null: $fpm.space.space-2
 spacing: 24
 
---- ftd.text: Dashboard
+--- button.button: Deploy Controller UI
+if: $debug
+role: tertiary
+medium: true
+$on-click$: message-host $deploy-fpm-controller-ui-api
+
+--- button.button: Deploy Controller Service
+if: $debug
+role: tertiary
+medium: true
+$on-click$: message-host $deploy-controller-service-api
+
+/--- ftd.text: Dashboard
 link: dashboard/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -80,7 +120,7 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.text: Sign in
+/--- ftd.text: Sign in
 link: sign-in/
 role: $fpm.type.fine-print
 color: $fpm.color.main.text-strong
@@ -90,14 +130,14 @@ border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
 
---- ftd.row: 
+/--- ftd.row:
 background-color: $fpm.color.main.background.step-2
 width: 24
 height: 24
 border-radius: 100
 align: center
 
---- ftd.image:
+/--- ftd.image:
 if: $user-avatar is not null
 src: $user-avatar
 width: 24
@@ -120,21 +160,21 @@ id: login-menu
 $on-mouse-enter$: $show-profile-menu = true
 $on-mouse-leave$: $show-profile-menu = false
 
---- ftd.column:
+/--- ftd.column:
 width: 42
 height: 42
 background-color: $fpm.color.main.background.step-2
 align: center
 border-radius: 100
 
---- ftd.image:
+/--- ftd.image:
 if: $user-avatar is not null
 src: $user-avatar
 width: 42
 height: 42
 border-radius: 100
 
---- container: login-menu
+/--- container: login-menu
 
 --- ftd.column:
 width: fill
@@ -224,8 +264,8 @@ string email-label:
 string password-label:
 string cta-primary: Sign In
 string cta-secondary: Sign Up
-string error-email: some email error msg
-string error-password: some passeword error msg
+string error-email: email error
+string error-password: password error
 string email-placeholder: username
 string password-placeholder: password
 padding-vertical: $fpm.space.space-6
@@ -251,121 +291,38 @@ margin-bottom: $fpm.space.space-4
 
 --- container: main-form
 
---- form-field:
-label: $email-label
-placeholder: $email-placeholder
-error-msg: $error-email
-
---- container: main-form
-
---- form-field:
-label: $password-label
-placeholder: $password-placeholder
-error-msg: $error-password
-field-type: password
-
---- container: main-form
-
---- ftd.column: 
-width: fill
-margin-top: $fpm.space.space-4
-margin-bottom: $fpm.space.space-4
-
---- ftd.row:
-width: fill
-
---- ftd.input:
-type: checkbox
-width: 16
-height: 16
-
---- ftd.text: I accept
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-3
-
---- ftd.text: Terms &amp; conditions
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
-link: https://www.fifthtry.com/terms/
-open-in-new-tab: true
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- ftd.text: and
-role: $fpm.type.fine-print
-color: $fpm.color.main.text
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- ftd.text: Privacy policy
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.text
-border-color if $MOUSE-IN: $fpm.color.main.text-strong
-color: $fpm.color.main.text
-color  if $MOUSE-IN:  $fpm.color.main.text-strong
-link: https://www.fifthtry.com/privacy/
-open-in-new-tab: true
-white-space: nowrap
-align: center
-margin-left: $fpm.space.space-1
-
---- container: main-form
-
---- ftd.column: 
-width: fill
-margin-top: $fpm.space.space-6
-
---- ftd.row:
-spacing: 34
-id: button-row
-align: right
-
---- ftd.row:
+--- ftd.column:
 align: center
 
---- ftd.text: Forgot Password?
-role: $fpm.type.fine-print
-border-bottom: 1
-border-color: $fpm.color.main.background.step-1
-border-color if $MOUSE-IN: $fpm.color.main.text
-color: $fpm.color.main.text
-link: forgot-password/
-white-space: nowrap
+--- github-button:
+if: not $ud.is-login
+button-text: Login using GitHub
+link: /auth/login/?platform=github&next=/sites/?team=Personal
 
---- container: button-row
+--- github-button:
+if: $ud.is-login
+button-text: Logout from Github
+link: /auth/logout/
 
---- ftd.row:
-align: right
-min-width: 210
-spacing: 34
+-- object login-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/login/
+user: $current-user-name
+password: $current-password
+$username-error: $username-error
 
---- button.button: $cta-secondary
-role: tertiary
-medium: true
-link: sign-up/
+-- object deploy-fpm-controller-ui-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/create-instance/
+package_name: fpm-controller-ui
+download_base_url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/latest-ui/
 
---- button.button: $cta-primary
-role: primary
-medium: true
-link: index.html
-
-
-
-
-
-
-
-
+-- object deploy-controller-service-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/deploy-controller/
 
 
 -- ftd.column form-field:
@@ -404,3 +361,33 @@ width: fill
 --- ftd.text: $error-msg
 role: $fpm.type.fine-print
 color: $fpm.color.main.error.text
+
+-- ftd.row github-button:
+optional string button-text:
+optional string width:
+ftd.image-src github-icon: $assets.files.static.github-logo-dark.svg
+string link: https://github.com/apps/continuous-documentation
+border-radius: 4
+width: $width
+cursor: pointer
+background-color if $MOUSE-IN: $fpm.color.main.cta-primary.hover
+background-color: $fpm.color.main.cta-primary.base
+margin-top: -4
+link: $link
+spacing: 10
+padding: 10
+
+--- ftd.image:
+src: $github-icon
+height: 30
+width: auto
+move-down: 3
+
+--- ftd.text:
+if: $button-text is not null
+text: $button-text
+white-space: nowrap
+role: $fpm.type.heading-small
+align: center
+text-align: center
+color: $fpm.color.main.text-strong

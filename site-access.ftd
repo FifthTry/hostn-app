@@ -1,0 +1,355 @@
+-- import: fpm-controller-ui.fly.dev/page-1
+
+-- ftd.color light-red:
+light: #ffc297
+dark: #ffc297
+
+-- ftd.color dark-red:
+light: #bb5c2d
+dark: #bb5c2d
+
+-- boolean debug: false
+
+-- optional string selected-team-member:
+$always-include$: true
+
+-- optional string current-new-site-member-email:
+$always-include$: true
+
+-- record query-data:
+string team:
+string site-id:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- ftd.text: Query params
+if: $debug
+
+-- ftd.text: $query.team
+if: $debug
+
+-- ftd.text: $query.site-id
+if: $debug
+
+-- boolean selected-manage-sites: true
+
+-- boolean selected-manage-billings: true
+
+-- boolean selected-manage-teams: true
+
+-- ftd.text: $selected-team-member
+if: $debug
+
+-- ftd.boolean: $selected-manage-sites
+if: $debug
+
+-- ftd.boolean: $selected-manage-billings
+if: $debug
+
+-- ftd.boolean: $selected-manage-teams
+if: $debug
+
+-- record side-site-data:
+string site-name:
+string url:
+boolean is-active:
+
+-- record site-access:
+caption member-name:
+boolean manage-sites:
+boolean manage-teams:
+boolean manage-billings:
+boolean is-active:
+
+-- record site-access-data:
+page-1.team list teams:
+page-1.side-site-data list sites-list:
+site-access list current-site-access-list:
+string current-user:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billing-link:
+optional string team-settings-link:
+optional string site-info-link:
+optional string site-access-link:
+
+-- site-access-data access:
+$processor$: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/api/site-access/
+team: $query.team
+site-id: $query.site-id
+
+;; <<-- Teams drop-down list -->>
+-- page-1.team list team-list: $access.teams
+
+-- page-1.page-one: AmitU
+team-name: Personal
+teams: $team-list
+left-sites-toc: $access.sites-list
+query-user: $access.current-user
+query-team: $query.team
+$show: true
+sites-link: $access.sites-link
+team-access-link: $access.team-access-link
+team-billings-link: $access.team-billing-link
+team-settings-link: $access.team-settings-link
+site-info-link: $access.site-info-link
+site-access-link: $access.site-access-link
+
+-- add-site-access-component:
+
+-- access-component:
+acceslist: $access.current-site-access-list
+
+
+-- ftd.column add-site-access-component:
+boolean show-add-team-container: false
+padding-vertical: 10
+spacing: 10
+
+/--- ftd.boolean: $show-add-team-container
+
+--- button.button: Add Access
+role: primary
+medium: true
+$on-click$: toggle $show-add-team-container
+
+--- ftd.row:
+if: $show-add-team-container
+spacing: 10
+width: fill
+
+--- ftd.input:
+placeholder: Enter Member email
+type: text
+$on-input$: $current-new-site-member-email=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+min-width: 200
+
+--- button.button: Add Site Member Access
+role: primary
+medium: true
+$on-click$: message-host $add-site-member-access-api
+
+--- button.button: Cancel
+role: primary
+medium: true
+$on-click$: toggle $show-add-team-container
+
+-- ftd.column access-component:
+site-access list acceslist:
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+border-color: $fpm.color.main.border
+border-width: 2
+margin-bottom: 28
+width: fill
+
+--- ftd.row:
+width: fill
+padding-vertical: 24
+/padding-horizontal: 24
+border-bottom: 1
+border-color: $fpm.color.main.border
+
+--- ftd.text: Users
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text: Manage Sites
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text:  Billing
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text: Manage Teams
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text: Delete Member
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- ftd.text: Update Access
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+--- container: ftd.main
+
+--- ftd.column:
+width: fill
+
+--- access-loop: $obj.member-name
+billing: $obj.manage-billings
+team: $obj.manage-teams
+sites: $obj.manage-sites
+is-active: $obj.is-active
+$loop$: $acceslist as $obj
+
+
+
+-- ftd.column access-loop:
+width: fill
+caption member-name:
+boolean sites:
+boolean team:
+boolean billing:
+boolean is-active:
+boolean not-changed: true
+/padding-vertical: 14
+/padding-horizontal: 24
+
+--- ftd.row:
+width: fill
+id: first-column
+
+--- ftd.row:
+width: fill
+border-color if $is-active: $fpm.color.main.cta-secondary.base
+border-width if $is-active: 2
+border-radius: 10
+padding-vertical: 20
+
+/--- ftd.boolean: $not-changed
+
+--- ftd.text: $member-name
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+width: fill
+text-align: center
+
+;; MANAGE SITES
+/--- ftd.input:
+type: checkbox
+width: fill
+
+--- ftd.text: ALLOWED
+if: $sites
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.success.text
+width: fill
+text-align: center
+$on-click$: toggle $sites
+$on-click$: $not-changed = false
+
+--- ftd.text: FORBIDDEN
+if: not $sites
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.error.border
+width: fill
+text-align: center
+$on-click$: toggle $sites
+$on-click$: $not-changed = false
+
+;; MANAGE BILLINGS
+/--- ftd.input:
+type: checkbox
+width: fill
+
+--- ftd.text: ALLOWED
+if: $billing
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.success.text
+width: fill
+text-align: center
+$on-click$: toggle $billing
+$on-click$: $not-changed = false
+
+--- ftd.text: FORBIDDEN
+if: not $billing
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.error.border
+width: fill
+text-align: center
+$on-click$: toggle $billing
+$on-click$: $not-changed = false
+
+
+;; MANAGE TEAMS
+/--- ftd.input:
+type: checkbox
+width: fill
+
+--- ftd.text: ALLOWED
+if: $team
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.success.text
+width: fill
+text-align: center
+$on-click$: toggle $team
+$on-click$: $not-changed = false
+
+--- ftd.text: FORBIDDEN
+if: not $team
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.error.border
+width: fill
+text-align: center
+$on-click$: toggle $team
+$on-click$: $not-changed = false
+
+--- button.button: Delete
+role: primary
+medium: true
+move-right: 50
+$on-click$: $selected-team-member = $member-name
+$on-click$: message-host $delete-site-member-access-api
+
+--- button.button: Update
+role: primary
+medium: true
+move-right: 50
+/disabled: $not-changed
+$on-click$: $selected-team-member = $member-name
+$on-click$: $selected-manage-teams = $team
+$on-click$: $selected-manage-billings = $billing
+$on-click$: $selected-manage-sites = $sites
+$on-click$: message-host $update-site-member-access-api
+
+-- object update-site-member-access-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/update-site-member-access/
+site-member: $selected-team-member
+site-id: $query.site-id
+manage-teams: $selected-manage-teams
+manage-billings: $selected-manage-billings
+manage-sites: $selected-manage-sites
+
+-- object delete-site-member-access-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/delete-site-member-access/
+site-member: $selected-team-member
+site-id: $query.site-id
+
+-- object add-site-member-access-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/add-site-member-access/
+site-member-email: $current-new-site-member-email
+site-id: $query.site-id

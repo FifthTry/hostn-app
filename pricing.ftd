@@ -1,0 +1,725 @@
+-- import: fpm
+-- import: fpm-controller-ui.fly.dev/page-1
+-- import: fifthtry.github.io/inter/assets as font-assets
+-- boolean is-mobile: false
+
+-- is-mobile: true
+if: $ftd.device == mobile
+
+-- fpm.font-display: $font-assets.fonts.Inter
+
+-- boolean debug: false
+
+-- boolean global-not-selected: true
+
+-- optional string selected-plan:
+$always-include$: true
+
+/-- ftd.text: $selected-plan
+if: $selected-plan is not null
+
+-- ftd.boolean: $global-not-selected
+if: $debug
+
+/-- ftd.text: $selected-plan
+if: $selected-plan is not null
+
+-- record query-data:
+string user:
+string team:
+string package-name:
+string base-url:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- ftd.text: Query params
+if: $debug
+
+-- ftd.text: $query.user
+if: $debug
+
+-- ftd.text: $query.team
+if: $debug
+
+-- ftd.text: $query.package-name
+if: $debug
+
+-- ftd.text: $query.base-url
+if: $debug
+
+-- ftd.font-size copy-relaxed-medium-desktop:
+line-height: 24
+size: 16
+letter-spacing: 0
+
+-- ftd.type copy-relaxed-medium: $fpm.font-display
+desktop: $copy-relaxed-medium-desktop
+mobile: $copy-relaxed-medium-desktop
+xl: $copy-relaxed-medium-desktop
+weight: 700
+
+-- ftd.font-size heading-hero-sml:
+line-height: 52
+size: 36
+letter-spacing: 0
+
+-- ftd.type heading-hero: $fpm.font-display
+desktop: $heading-hero-sml
+mobile: $heading-hero-sml
+xl: $heading-hero-sml
+weight: 700
+
+-- ftd.font-size sub-heading-sml:
+line-height: 44
+size: 32
+letter-spacing: 0
+
+-- ftd.type sub-heading-small: $fpm.font-display
+desktop: $sub-heading-sml
+mobile: $sub-heading-sml
+xl: $sub-heading-sml
+weight: 300
+
+
+-- ftd.color main-text-color:
+light: #FFFBFE
+dark: #1C1B1F
+
+
+-- ftd.color fill-text-color:
+light: #FB651E
+dark: #FB651E
+
+-- ftd.color footer-border-color:
+light: #2DD4BF
+dark: #2DD4BF
+
+-- ftd.color $custom-five-bac:
+light: #EB57BE
+dark: #EB57BE
+
+-- ftd.color cta-primary-disabled:
+light: rgba(44,201,181,0.1)
+dark: rgba(44,201,181,0.1)
+
+-- ftd.color header-bg:
+light: rgba(45, 212, 143, 0.05)
+dark: rgba(45, 212, 143, 0.05)
+
+-- ftd.color cta_secondary_base:
+light: #4FB2DF
+dark: #4FB2DF
+
+-- ftd.color cta_hover:
+light: rgba(79, 178, 223, 0.5)
+dark: rgba(79, 178, 223, 0.5)
+
+-- ftd.color cta_primary_base:
+light: #2DD4BF
+dark: #2DD4BF
+
+-- ftd.color orange:
+light: #ED753A
+dark: #ED753A
+
+
+-- ftd.color cta_primary_active:
+light: #2CBFAC
+dark: #2CBFAC
+
+
+
+-- ftd.text cut: yo
+color: $orange
+
+
+
+
+
+
+
+-- ftd.font-size hero-lg:
+line-height: 60
+size: 48
+letter-spacing: 0
+
+-- ftd.type hero-large: $fpm.font-display
+desktop: $hero-lg
+mobile: $hero-lg
+xl: $hero-lg
+weight: 700
+
+
+
+
+
+
+
+
+-- ftd.font-size list-tit:
+line-height: 36
+size: 24
+letter-spacing: 0
+
+-- ftd.type list-title: $fpm.font-display
+desktop: $list-tit
+mobile: $list-tit
+xl: $list-tit
+weight: 700
+
+
+-- ftd.font-size copy-relax:
+line-height: 24
+size: 16
+letter-spacing: 0
+
+-- ftd.type copy-relaxed: $fpm.font-display
+desktop: $copy-relax
+mobile: $copy-relax
+xl: $copy-relax
+weight: 300
+
+
+
+
+
+-- integer plan-selected: 1
+
+-- integer pricing-hover: $plan-selected
+
+
+-- string list about-list-one:
+
+-- about-list-one: 1 Vcpu, 256MB RAM
+
+-- string list about-list-two:
+
+-- about-list-two: 2 Vcpu's, 512MB RAM
+
+
+-- string list about-list-three:
+
+-- about-list-three: 4 Vcpu's, 2048MB RAM
+
+
+-- page-1.page-one: AmitU
+team-name: Personal
+widthfill: true
+show-section-header: false
+
+
+-- subscription: Choose your { green: Instance }
+
+
+
+
+-- record plan-tc:
+caption title:
+body body:
+integer index:
+string organization-name: 
+string plan-name:
+string plan-sub-heading:
+string pricing-value:
+string days:
+string payment-mode:
+string list about-list-one:
+string cta-text:
+string owner-name:
+string next-step-info:
+
+-- plan-tc list plan-tc-list:
+
+
+-- plan-tc-list: Personal 
+index: 1
+organization-name: Continous Documentation (cDoc) by fifthtry
+plan-name: Personal 
+plan-sub-heading: scale plan help yout team
+pricing-value: \$ 0
+days: /month
+payment-mode: No Credit Card Required
+about-list-one: $about-list-one
+cta-text: Sign up
+owner-name: xyz
+next-step-info: confirm your installation and payment
+
+
+Once documentation PR is ready and approve and someone has verified code
+is exactly as per docs merge both code and doc PRs.
+
+-- plan-tc-list: Pro Plan
+index: 2
+organization-name: Continous Documentation (cDoc) by fifthtry
+plan-name: Pro Plan
+plan-sub-heading: scale plan help yout team
+pricing-value: \$ 0
+days: /month
+payment-mode: No Credit Card Required
+about-list-one: $about-list-one
+cta-text: Sign up
+owner-name: xyz
+next-step-info: confirm your installation and payment
+
+
+Once documentation PR is ready and approve and someone has verified code
+is exactly as per docs merge both code and doc PRs.
+
+-- plan-tc-list: Scale Plan
+index: 3
+organization-name: Continous Documentation (cDoc) by fifthtry
+plan-name: Scale Plan 
+plan-sub-heading: scale plan help yout team
+pricing-value: \$ 0
+days: /month
+payment-mode: No Credit Card Required
+about-list-one: $about-list-one
+cta-text: Sign up
+owner-name: xyz
+next-step-info: confirm your installation and payment
+
+Once documentation PR is ready and approve and someone has verified code
+is exactly as per docs merge both code and doc PRs.
+
+
+
+-- ftd.column subscription:
+caption title:
+width: fill
+padding-horizontal: 30
+/padding-vertical: 78
+move-up: 10
+background-color: $fpm.color.main.background.base
+
+--- desktop-subscription: $title
+if: not $is-mobile
+
+
+--- mobile-subscription: $title
+if:$is-mobile
+
+
+-- ftd.column desktop-subscription:
+caption title:
+width: fill
+
+
+--- ftd.text: $title
+align: center
+padding-bottom: 32
+role: $hero-large
+color:  $fpm.color.main.text-strong
+
+--- ftd.row:
+spacing: 32
+width: fill
+
+--- pricing:
+width: percent 20
+list-one: true
+list-two: false
+list-three: false
+voucher-name: Free Forever
+voucher-title-name: Basic
+pricing-name: \$ 0
+days: /month
+payment-mode: No Credit Card Required
+about-list-one: $about-list-one
+cta-text: Sign up
+cta-bg: $cta_secondary_base
+cta-color: $fpm.color.main.text-strong
+
+Basic Instances are suitable to deploy your sites for small projects.
+
+--- pricing: 
+width: percent 20
+list-one: false
+list-two: true
+list-three: false
+voucher-name: Most Popular
+voucher-title-name: Standard
+pricing-name: \${$cut: 19} 9
+days: /month
+payment-mode: Fast Secure payments with Stripe
+about-list-two: $about-list-two
+cta-text: Sign up
+cta-bg: $footer-border-color
+cta-color: $fpm.color.main.text-strong
+
+Standard Instances are relatively suitable for deploying sites for medium scale projects.
+
+--- pricing: 
+width: percent 20
+list-one: false
+list-two: false
+list-three: true
+voucher-name: ULTIMATE
+voucher-title-name: Advanced
+pricing-name: \$ 99
+days: /month
+payment-mode: Fast Secure payments with Stripe
+about-list-three: $about-list-three
+cta-text: Sign up
+cta-bg: $custom-five-bac
+cta-color: $fpm.color.main.text-strong
+
+Advanced Instances provide support to deploy sites for large scale projects.
+
+--- container: ftd.main
+
+--- ftd.row:
+align: center
+padding-vertical: 40
+
+--- button.button: Deploy
+role: primary
+large: true
+$on-click$: message-host $create-site-api
+
+-- object create-site-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/create-site/
+team: $query.team
+package-name: $query.package-name
+base-url: $query.base-url
+instance-name: $selected-plan
+
+
+
+
+
+
+-- ftd.column mobile-subscription:
+caption title:
+width: fill
+padding-horizontal: 30
+padding-vertical: 18
+
+--- ftd.text: $title
+text-align: center
+padding-bottom: 76
+role: $fpm.type.heading-hero
+color:  $fpm.color.main.text-strong
+
+--- container: ftd.main
+
+--- ftd.row:
+padding-bottom: 32
+
+--- pricing:
+width: fill
+list-one: true
+list-two: false
+list-three: false
+voucher-name: Free Forever
+voucher-title-name: Personal Plan
+pricing-name: `$` 0
+days: /month
+payment-mode: No Credit Card Required
+about-list-one: $about-list-one
+cta-text: Sign up
+cta-bg: $cta_secondary_base
+cta-color: $fpm.color.main.text-strong
+
+With Personal Plan you can use Continuous Documentation for small projects.
+
+
+--- container: ftd.main
+
+--- ftd.row:
+padding-bottom: 32
+
+--- pricing: 
+width: fill
+list-one: false
+list-two: true
+list-three: false
+voucher-name: Most Popular
+voucher-title-name: Pro Plan
+pricing-name: `$`{$cut: 19} 9
+days: /month (per user)
+payment-mode: Fast Secure payments with Stripe
+about-list-two: $about-list-two
+cta-text: Sign up
+cta-bg: $footer-border-color
+cta-color: $fpm.color.main.text-strong
+
+With Pro Plan you can start using Continuous Documentation for a medium team.
+
+--- container: ftd.main
+
+--- ftd.row:
+padding-bottom: 32
+
+--- pricing: 
+width: fill
+list-one: false
+list-two: false
+list-three: true
+voucher-name: ULTIMATE
+voucher-title-name: Scale Plan 
+pricing-name: `$` 99
+days: /month (per user)
+payment-mode: Fast Secure payments with Stripe
+about-list-three: $about-list-three
+cta-text: Sign up
+cta-bg: $custom-five-bac
+cta-color: $fpm.color.main.text-strong
+
+Scale plan helps your team when scaling!
+
+
+
+
+
+
+
+
+-- ftd.text green: yo
+color: $cta_primary_active
+
+-- ftd.color blur:
+dark: #2dd4bf9e
+light: #2dd4bf9e
+
+
+-- ftd.column pricing:
+min-height: 450
+min-width: 396
+string voucher-name:
+boolean is-selected: false
+optional string voucher-title-name:
+string pricing-name:
+string width: fill
+optional string days:
+string list about-list-one: $about-list-one
+string list about-list-two: $about-list-two
+string list about-list-three: $about-list-three
+body body:
+string payment-mode:
+optional ftd.color cta-bg: $fpm.color.main.text-strong
+optional ftd.color cta-color: $cta_secondary_base
+padding-horizontal: 31
+ftd.color bg-color: $fpm.color.main.background.step-1
+background-color: $bg-color
+padding-vertical: 54
+width: $width
+string cta-text:
+border-radius: 24
+shadow-offset-x: 2
+shadow-offset-y: 2
+shadow-size: 6
+shadow-blur: 4
+/background-color if $MOUSE-IN: $cta_primary_base
+shadow-color: $fpm.color.main.background.base
+shadow-color if $MOUSE-IN: $blur
+boolean list-one: false
+boolean list-two: false
+boolean list-three: false
+border-width: 4
+border-color if $is-selected: $cta_primary_base
+border-color if not $is-selected: $fpm.color.main.background.step-1
+$on-click$: toggle $is-selected
+$on-click$: toggle $global-not-selected
+$on-click$: $selected-plan = $voucher-title-name
+
+--- ftd.image:
+if: $list-two
+src: $assets.files.static.offer-two-overlay.png
+anchor: parent
+width: 155
+height: 28
+right: -15
+top if not $is-mobile: 53
+top if $is-mobile: 58
+z-index: 10
+
+--- ftd.text: $voucher-name
+color: $cta-color
+background-color:$cta-bg
+border-color: $cta_hover
+border-radius: 25
+role: $copy-relaxed
+padding-horizontal: 24
+padding-vertical: 6
+
+--- ftd.column:
+id: about-container
+
+
+--- ftd.text: $voucher-title-name
+role: $list-title
+color: $fpm.color.main.text-strong
+margin-top: 32
+white-space: nowrap
+
+--- container:  about-container
+--- ftd.row:
+id: pricing-id
+spacing: 8
+color: $fpm.color.main.text-strong
+
+--- ftd.row:
+background-color: $fpm.color.main.background.base
+
+--- ftd.row:
+if: $list-two
+anchor: parent
+width: 48
+height: 3
+left: 30
+top: 25
+background-color: $orange
+open: false
+z-index: 10
+
+--- ftd.text: $pricing-name
+role: $heading-hero
+white-space: nowrap
+
+--- container: pricing-id
+
+--- ftd.row:
+
+--- ftd.text: $days
+role: $list-title
+padding-vertical: 8
+white-space: nowrap
+
+
+
+--- container: ftd.main
+
+--- ftd.text:
+margin-top: 8
+margin-bottom: 32
+text: $body
+role: $copy-relaxed
+color: $fpm.color.main.text
+
+--- img-text: $obj
+if: $list-one
+$loop$: $about-list-one as $obj
+
+--- img-text: $obj
+if: $list-two
+$loop$: $about-list-two as $obj
+
+--- img-text: $obj
+if: $list-three
+$loop$: $about-list-three as $obj
+
+--- container: ftd.main
+
+--- ftd.row:
+margin-top: 32
+align: center
+
+
+/--- cta: $cta-text
+link: https://cdoc.fifthtry.com/initiate-github-login/
+width: fill
+cta-bg: $cta_secondary_base
+
+
+/--- github-button:
+link: https://cdoc.fifthtry.com/initiate-github-login/
+sign-in: $cta-text
+
+
+
+--- container: ftd.main
+
+--- ftd.text: 
+text: $payment-mode
+role: $copy-relaxed
+color: $fpm.color.main.text
+align: center
+padding-top: 16
+
+
+-- ftd.row img-text:
+caption title:
+spacing: 8
+margin-bottom: 16
+
+--- ftd.image:
+src: $assets.files.static.Circle-Check.png
+
+--- ftd.text: $title
+role: $copy-relaxed-medium
+color: $fpm.color.main.text-strong
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ftd.row img-logo:
+caption title:
+padding-vertical: 8
+spacing: 8
+
+
+--- ftd.image:
+src: $assets.files.static.Circle-Check.png
+
+--- ftd.text: $title
+role: $copy-relaxed-medium
+color: $fpm.color.main.text-strong
+
+
+
+-- ftd.row github-button:
+optional string sign-in: 
+optional string github-cta:
+optional string width:
+optional ftd.image-src icon-github: $assets.files.assets.images.icon-github.svg
+optional string link: https://github.com/apps/continuous-documentation
+padding-horizontal: $fpm.space.space-4
+padding-vertical: $fpm.space.space-2
+color: $fpm.color.main.background.step-1
+background-color: $fpm.color.main.cta-primary.base
+border-radius: 4
+width: $width
+cursor: pointer
+link: $link
+align: center
+
+--- ftd.row:
+width: fill
+align: center
+
+--- ftd.text: $sign-in
+white-space: nowrap
+role: $fpm.type.fine-print
+text-align: center
+color: $fpm.color.main.background.step-1
+margin-right: 4
+
+/--- ftd.image:
+src: $icon-github
+height: 16
+width: auto
+
+
+--- ftd.text: $github-cta
+if: $github-cta is not null
+margin-left: 4
+white-space: nowrap
+role: $fpm.type.fine-print
+

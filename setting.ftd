@@ -1,0 +1,333 @@
+-- import: fpm-controller-ui.fly.dev/page-1
+
+-- optional string current-new-team-name:
+$always-include$: true
+
+-- optional string verification-team-name-text:
+$always-include$: true
+
+-- optional string verification-text-error:
+$always-include$: true
+
+-- boolean show-edit-bar: false
+
+-- boolean debug: false
+
+-- record query-data:
+string team:
+
+;; <<-- Query Parameters -->>
+-- query-data query:
+$processor$: request-data
+
+-- ftd.text: Query params
+if: $debug
+
+-- ftd.text: $query.team
+if: $debug
+
+-- record settings-data:
+page-1.team list teams:
+string active-plan:
+string current-user:
+optional string sites-link:
+optional string team-access-link:
+optional string team-billing-link:
+optional string team-settings-link:
+optional string site-info-link:
+optional string site-access-link:
+
+-- settings-data settings:
+$processor$: http
+method: get
+url: /-/fpm-controller-ui.fly.dev/api/settings/
+team: $query.team
+
+-- page-1.team list team-list: $settings.teams
+
+/-- team-list:
+item-title: Personal
+item-link: billing/
+
+/-- team-list:
+item-title: Commercial
+item-link: billing/
+
+/-- team-list:
+item-title: My Friends
+item-link: billing/
+
+/-- team-list:
+item-title: My Company
+item-link: billing/
+
+
+
+
+
+-- page-1.page-one: AmitU
+team-name: $query.team
+teams: $team-list
+query-user: $settings.current-user
+query-team: $query.team
+sites-link: $settings.sites-link
+team-access-link: $settings.team-access-link
+team-billings-link: $settings.team-billing-link
+team-settings-link: $settings.team-settings-link
+site-info-link: $settings.site-info-link
+site-access-link: $settings.site-access-link
+
+-- setting-loop:
+
+
+
+
+
+-- ftd.column setting-loop:
+caption title: $query.team
+string active-team-plan: $settings.active-plan
+string edit-url: /
+string package-name: Personal
+string team-name: Team Name
+string team-plan-label: Current Team Plan
+width: fill
+background-color: $fpm.color.main.background.step-1
+border-radius: 12
+padding-vertical: 24
+boolean open: false
+padding-horizontal: 24
+margin-bottom: 28
+spacing: 32
+
+--- ftd.row:
+width: fill
+id: first-column
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: $team-name
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+width: fill
+
+--- ftd.text: $title
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+width: fill
+
+--- ftd.text: CHANGE
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color if $MOUSE-IN: $fpm.color.main.error.text
+background-color if $MOUSE-IN: $fpm.color.main.error.base
+color: $fpm.color.main.error.text
+background-color: $fpm.color.main.text-strong
+border-color if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+$on-click$: toggle $show-edit-bar
+
+--- container: ftd.main
+
+--- team-edit-bar:
+if: $show-edit-bar
+
+--- ftd.row:
+width: fill
+spacing: 12
+
+--- ftd.text: $team-plan-label
+role: $fpm.type.heading-small
+color: $fpm.color.main.text-strong
+width: fill
+
+--- ftd.text: $active-team-plan
+role: $fpm.type.heading-small
+color: $fpm.color.main.text
+width: fill
+
+--- ftd.text: CHANGE PLAN
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color if $MOUSE-IN: $fpm.color.main.error.text
+background-color if $MOUSE-IN: $fpm.color.main.error.base
+color: $fpm.color.main.error.text
+background-color: $fpm.color.main.text-strong
+border-color if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+/$on-click$: toggle $show-edit-bar
+
+--- container: ftd.main
+
+--- ftd.text: DELETE TEAM
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color if $MOUSE-IN: $fpm.color.main.error.text
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+$on-click$: toggle $open
+
+--- delete-card: $package-name
+if: $open
+$open: $open
+
+-- ftd.row team-edit-bar:
+spacing: 20
+
+--- ftd.input:
+placeholder: New Team Name
+value: $query.team
+type: text
+$on-input$: $current-new-team-name=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text
+background-color: $fpm.color.main.background.step-1
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+border-color: $fpm.color.main.border
+width: fill
+min-width: 200
+
+--- button.button: Save
+role: primary
+medium: true
+$on-click$: message-host $edit-team-name-api
+
+--- button.button: Cancel
+role: primary
+medium: true
+$on-click$: toggle $show-edit-bar
+
+
+-- ftd.column delete-card:
+caption package-name:
+boolean $open:
+width: fill
+padding-vertical: 24
+padding-horizontal: 24
+color: $fpm.color.main.text-strong
+border-color: $fpm.color.main.border
+border-width: 1
+spacing: 24
+border-radius: 8
+
+
+--- ftd.text: ARE YOU SURE ?
+role: $fpm.type.copy-relaxed
+
+
+
+--- ftd.row:
+width: fill
+spacing: 8
+
+
+--- ftd.text: If yes, type in your team name
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+
+
+--- ftd.text: $query.team
+role: $fpm.type.copy-relaxed
+
+
+--- ftd.text: below
+role: $fpm.type.copy-relaxed
+color: $fpm.color.main.text
+
+--- container: ftd.main
+
+--- ftd.row:
+width: fill
+
+--- ftd.input:
+placeholder: Re-Type in your current team name
+$on-input$: $verification-team-name-text=$VALUE
+role: $fpm.type.copy-tight
+color: $fpm.color.main.text-strong
+border-color: $fpm.color.main.border
+padding-vertical: $fpm.space.space-2
+padding-horizontal: $fpm.space.space-3
+border-width: 1
+width: fill
+background-color: $fpm.color.main.border
+margin-right: 32
+
+
+/--- button.button: Confirm
+role: primary
+medium: true
+$on-click$: message-host $delete-team-api
+
+--- ftd.text: CONFIRM
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color if $MOUSE-IN: $fpm.color.main.error.text
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+$on-click$: message-host $delete-team-api
+margin-right: 24
+
+/--- button.button: Cancel
+role: primary
+medium: true
+$on-click$: $open= false
+
+--- ftd.text: CANCEL
+padding-vertical: 8
+padding-horizontal: 12
+role: $fpm.type.fine-print
+style: bold
+color  if $MOUSE-IN: $fpm.color.main.error.text
+background-color  if $MOUSE-IN: $fpm.color.main.error.base
+color : $fpm.color.main.error.text
+background-color : $fpm.color.main.text-strong
+border-color  if $MOUSE-IN: $fpm.color.main.error.base
+border-color: $fpm.color.main.error.text
+border-radius: 8
+$on-click$: $open= false
+
+--- container: ftd.main
+
+--- ftd.row:
+if: $verification-text-error is not null
+
+--- ftd.text: $verification-text-error
+role: $fpm.type.fine-print
+color: $fpm.color.main.error.border
+
+
+-- object edit-team-name-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/edit-team-name/
+team: $query.team
+new-team: $current-new-team-name
+
+-- object delete-team-api:
+function: http
+method: post
+url: /-/fpm-controller-ui.fly.dev/api/delete-team/
+team: $query.team
+verification-text: $verification-team-name-text
+$verification-text-error: $verification-text-error
