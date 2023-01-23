@@ -1,3 +1,5 @@
+-- import: fpm/processors as pr
+
 -- optional string current-new-team-member-name:
 $always-include$: true
 
@@ -7,9 +9,9 @@ $always-include$: true
 -- optional string queried-team:
 $always-include$: true
 
--- boolean show: false
+-- boolean $show: false
 
--- boolean dropdown-open: false
+-- boolean $dropdown-open: false
 
 -- optional string site-name:
 
@@ -18,29 +20,36 @@ light: $assets.files.static.logo-fifthtry.svg.light
 dark: $assets.files.static.logo-fifthtry.svg.dark
 
 
--- fpm.toc-item list toc-one:
-$processor$: toc
+-- pr.toc-item list toc-one:
+$processor$: pr.toc
 
 # jj: /
 # hh: /
 # hh: /
 
 
--- ftd.column create-package-button:
+-- component create-package-button:
 caption title:
 optional string button-link:
-width: fill-container
+
+-- ftd.column:
+width.fixed.px: fill-container
 link: $button-link
-min-width: 200
+min-width.fixed.px: 200
 
 --- ftd.row:
-align: right
-padding-bottom: $fpm.space.space-4
+align-content: right
+padding-bottom.px: 4
 
---- button.button: $title
-role: primary
-medium: true
+-- utils.button: $title
 link: $button-link
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: create-package-button
+
 
 -- fpm.sitemap-data sitemap:
 $processor$: sitemap
@@ -68,29 +77,11 @@ teams: $teams
 
 
 
-;# sites - /sites/?user={user_name}&team={team_name}
-;# team access - /access/?user={user_name}&team={team_name}
-;# team billing - /billing/?user={user_name}&team={team_name}
-;# team settings - /setting/?user={user_name}&team={team_name}
-;## site info - /site-info/?user={user_name}&team={team_name}&site-id={current_site_id}
-;## site access - /site-access/?user={user_name}&team={team_name}
-;## site metrics - Not implemented yet
-;## site activity - Not implemented yet
-;- site updates - Not implemented yet
-;- site logs - Not implemented yet
-;- site analytics - Not implemented yet
-;## site settings - Not implemented yet
 
 
 
 -- side-site-data list empty-sites-toc:
 -- optional string empty-link:
-/-- optional string sites-link:
-/-- optional string team-access-link:
-/-- optional string team-billings-link:
-/-- optional string team-settings-link:
-/-- optional string site-info-link:
-/-- optional string site-access-link:
 
 
 -- ftd.column page-one:
@@ -113,7 +104,7 @@ team list teams: $teams
 optional ftd.image-src user-avatar: $assets.files.avatar.jpg
 boolean show-profile-menu: false
 string team-name:
-width: fill-container
+width.fixed.px: fill-container
 boolean widthfill: false
 open: true
 id: main-container
@@ -124,17 +115,17 @@ height: calc 100vh - 0px
 overflow-y: auto
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 padding-vertical: $fpm.space.space-4
 padding-horizontal: $fpm.space.space-4
 background.solid: $inherited.colors.background.step-1
 
 --- ftd.row:
-width: fill-container
+width.fixed.px: fill-container
 id: header-container
 
 --- ftd.row:
-width: fill-container
+width.fixed.px: fill-container
 align: left
 id: logo-container
 
@@ -146,7 +137,7 @@ color: $inherited.colors.text-strong
 --- ftd.image: 
 if: $site-name is null
 src:  $site-logo
-width: 120
+width.fixed.px: 120
 height: auto
 id: logo
 link: index.html
@@ -187,7 +178,7 @@ query-team: $query-team
 
 --- ftd.row: 
 background.solid: $inherited.colors.background.step-2
-width: 24
+width.fixed.px: 24
 height: 24
 border-radius: 100
 align: center
@@ -195,16 +186,16 @@ align: center
 --- ftd.image:
 if: $user-avatar is not null
 src: $user-avatar
-width: 24
+width.fixed.px: 24
 height: 24
 $on-mouse-enter$: $show-profile-menu = true
 border-radius: 100
 
 --- ftd.column:
 if: $show-profile-menu
-width: 160	
+width.fixed.px: 160	
 background.solid: $inherited.colors.background.base
-border-width: 1
+border-width.fixed.px: 1
 border-color: $inherited.colors.border
 padding-horizontal: $fpm.space.space-3
 padding-vertical: $fpm.space.space-3
@@ -216,7 +207,7 @@ $on-mouse-enter$: $show-profile-menu = true
 $on-mouse-leave$: $show-profile-menu = false
 
 --- ftd.column:
-width: 42
+width.fixed.px: 42
 height: 42
 background.solid: $inherited.colors.background.step-2
 align: center
@@ -225,14 +216,14 @@ border-radius: 100
 --- ftd.image:
 if: $user-avatar is not null
 src: $user-avatar
-width: 42
+width.fixed.px: 42
 height: 42
 border-radius: 100
 
 --- container: login-menu
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 border-bottom: 1
 border-color: $inherited.colors.border
 padding-bottom: $fpm.space.space-3
@@ -247,7 +238,7 @@ margin-top: $fpm.space.space-4
 
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 margin-top: $fpm.space.space-3
 
 
@@ -266,7 +257,7 @@ border-color if $MOUSE-IN: $inherited.colors.border-strong
 --- container: ftd.main
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 padding-horizontal: 24
 padding-vertical: 24
 id: page-content
@@ -275,7 +266,7 @@ id: page-content
 --- container: page-content
 
 --- ftd.column: 
-width: fill-container
+width.fixed.px: fill-container
 id: hhhh
 background-color if $show-section-header: $inherited.colors.background.step-2
 padding-vertical: $fpm.space.space-4
@@ -300,16 +291,16 @@ $loop$: $sections as $obj
 
 
 --- ftd.column: 
-width: fill-container
+width.fixed.px: fill-container
 id: llll
 
 --- ftd.column:
 if: $show
-width: fill-container
+width.fixed.px: fill-container
 
 
 --- ftd.row:
-width: fill-container
+width.fixed.px: fill-container
 id: jjjj
 spacing: 64
 /padding-vertical: 64
@@ -326,17 +317,17 @@ toc-obj: $toc-one
 --- container: jjjj
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 padding-vertical: 24
 padding-horizontal: 24
 id: kkk
-border-width: 1
+border-width.fixed.px: 1
 border-color: $inherited.colors.border
 margin-top: 25
 
 
 --- ftd.row:
-width: fill-container
+width.fixed.px: fill-container
 
 --- sub-section-component:
 sub-sections: $sub-sections
@@ -348,7 +339,7 @@ site-access-link: $site-access-link
 --- container: kkk
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 id: main-container
 max-width if not $widthfill: 1200
 max-width if $widthfill: fill
@@ -361,10 +352,10 @@ padding-vertical: 24
 
 --- ftd.column:
 if: not $show
-width: fill-container
+width.fixed.px: fill-container
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 id: main-container
 max-width if not $widthfill: 1200
 max-width if $widthfill: fill
@@ -388,43 +379,45 @@ align: center
 
 --- ftd.row:
 id: team-dd
-min-width: 250
+min-width.fixed.px: 250
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-2
-border-width: 1
+border-width.fixed.px: 1
 border-color: $inherited.colors.border
 border-radius: 4
-/$on-click$: toggle $dropdown-open
+/$on-click$: $ftd.toggle($a = $dropdown-open)
 
 --- ftd.text: $team-name
 role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 
 --- ftd.image:
-if: not $dropdown-open
+if: { !dropdown-open }
 src: $assets.files.dd-down.svg
 margin-left: 110
-width: 24
+width.fixed.px: 24
 height: 24
 align: center
-$on-click$: toggle $dropdown-open
+$on-click$: $ftd.toggle($a = $dropdown-open)
 
 --- ftd.image:
-if: $dropdown-open
+if: { dropdown-open }
 src: $assets.files.static.dd-up.svg
-margin-left: 110
-width: 24
+margin-left.px: 110
+width.fixed.px: 24
 height: 24
 align: center
 $on-click$: toggle $dropdown-open
 
 --- container: team-dd
 
---- dropdown-menu:
-if: $dropdown-open
+-- dropdown-menu:
+if: { dropdown-open }
 options: $teams
 query-user: $query-user
 query-team: $query-team
+
+-- end: page-one
 
 
 
@@ -638,7 +631,7 @@ top: 0
 /left: 24
 height: fill
 overflow-y: auto
-width: 350
+width.fixed.px: 350
 align: top-left
 background.solid: $inherited.colors.background.overlay
 border-radius: 8
@@ -659,7 +652,7 @@ toc: $obj
 -- ftd.column toc-instance:
 side-site-data toc:
 id: toc-instance
-width: fill-container
+width.fixed.px: fill-container
 
 
 --- ftd.text:
@@ -667,7 +660,7 @@ if: $toc.url is not null
 link: $toc.url
 text: $toc.site-name
 role: $inherited.types.fine-print
-min-width: fit-content
+min-width.fixed.px: fit-content
 color: $inherited.colors.text
 color if $toc.is-active: $inherited.colors.cta-primary.base
 style: medium
@@ -682,7 +675,7 @@ optional string site-info-link:
 optional string site-access-link:
 fpm.toc-item list sub-sections:
 fpm.toc-item list toc:
-width: fill-container
+width.fixed.px: fill-container
 border-radius: 8
 padding-left: 24
 padding-vertical: 16
@@ -690,7 +683,7 @@ spacing: 32
 background.solid: $inherited.colors.background.step-2
 
 --- ftd.row:
-width: fill-container
+width.fixed.px: fill-container
 if: $sub-sections is not empty
 
 --- sub-section-loop: $sub.title
@@ -723,10 +716,10 @@ $loop$: $toc as $obj
 optional string query-user:
 optional string query-team:
 boolean show-create-team-component: false
-width: fill-container
-min-width: 250
+width.fixed.px: fill-container
+min-width.fixed.px: 250
 background.solid: $inherited.colors.background.base
-border-width: 1
+border-width.fixed.px: 1
 border-color: $inherited.colors.border
 team list options:
 anchor: parent
@@ -740,7 +733,7 @@ border-bottom-radius: 4
 z-index: 9999999
 
 --- ftd.column:
-width: fill-container
+width.fixed.px: fill-container
 spacing: 10
 padding-horizontal: 5
 
@@ -764,7 +757,7 @@ item-link: $obj.item-link
 optional string query-user:
 optional string query-team:
 spacing: 20
-width: fill-container
+width.fixed.px: fill-container
 
 --- ftd.input:
 placeholder: New Team Name
@@ -775,10 +768,10 @@ color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
 padding-vertical: $fpm.space.space-2
 padding-horizontal: $fpm.space.space-3
-border-width: 1
+border-width.fixed.px: 1
 border-color: $inherited.colors.border
-width: fill-container
-min-width: 150
+width.fixed.px: fill-container
+min-width.fixed.px: 150
 
 --- button.button: Create
 role: primary
@@ -791,7 +784,7 @@ $on-click$: message-host $create-team-api
 -- ftd.column options-list:
 optional string item-title:
 optional string item-link: 
-width: fill-container
+width.fixed.px: fill-container
 border-bottom: 1
 border-color: $inherited.colors.border
 padding-bottom: $fpm.space.space-3

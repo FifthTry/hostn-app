@@ -1,7 +1,5 @@
 -- import: fpm-controller-ui.fly.dev/assets
-/-- import: fifthtry.github.io/button as button
 -- import: fpm/processors
--- import: fpm-controller-ui.fly.dev/button
 
 ;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
 ;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
@@ -47,12 +45,16 @@ boolean $show-profile-menu: false
 
 -- ftd.column:
 width: fill-container
+height: fill-container
 padding-vertical.px: 16
 padding-horizontal.px: 16
 background.solid: $inherited.colors.background.step-1
+spacing-mode: space-between
+
 
 ;; LOGO ROW
 -- ftd.row:
+width: fill-container
 
 -- ftd.image:
 src: $site-logo
@@ -60,13 +62,32 @@ width.fixed.px: 120
 height: auto
 link: /
 
+-- ftd.row:
+align-content: right
+width: fill-container
+spacing.px: 32
+
+-- login: Login
+
+-- github-button:
+if: { !ud.is-login }
+button-text: Dashboard
+link: /sites/
+
+-- end: ftd.row
+
 -- end: ftd.row
 
 
-;; Login and Logout
+;; Page content
 -- ftd.column:
+width: fill-container
 
--- login: Login
+-- ftd.text: Coming Soon
+role: $inherited.types.heading-hero
+color: $inherited.colors.text-strong
+text-align: center
+width: fill-container
 
 -- end: ftd.column
 
@@ -74,12 +95,12 @@ link: /
 ;; Footer
 -- ftd.column:
 width: fill-container
-max-width.fixed.px: 1200
 align-content: center
 
 -- ftd.text: &copy; 2022 FifthTry Private Limited
 role: $inherited.types.fine-print
 color: $inherited.colors.text
+text-align: center
 
 -- end: ftd.column
 
@@ -92,7 +113,7 @@ color: $inherited.colors.text
 
 
 -- component login:
-caption title:
+optional caption title:
 string cta-primary: Sign In
 string cta-secondary: Sign Up
 string error-email: email error
@@ -100,19 +121,7 @@ string error-password: password error
 string email-placeholder: username
 string password-placeholder: password
 
--- ftd.column:
-padding-vertical.px: 24
-padding-horizontal.px: 40
-background.solid: $inherited.colors.background.step-1
-border-width.px: 1
-border-color: $inherited.colors.border
-width.fixed.percent: 70
-align-content: center
-
--- ftd.text: $login.title
-role: $inherited.types.heading-medium
-color: $inherited.colors.text
-margin-bottom.px: 16
+-- ftd.row:
 
 -- github-button:
 if: { !ud.is-login }
@@ -126,7 +135,7 @@ button-text: Logout from Github
 link: /auth/logout/
 icon: $assets.files.static.github-logo.svg
 
--- end: ftd.column
+-- end: ftd.row
 
 -- end: login
 

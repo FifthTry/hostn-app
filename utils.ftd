@@ -1,5 +1,6 @@
 -- component button:
 caption title:
+optional string link:
 
 -- ftd.row:
 background.solid: $inherited.colors.cta-tertiary.base
@@ -10,7 +11,7 @@ border-radius.px: 4
 -- ftd.text: $button.title
 role: $inherited.types.fine-print
 color: $inherited.colors.text-strong
-
+link if { button.link != NULL }: $button.link
 
 -- end: ftd.row
 

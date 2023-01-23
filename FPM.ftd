@@ -11,7 +11,7 @@ endpoint: http://127.0.0.1:8001
 /-- fpm.dependency: fifthtry.github.io/button as button
 /-- fpm.auto-import: button
 
-
+-- fpm.auto-import: fpm-controller-ui.fly.dev/utils as utils
 -- fpm.auto-import: fpm
 -- fpm.dependency: fifthtry.github.io/inter
 -- fpm.auto-import: fpm-controller-ui.fly.dev/assets
