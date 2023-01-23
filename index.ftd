@@ -48,14 +48,12 @@ password-label: Password*
 
 
 
--- ftd.column page:
+-- component page:
 optional caption title:
 optional body body:
 optional string username: abc@fifthtry.com
 optional ftd.image-src user-avatar: $assets.files.avatar.jpg
 boolean show-profile-menu: false
-append-at: main-container
-open: true
 width: fill
 
 -- ftd.column:
@@ -86,6 +84,8 @@ height: auto
 id: logo
 link: index.html
 
+-- end: ftd.row
+
 -- ftd.row:
 align: right
 padding-top if $site-name is not null: $fpm.space.space-4
@@ -104,40 +104,7 @@ role: tertiary
 medium: true
 $on-click$: message-host $deploy-controller-service-api
 
-/--- ftd.text: Dashboard
-link: dashboard/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
-white-space: nowrap
-align: center
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
-
-/--- ftd.text: Sign in
-link: sign-in/
-role: $fpm.type.fine-print
-color: $fpm.color.main.text-strong
-white-space: nowrap
-align: center
-border-bottom: 1
-border-color: $fpm.color.main.background.base
-border-color if $MOUSE-IN: $fpm.color.main.border-strong
-
-/--- ftd.row:
-background-color: $fpm.color.main.background.step-2
-width: 24
-height: 24
-border-radius: 100
-align: center
-
-/--- ftd.image:
-if: $user-avatar is not null
-src: $user-avatar
-width: 24
-height: 24
-$on-mouse-enter$: $show-profile-menu = true
-border-radius: 100
+-- end: ftd.row
 
 -- ftd.column:
 if: $show-profile-menu
@@ -154,21 +121,7 @@ id: login-menu
 $on-mouse-enter$: $show-profile-menu = true
 $on-mouse-leave$: $show-profile-menu = false
 
-/--- ftd.column:
-width: 42
-height: 42
-background-color: $fpm.color.main.background.step-2
-align: center
-border-radius: 100
-
-/--- ftd.image:
-if: $user-avatar is not null
-src: $user-avatar
-width: 42
-height: 42
-border-radius: 100
-
-/--- container: login-menu
+-- end: ftd.column
 
 -- ftd.column:
 width: fill
@@ -181,6 +134,8 @@ if: $username is not null
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
 margin-top: $fpm.space.space-4
+
+-- end: ftd.column
 
 /-- container: login-menu
 
@@ -197,6 +152,8 @@ margin-top: $fpm.space.space-2
 border-bottom: 1
 border-color: $fpm.color.main.background.base
 border-color if $MOUSE-IN: $fpm.color.main.border-strong
+
+-- end: ftd.column
 
 /--- container: ftd.main
 
@@ -226,6 +183,10 @@ role: $fpm.type.copy-large
 color: $fpm.color.main.text
 text: $body
 
+-- end: ftd.column
+-- end: ftd.column
+-- end: ftd.column
+
 /--- container: ftd.main
 
 -- ftd.column:
@@ -241,6 +202,12 @@ align: center
 -- ftd.text: &copy; 2022 FifthTry Private Limited
 role: $fpm.type.fine-print
 color: $fpm.color.main.text
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
 
 -- end: page
 
