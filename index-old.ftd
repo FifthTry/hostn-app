@@ -1,166 +1,59 @@
--- import: fpm-controller-ui.fly.dev/assets
-/-- import: fifthtry.github.io/button as button
--- import: fpm/processors
--- import: fpm-controller-ui.fly.dev/button
+-- component header:
 
-;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
-;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark
-
--- record user-details:
-boolean is-login:
-
--- user-details ud:
-$processor$: processors.user-details
-is-login: false
-
--- optional string current-user-name:
-
--- optional string username-error:
-
--- optional string current-password:
-
--- string site-name: Hello
-
--- boolean debug: false
-
--- ftd.image-src site-logo: 
-light: $assets.files.static.logo-fifthtry.svg.light
-dark: $assets.files.static.logo-fifthtry.svg.dark
-
--- ftd.text: $current-user-name
-if: { debug }
-
--- ftd.text: $current-password
-if: { debug }
-
--- page:
-
-
-
--- component page:
-optional caption title:
-optional body body:
-optional string username:
-ftd.image-src user-avatar: $assets.files.avatar.jpg
-boolean $show-profile-menu: false
-
-
--- ftd.column:
-width: fill-container
-padding-vertical.px: 16
-padding-horizontal.px: 16
-background.solid: $inherited.colors.background.step-1
-
-;; LOGO ROW
 -- ftd.row:
-
--- ftd.image:
-src: $site-logo
-width.fixed.px: 120
-height: auto
-link: /
-
--- end: ftd.row
-
-
-;; Login and Logout
--- ftd.column:
-
--- login: Login
-
--- end: ftd.column
-
-
-;; Footer
--- ftd.column:
+padding.px: 10
+background.solid: #140606
+border-style: solid
 width: fill-container
-max-width.fixed.px: 1200
-align-content: center
-
--- ftd.text: &copy; 2022 FifthTry Private Limited
-role: $inherited.types.fine-print
-color: $inherited.colors.text
-
--- end: ftd.column
-
-;; Base Column End
--- end: ftd.column
--- end: page
-
-
-
-
-
--- component login:
-caption title:
-string cta-primary: Sign In
-string cta-secondary: Sign Up
-string error-email: email error
-string error-password: password error
-string email-placeholder: username
-string password-placeholder: password
-
--- ftd.column:
-padding-vertical.px: 24
-padding-horizontal.px: 40
-background.solid: $inherited.colors.background.step-1
 border-width.px: 1
-border-color: $inherited.colors.border
-width.fixed.percent: 70
-align-content: center
-
--- ftd.text: $login.title
-role: $inherited.types.heading-medium
-color: $inherited.colors.text
-margin-bottom.px: 16
-
--- github-button:
-if: { !ud.is-login }
-button-text: Login using GitHub
-link: /auth/login/?platform=github&next=/sites/?team=Personal
-icon: $assets.files.static.github-logo.svg
-
--- github-button:
-if: { ud.is-login }
-button-text: Logout from Github
-link: /auth/logout/
-icon: $assets.files.static.github-logo.svg
-
--- end: ftd.column
-
--- end: login
 
 
--- component github-button:
-string button-text:
-string link:
-optional ftd.image-src icon:
+-- ftd.text: Row
+color: white
+size.px: 16
 
-
--- ftd.row:
-align-content: center
-padding-horizontal.px: 16
-padding-vertical.px: 8
-color: $inherited.colors.background.step-1
-background.solid: $inherited.colors.cta-primary.base
-border-radius.px: 4
-width.fixed.px: 180
-cursor: pointer
-
-
--- ftd.image:
-if: { github-button.icon != NULL }
-src: $github-button.icon
-width.fixed.px: 20
-height.fixed.px: 20
-
-
--- ftd.text: $github-button.button-text
-if: { github-button.button-text != NULL }
-margin-left.px: 4
-white-space: nowrap
-role: $inherited.types.fine-print
 
 -- end: ftd.row
 
--- end: github-button
+-- end: header
+
+
+-- component body:
+
+-- ftd.column:
+
+-- ftd.text: I am The ultimate body
+
+-- end: ftd.column
+
+-- end: body
+
+
+-- component footer:
+
+-- ftd.column: 
+
+-- ftd.text: I the boot of the page
+
+-- end: ftd.column
+
+-- end: footer
+
+
+
+-- component index:
+
+-- ftd.column:
+width.fixed.percent: 100
+height.fixed.percent: 100 
+
+-- header:
+-- body:
+-- footer:
+
+-- end: ftd.column
+
+-- end: index
+
+
+-- index:
