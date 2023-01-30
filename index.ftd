@@ -10,7 +10,7 @@ border-width.px: 1
 
 -- ftd.text: Row
 color: white
-size.px: 16
+/size.px: 16
 
 
 -- end: ftd.row
