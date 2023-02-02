@@ -1,7 +1,7 @@
 -- import: fastn
 
--- fastn.package: fifthtry.github.io/fpm-controller-ui
-download-base-url: https://raw.githubusercontent.com/FifthTry/fpm-controller-ui/main
+-- fastn.package: fifthtry.github.io/hostn-app
+download-base-url: https://raw.githubusercontent.com/FifthTry/hostn-app/main
 /endpoint: http://controller-service.fly.dev
 /endpoint: http://127.0.0.1:8001
 
