@@ -1,5 +1,8 @@
 -- import: fastn/processors as p
 
+-- string $site-name: Hostn
+-- string $site-url: /
+
 -- p.toc-item list sections:
 $processor$: p.toc
 
@@ -11,6 +14,8 @@ $processor$: p.toc
 p.toc-item section:
 
 -- ftd.column:
+width: fill-container
+
 
 -- ftd.text: $iter-section.section.title
 if: { iter-section.section.url != NULL }
@@ -31,43 +36,85 @@ color: $inherited.colors.cta-primary.base
 -- end: iter-section
 
 
+
 -- component header:
 string site-name:
+string site-url:
 string login-button-text:
 p.toc-item list sections:
 
 
 -- ftd.row:
-padding.px: 10
+padding-vertical.px: 16
+padding-horizontal.px: 24
 background.solid: #140606
 border-style: solid
 width: fill-container
 border-width.px: 1
 
 -- ftd.text: $header.site-name
-color: white
+color: $inherited.colors.text-strong
+role: $inherited.types.heading-small
+width: fill-container
+
 
 -- iter-section:
 $loop$: $header.sections as $section
 section: $section
 
-
 -- ftd.text: $header.login-button-text
-color: white
+color: $inherited.colors.text-strong
+role: $inherited.types.heading-small
+white-space: nowrap
+
 
 -- end: ftd.row
 
 -- end: header
+
+;; body starts
+
+-- component card:
+caption title:
+string subtitle:
+
+-- ftd.column:
+margin-top.px: -100
+padding-horizontal.px: 70
+background.solid: $inherited.colors.background.step-2
+border-radius.px: 12
+align-content: center
+padding-vertical.px: 70
+
+
+
+-- ftd.text: $card.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+
+-- ftd.text: $card.subtitle
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+
+-- end: ftd.column
+
+-- end: card
 
 
 
 -- component body:
 
 -- ftd.column:
+min-height.fixed.calc: 100vh - 52px
+width: fill-container
+align-content: center
+background.solid: $inherited.colors.cta-primary.disabled
 
--- ftd.text: I am The ultimate body
+-- card: Hosting For Fastn Packages
+subtitle: Coming Soon...
 
 -- end: ftd.column
+
 
 -- end: body
 
@@ -77,7 +124,7 @@ color: white
 
 -- ftd.column: 
 
--- ftd.text: I the boot of the page
+/-- ftd.text: I the boot of the page
 
 -- end: ftd.column
 
@@ -86,17 +133,52 @@ color: white
 
 
 -- component index:
+optional caption title:
+optional body body:
+string site-name: $site-name
+string site-url: $site-url
+p.toc-item list sections: $sections
+string login-button-text: Login With GitHub
+children container:
+
 
 -- ftd.column:
-width.fixed.percent: 100
-height.fixed.percent: 100 
+width: fill-container
+min-height.fixed.calc: 100vh
+background.solid: $inherited.colors.background.base
+
 
 -- header:
-site-name: Hostn
-login-button-text: Login With GitHub
-sections: $sections
+site-name: $index.site-name
+site-url: $index.site-url
+login-button-text: $index.login-button-text
+sections: $index.sections
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.text: $index.title
+if: { index.title != NULL }
+role: $inherited.types.heading-hero
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { index.body != NULL }
+text: $index.body
+role: $inherited.types.heading-hero
+color: $inherited.colors.text-strong
+
+
+-- ftd.column:
+children: $index.container
+
+-- end: ftd.column
+
+-- end: ftd.column
+
 
 -- body:
+
 -- footer:
 
 -- end: ftd.column
