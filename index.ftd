@@ -20,15 +20,18 @@ width: fill-container
 -- ftd.text: $iter-section.section.title
 if: { iter-section.section.url != NULL }
 link: $iter-section.section.url
-role: $inherited.types.button-medium
-color: $inherited.colors.cta-primary.base
-
+role: $inherited.types.button-large
+color: $inherited.colors.text-strong
+color if { iter-section.section.is-active }: $inherited.colors.cta-primary.base
+padding-top.px: 4
 
 
 -- ftd.text: $iter-section.section.title
 if: { iter-section.section.url == NULL }
 role: $inherited.types.button-medium
-color: $inherited.colors.cta-primary.base
+color: $inherited.colors.text-strong
+color if { iter-section.section.is-active }: $inherited.colors.cta-primary.base
+padding-top.px: 4
 
 
 -- end: ftd.column
@@ -56,6 +59,7 @@ border-width.px: 1
 color: $inherited.colors.text-strong
 role: $inherited.types.heading-small
 width: fill-container
+link: $header.site-url
 
 
 -- iter-section:
@@ -66,6 +70,7 @@ section: $section
 color: $inherited.colors.text-strong
 role: $inherited.types.heading-small
 white-space: nowrap
+link: /login/
 
 
 -- end: ftd.row
@@ -79,7 +84,7 @@ caption title:
 string subtitle:
 
 -- ftd.column:
-margin-top.px: -100
+margin-top.px: -200
 padding-horizontal.px: 70
 background.solid: $inherited.colors.background.step-2
 border-radius.px: 12
@@ -91,6 +96,7 @@ padding-vertical.px: 70
 -- ftd.text: $card.title
 role: $inherited.types.heading-large
 color: $inherited.colors.text-strong
+white-space: nowrap
 
 -- ftd.text: $card.subtitle
 role: $inherited.types.heading-medium
@@ -108,7 +114,6 @@ color: $inherited.colors.text-strong
 min-height.fixed.calc: 100vh - 52px
 width: fill-container
 align-content: center
-background.solid: $inherited.colors.cta-primary.disabled
 
 -- card: Hosting For Fastn Packages
 subtitle: Coming Soon...
@@ -144,8 +149,6 @@ children container:
 
 -- ftd.column:
 width: fill-container
-min-height.fixed.calc: 100vh
-background.solid: $inherited.colors.background.base
 
 
 -- header:
@@ -154,8 +157,13 @@ site-url: $index.site-url
 login-button-text: $index.login-button-text
 sections: $index.sections
 
+
 -- ftd.column:
 width: fill-container
+min-height.fixed.calc: 100vh - 52px
+align-content: center
+background.solid: $inherited.colors.background.step-1
+
 
 -- ftd.text: $index.title
 if: { index.title != NULL }
@@ -165,19 +173,23 @@ color: $inherited.colors.text-strong
 -- ftd.text:
 if: { index.body != NULL }
 text: $index.body
-role: $inherited.types.heading-hero
+role: $inherited.types.heading-medium
 color: $inherited.colors.text-strong
+margin-top.px: 24
 
 
 -- ftd.column:
+max-width.fixed.px: 800
+width: fill-container
+align-content: top-left
 children: $index.container
+padding-horizontal.px: 48
+padding-vertical.px: 48
+
 
 -- end: ftd.column
 
 -- end: ftd.column
-
-
--- body:
 
 -- footer:
 
@@ -188,4 +200,13 @@ children: $index.container
 
 
 ;; calling the component
--- index:
+/-- index:
+
+/-- body:
+
+/-- end: index
+
+
+-- index: Hosting For Fastn Packages
+
+Coming Soon....
