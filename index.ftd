@@ -7,15 +7,13 @@ border-style: solid
 width: fill-container
 border-width.px: 1
 
-
 -- ftd.text: Row
 color: white
-/size.px: 16
-
 
 -- end: ftd.row
 
 -- end: header
+
 
 
 -- component body:
@@ -27,6 +25,7 @@ color: white
 -- end: ftd.column
 
 -- end: body
+
 
 
 -- component footer:
@@ -56,4 +55,6 @@ height.fixed.percent: 100
 -- end: index
 
 
+
+;; calling the component
 -- index:
