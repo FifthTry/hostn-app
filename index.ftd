@@ -1,4 +1,41 @@
+-- import: fastn/processors as p
+
+-- p.toc-item list sections:
+$processor$: p.toc
+
+- Docs: /docs/
+- Pricing: /pricing/
+
+
+-- component iter-section:
+p.toc-item section:
+
+-- ftd.column:
+
+-- ftd.text: $iter-section.section.title
+if: { iter-section.section.url != NULL }
+link: $iter-section.section.url
+role: $inherited.types.button-medium
+color: $inherited.colors.cta-primary.base
+
+
+
+-- ftd.text: $iter-section.section.title
+if: { iter-section.section.url == NULL }
+role: $inherited.types.button-medium
+color: $inherited.colors.cta-primary.base
+
+
+-- end: ftd.column
+
+-- end: iter-section
+
+
 -- component header:
+string site-name:
+string login-button-text:
+p.toc-item list sections:
+
 
 -- ftd.row:
 padding.px: 10
@@ -7,7 +44,15 @@ border-style: solid
 width: fill-container
 border-width.px: 1
 
--- ftd.text: Row
+-- ftd.text: $header.site-name
+color: white
+
+-- iter-section:
+$loop$: $header.sections as $section
+section: $section
+
+
+-- ftd.text: $header.login-button-text
 color: white
 
 -- end: ftd.row
@@ -47,6 +92,10 @@ width.fixed.percent: 100
 height.fixed.percent: 100 
 
 -- header:
+site-name: Hostn
+login-button-text: Login With GitHub
+sections: $sections
+
 -- body:
 -- footer:
 
