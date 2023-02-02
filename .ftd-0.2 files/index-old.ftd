@@ -1,7 +1,7 @@
--- import: fpm-controller-ui.fly.dev/assets
+-- import: fastn-controller-ui.fly.dev/assets
 /-- import: fifthtry.github.io/button as button
--- import: fpm/processors
--- import: fpm-controller-ui.fly.dev/button
+-- import: fastn/processors
+-- import: fastn-controller-ui.fly.dev/button
 
 ;; DEBUG - https://raw.githubusercontent.com/AbrarNitk/abrark/main/
 ;; DEBUG new - AbrarNitk/abrark/main or AbrarNitk/abrark

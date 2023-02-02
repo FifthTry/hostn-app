@@ -18,7 +18,7 @@ light: $assets.files.static.logo-fifthtry.svg.light
 dark: $assets.files.static.logo-fifthtry.svg.dark
 
 
--- fpm.toc-item list toc-one:
+-- fastn.toc-item list toc-one:
 $processor$: toc
 
 # jj: /
@@ -35,14 +35,14 @@ min-width: 200
 
 --- ftd.row:
 align: right
-padding-bottom: $fpm.space.space-4
+padding-bottom: $fastn.space.space-4
 
 --- button.button: $title
 role: primary
 medium: true
 link: $button-link
 
--- fpm.sitemap-data sitemap:
+-- fastn.sitemap-data sitemap:
 $processor$: sitemap
 
 
@@ -105,9 +105,9 @@ optional string site-info-link: $empty-link
 optional string site-access-link: $empty-link
 boolean $show: false
 boolean show-section-header: true
-fpm.toc-item list toc: $sitemap.toc
-fpm.toc-item list sections: $sitemap.sections
-fpm.toc-item list sub-sections: $sitemap.subsections
+fastn.toc-item list toc: $sitemap.toc
+fastn.toc-item list sections: $sitemap.sections
+fastn.toc-item list sub-sections: $sitemap.subsections
 optional caption username: abc@fifthtry.com
 team list teams: $teams
 optional ftd.image-src user-avatar: $assets.files.avatar.jpg
@@ -125,8 +125,8 @@ overflow-y: auto
 
 --- ftd.column:
 width: fill-container
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
+padding-vertical: $fastn.space.space-4
+padding-horizontal: $fastn.space.space-4
 background.solid: $inherited.colors.background.step-1
 
 --- ftd.row:
@@ -155,8 +155,8 @@ link: index.html
 
 --- ftd.row:
 align: right
-padding-top if $site-name is not null: $fpm.space.space-4
-padding-top if $site-name is null: $fpm.space.space-2
+padding-top if $site-name is not null: $fastn.space.space-4
+padding-top if $site-name is null: $fastn.space.space-2
 spacing: 24
 
 /--- ftd.text: Dashboard
@@ -206,8 +206,8 @@ width: 160
 background.solid: $inherited.colors.background.base
 border-width: 1
 border-color: $inherited.colors.border
-padding-horizontal: $fpm.space.space-3
-padding-vertical: $fpm.space.space-3
+padding-horizontal: $fastn.space.space-3
+padding-vertical: $fastn.space.space-3
 anchor: parent
 right: 0
 top: 25
@@ -235,27 +235,27 @@ border-radius: 100
 width: fill-container
 border-bottom: 1
 border-color: $inherited.colors.border
-padding-bottom: $fpm.space.space-3
+padding-bottom: $fastn.space.space-3
 
 --- ftd.text: $query-user
 if: $username is not null
 role: $inherited.types.fine-print
 color: $inherited.colors.text
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 --- container: login-menu
 
 
 --- ftd.column:
 width: fill-container
-margin-top: $fpm.space.space-3
+margin-top: $fastn.space.space-3
 
 
 --- ftd.text: Logout
 link: /auth/logout/
 role: $inherited.types.fine-print
 color: $inherited.colors.text
-margin-top: $fpm.space.space-2
+margin-top: $fastn.space.space-2
 border-bottom: 1
 border-color: $inherited.colors.background.base
 border-color if $MOUSE-IN: $inherited.colors.border-strong
@@ -278,8 +278,8 @@ id: page-content
 width: fill-container
 id: hhhh
 background-color if $show-section-header: $inherited.colors.background.step-2
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
+padding-vertical: $fastn.space.space-4
+padding-horizontal: $fastn.space.space-4
 border-radius: 4
 
 ;; HEADERS START HERE
@@ -389,8 +389,8 @@ align: center
 --- ftd.row:
 id: team-dd
 min-width: 250
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-2
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-2
 border-width: 1
 border-color: $inherited.colors.border
 border-radius: 4
@@ -680,8 +680,8 @@ padding-horizontal: 14
 -- ftd.column sub-section-component:
 optional string site-info-link:
 optional string site-access-link:
-fpm.toc-item list sub-sections:
-fpm.toc-item list toc:
+fastn.toc-item list sub-sections:
+fastn.toc-item list toc:
 width: fill-container
 border-radius: 8
 padding-left: 24
@@ -773,8 +773,8 @@ $on-input$: $current-new-team-member-name=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -794,22 +794,22 @@ optional string item-link:
 width: fill-container
 border-bottom: 1
 border-color: $inherited.colors.border
-padding-bottom: $fpm.space.space-3
+padding-bottom: $fastn.space.space-3
 background-color if $MOUSE-IN: $inherited.colors.background.step-1
-padding-horizontal: $fpm.space.space-2
-padding-vertical: $fpm.space.space-2
+padding-horizontal: $fastn.space.space-2
+padding-vertical: $fastn.space.space-2
 
 --- ftd.text: $item-title
 if: $item-title is not null
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 link: $item-link
 
 -- object create-team-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/create-team/
+url: /-/fastn-controller-ui.fly.dev/api/create-team/
 user: $queried-user
 team: $queried-team
 new-team: $current-new-team-member-name

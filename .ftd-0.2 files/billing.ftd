@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn-controller-ui.fly.dev/page-1
 
 -- boolean debug: false
 
@@ -28,7 +28,7 @@ optional string site-access-link:
 -- billing-contents team-billing:
 $processor$: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/billing/
+url: /-/fastn-controller-ui.fly.dev/api/billing/
 team: $query.team
 
 -- page-1.team list team-list: $team-billing.teams
