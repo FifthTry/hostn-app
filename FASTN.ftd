@@ -1,0 +1,43 @@
+-- import: fastn
+
+-- fastn.package: fifthtry.github.io/fastn-controller-ui
+download-base-url: https://raw.githubusercontent.com/FifthTry/fastn-controller-ui/main
+/endpoint: http://controller-service.fly.dev
+/endpoint: http://127.0.0.1:8001
+
+-- fastn.dependency: fifthtry.github.io/roboto
+
+/-- fastn.dependency: fifthtry.github.io/button as button
+/-- fastn.auto-import: button
+
+
+-- fastn.auto-import: fastn
+-- fastn.dependency: fifthtry.github.io/inter
+-- fastn.auto-import: fastn-controller-ui.fly.dev/assets
+-- fastn.auto-import: fastn-controller-ui.fly.dev/FASTN/config
+
+
+
+
+
+/-- fastn.sitemap:
+
+# Sites: /sites/
+
+## Info: /site-info/
+## Access: /site-access/
+## Metrics: /site-metrics/
+## Activity: /site-update/
+
+- Site Updates: /site-update/
+- Analytics: /site-analytics/
+- Logs: /site-logs/
+
+## Settings: /site-settings/
+
+# Access: /access/
+
+# Billing: /billing/
+
+# Settings: /setting/
+
