@@ -1,9 +1,9 @@
--- import: fpm-controller-ui.fly.dev/assets
+-- import: fastn-controller-ui.fly.dev/assets
 -- import: fifthtry.github.io/roboto/assets as roboto-assets
--- import: fpm
+-- import: fastn
 
--- fpm.font-copy: $roboto-assets.fonts.Roboto
+/-- fastn.font-copy: $roboto-assets.fonts.Roboto
 
--- fpm.font-display: $roboto-assets.fonts.Roboto
+/-- fastn.font-display: $roboto-assets.fonts.Roboto
 
--- fpm.font-code: $roboto-assets.fonts.Roboto
+/-- fastn.font-code: $roboto-assets.fonts.Roboto
