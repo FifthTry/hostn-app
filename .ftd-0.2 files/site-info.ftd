@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn-controller-ui.fly.dev/page-1
 
 -- ftd.color light-red:
 light: #ffc297
@@ -45,7 +45,7 @@ optional string site-access-link:
 -- site-info-data info:
 $processor$: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/site-info/
+url: /-/fastn-controller-ui.fly.dev/api/site-info/
 team: $query.team
 site-id: $query.site-id
 

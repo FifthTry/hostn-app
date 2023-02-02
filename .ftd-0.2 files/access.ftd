@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn-controller-ui.fly.dev/page-1
 
 -- optional string selected-team-member:
 $always-include$: true
@@ -61,7 +61,7 @@ optional string site-access-link:
 -- access-contents team-access:
 $processor$: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/access/
+url: /-/fastn-controller-ui.fly.dev/api/access/
 team: $query.team
 
 -- page-1.team list team-list: $team-access.teams
@@ -154,8 +154,8 @@ $on-input$: $current-new-team-member-email=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -360,7 +360,7 @@ $on-click$: message-host $update-team-member-access-api
 -- object update-team-member-access-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/update-team-member-access/
+url: /-/fastn-controller-ui.fly.dev/api/update-team-member-access/
 team: $query.team
 team-member: $selected-team-member
 manage-teams: $selected-manage-teams
@@ -370,13 +370,13 @@ manage-sites: $selected-manage-sites
 -- object delete-team-member-access-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/delete-team-member-access/
+url: /-/fastn-controller-ui.fly.dev/api/delete-team-member-access/
 team: $query.team
 team-member: $selected-team-member
 
 -- object add-team-member-access-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/add-team-member-access/
+url: /-/fastn-controller-ui.fly.dev/api/add-team-member-access/
 team: $query.team
 team-member-email: $current-new-team-member-email

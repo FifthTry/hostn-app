@@ -1,6 +1,6 @@
 -- import: fp/processors
 
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn-controller-ui.fly.dev/page-1
 
 -- optional string current-new-team-name:
 
@@ -39,7 +39,7 @@ optional string site-access-link:
 -- settings-data settings:
 $processor$: processors.http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/settings/
+url: /-/fastn-controller-ui.fly.dev/api/settings/
 team: $query.team
 
 -- page-1.team list team-list: $settings.teams
@@ -181,8 +181,8 @@ $on-input$: $current-new-team-name=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -246,8 +246,8 @@ $on-input$: $verification-team-name-text=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text-strong
 border-color: $inherited.colors.border
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 width: fill-container
 background.solid: $inherited.colors.border
@@ -306,14 +306,14 @@ color: $inherited.colors.error.border
 -- object edit-team-name-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/edit-team-name/
+url: /-/fastn-controller-ui.fly.dev/api/edit-team-name/
 team: $query.team
 new-team: $current-new-team-name
 
 -- object delete-team-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/delete-team/
+url: /-/fastn-controller-ui.fly.dev/api/delete-team/
 team: $query.team
 verification-text: $verification-team-name-text
 $verification-text-error: $verification-text-error

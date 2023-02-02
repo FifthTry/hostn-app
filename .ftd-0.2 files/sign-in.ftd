@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/base
+-- import: fastn-controller-ui.fly.dev/base
 
 -- optional string username:
 $always-include$: true
@@ -42,13 +42,13 @@ caption title:
 --- ftd.column:
 width: fill-container
 id: main-form
-padding-vertical: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-8
+padding-vertical: $fastn.space.space-6
+padding-horizontal: $fastn.space.space-8
 background.solid: $inherited.colors.background.step-1
 border-width: 1
 border-color: $inherited.colors.border
 position: center
-margin-bottom: $fpm.space.space-10
+margin-bottom: $fastn.space.space-10
 
 --- ftd.column:
 align: center
@@ -57,14 +57,14 @@ align: center
 role: $inherited.types.heading-medium
 color: $inherited.colors.text
 align: center
-margin-bottom: $fpm.space.space-4
+margin-bottom: $fastn.space.space-4
 
 --- container: main-form
 
 --- ftd.column:
 if: $error-form is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-0
+margin-top: $fastn.space.space-2
+margin-left: $fastn.space.space-0
 width: fill-container
 
 --- ftd.text: $error-form
@@ -76,12 +76,12 @@ color: $inherited.colors.error.text
 --- ftd.column:
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 --- ftd.text: Enter email address
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 
 --- ftd.input:
 placeholder: Enter Email
@@ -89,16 +89,16 @@ $on-change$: $username=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
 
 --- ftd.column:
 if: $error-email is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-3
+margin-top: $fastn.space.space-2
+margin-left: $fastn.space.space-3
 width: fill-container
 
 --- ftd.text: $error-email
@@ -110,12 +110,12 @@ color: $inherited.colors.error.text
 --- ftd.column:
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 --- ftd.text: Enter your password
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 
 --- ftd.input:
 placeholder: Enter passsword
@@ -124,16 +124,16 @@ $on-change$: $password=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
 
 --- ftd.column:
 if: $error-password is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-3
+margin-top: $fastn.space.space-2
+margin-left: $fastn.space.space-3
 width: fill-container
 
 --- ftd.text: $error-password
@@ -144,8 +144,8 @@ color: $inherited.colors.error.text
 
 --- ftd.column: 
 width: fill-container
-margin-top: $fpm.space.space-4
-margin-bottom: $fpm.space.space-4
+margin-top: $fastn.space.space-4
+margin-bottom: $fastn.space.space-4
 
 --- ftd.row:
 width: fill-container
@@ -160,7 +160,7 @@ role: $inherited.types.fine-print
 color: $inherited.colors.text
 white-space: nowrap
 align: center
-margin-left: $fpm.space.space-3
+margin-left: $fastn.space.space-3
 
 --- ftd.text: Terms &amp; conditions
 role: $inherited.types.fine-print
@@ -173,14 +173,14 @@ link: https://www.fifthtry.com/terms/
 open-in-new-tab: true
 white-space: nowrap
 align: center
-margin-left: $fpm.space.space-1
+margin-left: $fastn.space.space-1
 
 --- ftd.text: and
 role: $inherited.types.fine-print
 color: $inherited.colors.text
 white-space: nowrap
 align: center
-margin-left: $fpm.space.space-1
+margin-left: $fastn.space.space-1
 
 --- ftd.text: Privacy policy
 role: $inherited.types.fine-print
@@ -193,13 +193,13 @@ link: https://www.fifthtry.com/privacy/
 open-in-new-tab: true
 white-space: nowrap
 align: center
-margin-left: $fpm.space.space-1
+margin-left: $fastn.space.space-1
 
 --- container: main-form
 
 --- ftd.column: 
 width: fill-container
-margin-top: $fpm.space.space-6
+margin-top: $fastn.space.space-6
 
 --- ftd.row:
 spacing: 34

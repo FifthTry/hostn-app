@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/base
+-- import: fastn-controller-ui.fly.dev/base
 
 -- boolean dropdown-open: false
 
@@ -42,7 +42,7 @@ optional string info:
 -- deploy-data deploy:
 $processor$: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/deploy/
+url: /-/fastn-controller-ui.fly.dev/api/deploy/
 git-repo: $query.git-repo
 team: $selected-team
 
@@ -139,8 +139,8 @@ caption title:
 --- ftd.column:
 width: fill-container
 id: main-form
-padding-vertical: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-8
+padding-vertical: $fastn.space.space-6
+padding-horizontal: $fastn.space.space-8
 background.solid: $inherited.colors.background.step-1
 border-width: 1
 border-color: $inherited.colors.border
@@ -153,19 +153,19 @@ align: center
 role: $inherited.types.heading-medium
 color: $inherited.colors.text
 align: center
-margin-bottom: $fpm.space.space-4
+margin-bottom: $fastn.space.space-4
 
 --- container: main-form
 
 --- ftd.column:
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 --- ftd.text: Enter Site Name
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 
 --- ftd.input:
 placeholder: Site name
@@ -174,8 +174,8 @@ $on-input$: $package-name=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -191,12 +191,12 @@ padding-top: 5
 --- ftd.column:
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 --- ftd.text: Enter your Git Repository
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 
 
 --- ftd.input:
@@ -206,8 +206,8 @@ $on-input$: $base-url=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -223,7 +223,7 @@ padding-top: 5
 --- ftd.column:
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 --- team-selection-bar:
 team-name: $selected-team
@@ -236,7 +236,7 @@ query-team: $selected-team
 --- ftd.column:
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 ;; ADD HERE
 --- ftd.text: $account-info
@@ -248,14 +248,14 @@ color: $inherited.colors.success.text
 
 --- ftd.column:
 width: fill-container
-margin-top: $fpm.space.space-4
-margin-bottom: $fpm.space.space-4
+margin-top: $fastn.space.space-4
+margin-bottom: $fastn.space.space-4
 
 --- container: main-form
 
 --- ftd.column:
 width: fill-container
-margin-top: $fpm.space.space-6
+margin-top: $fastn.space.space-6
 
 --- ftd.row:
 spacing: 34
@@ -270,7 +270,7 @@ $on-click$: message-host $pre-deployment-check-api
 -- object pre-deployment-check-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/pre-deployment-check/
+url: /-/fastn-controller-ui.fly.dev/api/pre-deployment-check/
 user: $deploy.git-user
 team: $selected-team
 package-name: $package-name
@@ -315,16 +315,16 @@ optional string item-link:
 width: fill-container
 border-bottom: 1
 border-color: $inherited.colors.border
-padding-bottom: $fpm.space.space-3
+padding-bottom: $fastn.space.space-3
 background-color if $MOUSE-IN: $inherited.colors.background.step-1
-padding-horizontal: $fpm.space.space-2
-padding-vertical: $fpm.space.space-2
+padding-horizontal: $fastn.space.space-2
+padding-vertical: $fastn.space.space-2
 
 --- ftd.text: $item-title
 if: $item-title is not null
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 $on-click$: $selected-team = $item-title
 $on-click$: toggle $dropdown-open
 
@@ -345,8 +345,8 @@ align: center
 --- ftd.row:
 id: team-dd
 min-width: 250
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-2
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-2
 border-width: 1
 border-color: $inherited.colors.border
 border-radius: 4
@@ -395,13 +395,13 @@ optional string error-msg:
 optional string field-type: text
 width: fill-container
 align: center
-margin-top: $fpm.space.space-4
+margin-top: $fastn.space.space-4
 
 
 --- ftd.text: $label
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
-margin-bottom: $fpm.space.space-2
+margin-bottom: $fastn.space.space-2
 
 --- ftd.input:
 width: fill-container
@@ -409,8 +409,8 @@ role: $inherited.types.copy-tight
 color: $inherited.colors.text
 placeholder: $placeholder
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 explain: true
@@ -418,8 +418,8 @@ type: $field-type
 
 --- ftd.column:
 if: $error-msg is not null
-margin-top: $fpm.space.space-2
-margin-left: $fpm.space.space-3
+margin-top: $fastn.space.space-2
+margin-left: $fastn.space.space-3
 width: fill-container
 
 --- ftd.text: $error-msg

@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev as base
+-- import: fastn-controller-ui.fly.dev as base
 
 -- record package:
 caption title:
@@ -25,7 +25,7 @@ min-width: 200
 
 --- ftd.row:
 align: right
-padding-bottom: $fpm.space.space-4
+padding-bottom: $fastn.space.space-4
 
 --- button.button: $title
 role: primary
@@ -61,7 +61,7 @@ min-width: 200
 
 --- ftd.row:
 align: right
-padding-bottom: $fpm.space.space-4
+padding-bottom: $fastn.space.space-4
 
 --- button.button: $title
 role: primary
@@ -75,7 +75,7 @@ link: $button-link
 -- ftd.column packages-list:
 package list package-list:
 width: fill-container
-margin-bottom: $fpm.space.space-10
+margin-bottom: $fastn.space.space-10
 
 --- show-package: $obj.title
 $loop$: $package-list as $obj
@@ -96,12 +96,12 @@ caption title:
 string description: 
 string package-url:
 width: fill-container
-padding-vertical: $fpm.space.space-2
+padding-vertical: $fastn.space.space-2
 
 --- ftd.column:
 width: fill-container
-padding-vertical: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-6
+padding-vertical: $fastn.space.space-6
+padding-horizontal: $fastn.space.space-6
 spacing: 12
 background.solid: $inherited.colors.background.step-1
 border-radius: 10

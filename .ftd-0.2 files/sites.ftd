@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn-controller-ui.fly.dev/page-1
 
 -- ftd.color light-red:
 light: #ffc297
@@ -57,7 +57,7 @@ optional string site-access-link:
 -- dashboard-data dashboard:
 $processor$: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/dashboard/
+url: /-/fastn-controller-ui.fly.dev/api/dashboard/
 team: $query.team
 
 
@@ -269,7 +269,7 @@ min-width: 200
 
 --- ftd.row:
 align: right
-padding-bottom: $fpm.space.space-4
+padding-bottom: $fastn.space.space-4
 
 --- button.button: $title
 role: primary
@@ -284,19 +284,19 @@ url: $external-link
 -- object redirect-to-site-info-api:
 function: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/site-info/
+url: /-/fastn-controller-ui.fly.dev/site-info/
 team: $query.team
 site-id: $selected-site-id
 
 -- object redirect-to-create-instance-api:
 function: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/create-package/
+url: /-/fastn-controller-ui.fly.dev/create-package/
 team: $query.team
 
 -- object delete-site-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/delete-instance/
+url: /-/fastn-controller-ui.fly.dev/api/delete-instance/
 site-id: $selected-site-id
 package-name: $selected-site-package

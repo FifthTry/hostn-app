@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn-controller-ui.fly.dev/page-1
 
 -- ftd.color light-red:
 light: #ffc297
@@ -78,7 +78,7 @@ optional string site-access-link:
 -- site-access-data access:
 $processor$: http
 method: get
-url: /-/fpm-controller-ui.fly.dev/api/site-access/
+url: /-/fastn-controller-ui.fly.dev/api/site-access/
 team: $query.team
 site-id: $query.site-id
 
@@ -129,8 +129,8 @@ $on-input$: $current-new-site-member-email=$VALUE
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-2
-padding-horizontal: $fpm.space.space-3
+padding-vertical: $fastn.space.space-2
+padding-horizontal: $fastn.space.space-3
 border-width: 1
 border-color: $inherited.colors.border
 width: fill-container
@@ -333,7 +333,7 @@ $on-click$: message-host $update-site-member-access-api
 -- object update-site-member-access-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/update-site-member-access/
+url: /-/fastn-controller-ui.fly.dev/api/update-site-member-access/
 site-member: $selected-team-member
 site-id: $query.site-id
 manage-teams: $selected-manage-teams
@@ -343,13 +343,13 @@ manage-sites: $selected-manage-sites
 -- object delete-site-member-access-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/delete-site-member-access/
+url: /-/fastn-controller-ui.fly.dev/api/delete-site-member-access/
 site-member: $selected-team-member
 site-id: $query.site-id
 
 -- object add-site-member-access-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/add-site-member-access/
+url: /-/fastn-controller-ui.fly.dev/api/add-site-member-access/
 site-member-email: $current-new-site-member-email
 site-id: $query.site-id

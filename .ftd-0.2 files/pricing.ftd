@@ -1,13 +1,13 @@
--- import: fpm
--- import: fpm/processors
--- import: fpm-controller-ui.fly.dev/page-1
+-- import: fastn
+-- import: fastn/processors
+-- import: fastn-controller-ui.fly.dev/page-1
 -- import: fifthtry.github.io/inter/assets as font-assets
 -- boolean is-mobile: false
 
 -- is-mobile: true
 if: { ftd.device == mobile }
 
--- fpm.font-display: $font-assets.fonts.Inter
+-- fastn.font-display: $font-assets.fonts.Inter
 
 -- boolean debug: false
 
@@ -48,7 +48,7 @@ line-height: 24
 size: 16
 letter-spacing: 0
 
--- ftd.type copy-relaxed-medium: $fpm.font-display
+-- ftd.type copy-relaxed-medium: $fastn.font-display
 desktop: $copy-relaxed-medium-desktop
 mobile: $copy-relaxed-medium-desktop
 xl: $copy-relaxed-medium-desktop
@@ -59,7 +59,7 @@ line-height: 52
 size: 36
 letter-spacing: 0
 
--- ftd.type heading-hero: $fpm.font-display
+-- ftd.type heading-hero: $fastn.font-display
 desktop: $heading-hero-sml
 mobile: $heading-hero-sml
 xl: $heading-hero-sml
@@ -70,7 +70,7 @@ line-height: 44
 size: 32
 letter-spacing: 0
 
--- ftd.type sub-heading-small: $fpm.font-display
+-- ftd.type sub-heading-small: $fastn.font-display
 desktop: $sub-heading-sml
 mobile: $sub-heading-sml
 xl: $sub-heading-sml
@@ -139,7 +139,7 @@ line-height: 60
 size: 48
 letter-spacing: 0
 
--- ftd.type hero-large: $fpm.font-display
+-- ftd.type hero-large: $fastn.font-display
 desktop: $hero-lg
 mobile: $hero-lg
 xl: $hero-lg
@@ -157,7 +157,7 @@ line-height: 36
 size: 24
 letter-spacing: 0
 
--- ftd.type list-title: $fpm.font-display
+-- ftd.type list-title: $fastn.font-display
 desktop: $list-tit
 mobile: $list-tit
 xl: $list-tit
@@ -169,7 +169,7 @@ line-height: 24
 size: 16
 letter-spacing: 0
 
--- ftd.type copy-relaxed: $fpm.font-display
+-- ftd.type copy-relaxed: $fastn.font-display
 desktop: $copy-relax
 mobile: $copy-relax
 xl: $copy-relax
@@ -375,7 +375,7 @@ $on-click$: message-host $create-site-api
 -- object create-site-api:
 function: http
 method: post
-url: /-/fpm-controller-ui.fly.dev/api/create-site/
+url: /-/fastn-controller-ui.fly.dev/api/create-site/
 team: $query.team
 package-name: $query.package-name
 base-url: $query.base-url

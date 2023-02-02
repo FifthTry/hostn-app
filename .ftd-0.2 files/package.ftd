@@ -1,4 +1,4 @@
--- import: fpm-controller-ui.fly.dev/base
+-- import: fastn-controller-ui.fly.dev/base
 -- import: fifthtry.github.io/button as button
 
 
@@ -46,11 +46,11 @@ package-name: $package-to-delete
 -- ftd.column remove-package:
 string package-name:
 width: fill-container
-margin-top: $fpm.space.space-6
+margin-top: $fastn.space.space-6
 
 --- ftd.row:
 align: left
-padding-left: $fpm.space.space-6	
+padding-left: $fastn.space.space-6	
 
 --- delete-button: Delete Package
 $on-click$: $show-delete-dialog = true
@@ -71,13 +71,13 @@ caption title:
 optional string button-link:
 boolean plus-sign: false
 width: fill-container
-margin-bottom: $fpm.space.space-4
+margin-bottom: $fastn.space.space-4
 link: $button-link
 
 --- ftd.row:
 align: right
-padding-horizontal: $fpm.space.space-6
-padding-vertical: $fpm.space.space-2
+padding-horizontal: $fastn.space.space-6
+padding-vertical: $fastn.space.space-2
 background.solid: $inherited.colors.error.base
 background-color if $MOUSE-IN: $inherited.colors.cta-tertiary.hover
 color: $inherited.colors.error.text
@@ -87,7 +87,7 @@ border-radius: 4
 if: $plus-sign
 text: &#65291; 
 role: $inherited.types.copy-tight
-padding-right: $fpm.space.space-2
+padding-right: $fastn.space.space-2
 
 --- ftd.text: $title 
 role: $inherited.types.copy-tight
@@ -116,13 +116,13 @@ caption title:
 string description: 
 string package-url:
 width: fill-container
-padding-vertical: $fpm.space.space-2
+padding-vertical: $fastn.space.space-2
 
 
 --- ftd.row:
 width: fill-container
-padding-vertical: $fpm.space.space-6
-padding-horizontal: $fpm.space.space-6
+padding-vertical: $fastn.space.space-6
+padding-horizontal: $fastn.space.space-6
 spacing: 24
 background.solid: $inherited.colors.background.step-1
 border-radius: 10
@@ -184,8 +184,8 @@ z-index: 9999
 string package-name:
 width: percent 30
 background.solid: $inherited.colors.background.step-1
-padding-vertical: $fpm.space.space-4
-padding-horizontal: $fpm.space.space-4
+padding-vertical: $fastn.space.space-4
+padding-horizontal: $fastn.space.space-4
 anchor: window
 position: center
 z-index: 999999
@@ -224,7 +224,7 @@ color: $inherited.colors.text-strong
 
 --- ftd.column:
 width: fill-container
-margin-top: $fpm.space.space-10
+margin-top: $fastn.space.space-10
 
 --- ftd.row:
 align: center
@@ -237,9 +237,9 @@ $on-click$: $package-to-delete = $package-name
 role: $inherited.types.copy-tight
 color: $inherited.colors.text
 color if $MOUSE-IN: $inherited.colors.text-strong
-padding-horizontal: $fpm.space.space-5
-padding-vertical: $fpm.space.space-2
-margin-left: $fpm.space.space-10
+padding-horizontal: $fastn.space.space-5
+padding-vertical: $fastn.space.space-2
+margin-left: $fastn.space.space-10
 
 
 
