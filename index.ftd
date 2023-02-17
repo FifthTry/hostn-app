@@ -6,8 +6,8 @@
 -- p.toc-item list sections:
 $processor$: p.toc
 
-- Docs: /docs/
-- Pricing: /pricing/
+- Docs: /-/fifthtry.github.io/hostn-app/docs/
+- Pricing: /-/fifthtry.github.io/hostn-app/pricing/
 
 
 -- component iter-section:
@@ -70,7 +70,7 @@ section: $section
 color: $inherited.colors.text-strong
 role: $inherited.types.heading-small
 white-space: nowrap
-link: /login/
+link: /-/fifthtry.github.io/hostn-app/login/
 
 
 -- end: ftd.row
