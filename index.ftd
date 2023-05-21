@@ -1,0 +1,212 @@
+-- import: fastn/processors as p
+
+-- string $site-name: Hostn
+-- string $site-url: /
+
+-- p.toc-item list sections:
+$processor$: p.toc
+
+- Docs: /-/fifthtry.github.io/hostn-app/docs/
+- Pricing: /-/fifthtry.github.io/hostn-app/pricing/
+
+
+-- component iter-section:
+p.toc-item section:
+
+-- ftd.column:
+width: fill-container
+
+
+-- ftd.text: $iter-section.section.title
+if: { iter-section.section.url != NULL }
+link: $iter-section.section.url
+role: $inherited.types.button-large
+color: $inherited.colors.text-strong
+color if { iter-section.section.is-active }: $inherited.colors.cta-primary.base
+padding-top.px: 4
+
+
+-- ftd.text: $iter-section.section.title
+if: { iter-section.section.url == NULL }
+role: $inherited.types.button-medium
+color: $inherited.colors.text-strong
+color if { iter-section.section.is-active }: $inherited.colors.cta-primary.base
+padding-top.px: 4
+
+
+-- end: ftd.column
+
+-- end: iter-section
+
+
+
+-- component header:
+string site-name:
+string site-url:
+string login-button-text:
+p.toc-item list sections:
+
+
+-- ftd.row:
+padding-vertical.px: 16
+padding-horizontal.px: 24
+background.solid: #140606
+border-style: solid
+width: fill-container
+border-width.px: 1
+
+-- ftd.text: $header.site-name
+color: $inherited.colors.text-strong
+role: $inherited.types.heading-small
+width: fill-container
+link: $header.site-url
+
+
+-- iter-section:
+$loop$: $header.sections as $section
+section: $section
+
+-- ftd.text: $header.login-button-text
+color: $inherited.colors.text-strong
+role: $inherited.types.heading-small
+white-space: nowrap
+link: /-/fifthtry.github.io/hostn-app/login/
+
+
+-- end: ftd.row
+
+-- end: header
+
+;; body starts
+
+-- component card:
+caption title:
+string subtitle:
+
+-- ftd.column:
+margin-top.px: -200
+padding-horizontal.px: 70
+background.solid: $inherited.colors.background.step-2
+border-radius.px: 12
+align-content: center
+padding-vertical.px: 70
+
+
+
+-- ftd.text: $card.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+white-space: nowrap
+
+-- ftd.text: $card.subtitle
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+
+-- end: ftd.column
+
+-- end: card
+
+
+
+-- component body:
+
+-- ftd.column:
+min-height.fixed.calc: 100vh - 52px
+width: fill-container
+align-content: center
+
+-- card: Hosting For Fastn Packages
+subtitle: Coming Soon...
+
+-- end: ftd.column
+
+
+-- end: body
+
+
+
+-- component footer:
+
+-- ftd.column:
+
+/-- ftd.text: I the boot of the page
+
+-- end: ftd.column
+
+-- end: footer
+
+
+
+-- component index:
+optional caption title:
+optional body body:
+string site-name: $site-name
+string site-url: $site-url
+p.toc-item list sections: $sections
+string login-button-text: Login With GitHub
+children container:
+
+
+-- ftd.column:
+width: fill-container
+
+
+-- header:
+site-name: $index.site-name
+site-url: $index.site-url
+login-button-text: $index.login-button-text
+sections: $index.sections
+
+
+-- ftd.column:
+width: fill-container
+min-height.fixed.calc: 100vh - 52px
+align-content: center
+background.solid: $inherited.colors.background.step-1
+
+
+-- ftd.text: $index.title
+if: { index.title != NULL }
+role: $inherited.types.heading-hero
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { index.body != NULL }
+text: $index.body
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+margin-top.px: 24
+
+
+-- ftd.column:
+max-width.fixed.px: 800
+width: fill-container
+align-content: top-left
+children: $index.container
+padding-horizontal.px: 48
+padding-vertical.px: 48
+
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- footer:
+
+-- end: ftd.column
+
+-- end: index
+
+
+
+;; calling the component
+/-- index:
+
+/-- body:
+
+/-- end: index
+
+
+-- index: Hosting For Fastn Packages
+
+Coming Soon....
